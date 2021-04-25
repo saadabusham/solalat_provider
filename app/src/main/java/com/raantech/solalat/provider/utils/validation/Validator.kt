@@ -3,7 +3,7 @@ package com.raantech.solalat.provider.utils.validation
 import android.content.Context
 import com.raantech.solalat.provider.R
 
-class Validator() {
+class Validator {
 
     companion object {
 
@@ -128,7 +128,7 @@ class Validator() {
                 errorTitle = context.resources.getString(R.string.first_name),
                 errorMessage = context.resources.getString(R.string.must_not_be_empty)
             )
-        } else if (textToValidate?.length ?: 0 < FIRST_NAME_MIN_LENGTH) {
+        } else if (textToValidate.length < FIRST_NAME_MIN_LENGTH) {
             ValidatedData(
                 isValid = false,
                 errorTitle = context.resources.getString(R.string.first_name),
@@ -145,7 +145,7 @@ class Validator() {
                 errorTitle = context.resources.getString(R.string.last_name),
                 errorMessage = context.resources.getString(R.string.must_not_be_empty)
             )
-        } else if (textToValidate?.length ?: 0 < LAST_NAME_MIN_LENGTH) {
+        } else if (textToValidate.length < LAST_NAME_MIN_LENGTH) {
             ValidatedData(
                 isValid = false,
                 errorTitle = context.resources.getString(R.string.last_name),
@@ -185,6 +185,7 @@ class Validator() {
                     errorMessage = context.resources.getString(R.string.must_not_be) + " " +
                             PHONE_MAX_LENGTH + " " + context.resources.getString(R.string.numbers)
             )
+
         } else if (textToValidate.startsWith("7") && (textToValidate.length < PHONE_MIN_LENGTH || textToValidate.length > PHONE_MIN_LENGTH)) {
             ValidatedData(
                     isValid = false,
@@ -318,7 +319,7 @@ class Validator() {
                 errorTitle = context.resources.getString(R.string.otp),
                 errorMessage = context.resources.getString(R.string.must_not_be_empty)
             )
-        } else if (textToValidate.length ?: 0 < OTP_LENGTH) {
+        } else if (textToValidate.length < OTP_LENGTH) {
             ValidatedData(
                 isValid = false,
                 errorTitle = context.resources.getString(R.string.otp),
