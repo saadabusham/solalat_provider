@@ -62,8 +62,6 @@ subprojects {
     apply plugin: "androidx.navigation.safeargs.kotlin"
     apply plugin: 'dagger.hilt.android.plugin'
 
-    apply plugin: 'com.jakewharton.butterknife'
-
     // SetUp App Versions and Build Types
     apply from: rootDir.path + "/android.gradle"
 

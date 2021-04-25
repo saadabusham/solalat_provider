@@ -10,29 +10,31 @@
         android:name="com.raantech.solalat.provider.ui.auth.language.LanguageFragment"
         android:label="LanguageFragment"
         tools:layout="@layout/fragment_language">
+
         <action
-            android:id="@+id/action_languageFragment_to_onBoardingFragment"
-            app:destination="@id/onBoardingFragment"
+            android:id="@+id/action_languageFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.raantech.solalat.provider.ui.auth.login.fragments.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_verificationLoginFragment"
+            app:destination="@id/verificationLoginFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
-        android:id="@+id/onBoardingFragment"
-        android:name="com.raantech.solalat.provider.ui.auth.onboarding.OnBoardingFragment"
-        android:label="OnBoardingFragment"
-        tools:layout="@layout/fragment_on_boarding">
-<!--        <action-->
-<!--            android:id="@+id/action_onBoardingFragment_to_loginFragment"-->
-<!--            app:destination="@id/loginFragment"-->
-<!--            app:enterAnim="@anim/slide_in_right"-->
-<!--            app:exitAnim="@anim/slide_out_left"-->
-<!--            app:popEnterAnim="@anim/slide_in_left"-->
-<!--            app:popExitAnim="@anim/slide_out_right"  />-->
-    </fragment>
-<!--    <fragment-->
-<!--        android:id="@+id/loginFragment"-->
-<!--        android:name="saaderyin.ui.auth.login.fragments.LoginFragment"-->
-<!--        android:label="LoginFragment" />-->
+        android:id="@+id/verificationLoginFragment"
+        android:name="com.raantech.solalat.provider.ui.auth.login.fragments.VerificationLoginFragment"
+        android:label="VerificationLoginFragment" />
 </navigation>

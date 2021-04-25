@@ -3,12 +3,12 @@ package com.raantech.solalat.provider.data.api.response
 import com.squareup.moshi.Json
 
 data class ResponseWrapper<RETURN_MODEL>(
-    @field:Json(name = "success")
-    val success: Boolean,
-    @field:Json(name = "errorCode")
+    @field:Json(name = "errors")
+    val errors: List<GeneralError>,
+    @field:Json(name = "code")
     val code: Int,
-    @field:Json(name = "errorMessage")
+    @field:Json(name = "message")
     val message: String,
-    @field:Json(name = "data")
-    val data: RETURN_MODEL?
+    @field:Json(name = "body")
+    val body: RETURN_MODEL?
 )

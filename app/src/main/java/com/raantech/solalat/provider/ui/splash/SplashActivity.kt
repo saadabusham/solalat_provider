@@ -6,11 +6,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.common.MyApplication
-import com.raantech.solalat.provider.data.api.response.APIResource
-import com.raantech.solalat.provider.data.api.response.RequestStatusEnum
+import com.raantech.solalat.provider.data.api.response.GeneralError
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.solalat.provider.data.common.CustomObserverResponse
 import com.raantech.solalat.provider.data.models.configuration.ConfigurationWrapperResponse
@@ -18,9 +16,9 @@ import com.raantech.solalat.provider.databinding.ActivitySplashBinding
 import com.raantech.solalat.provider.ui.MainActivity
 import com.raantech.solalat.provider.ui.auth.AuthActivity
 import com.raantech.solalat.provider.ui.base.activity.BaseBindingActivity
+import com.raantech.solalat.provider.utils.extensions.showErrorAlert
 import com.raantech.solalat.provider.utils.pref.SharedPreferencesUtil
 import dagger.hilt.android.AndroidEntryPoint
-import io.branch.referral.Branch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,8 +32,8 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(
-            layoutResID = R.layout.activity_splash,
-            hasToolbar = false
+                layoutResID = R.layout.activity_splash,
+                hasToolbar = false
         )
         Handler(Looper.getMainLooper()).postDelayed({
             viewModel.getConfigurationData().observe(this, configurationResultObserver())
@@ -46,55 +44,26 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
 
     private fun configurationResultObserver(): CustomObserverResponse<ConfigurationWrapperResponse> {
         return CustomObserverResponse(
-            this,
-            object : CustomObserverResponse.APICallBack<ConfigurationWrapperResponse> {
-                override fun onSuccess(
-                    statusCode: Int,
-                    subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: ConfigurationWrapperResponse?
-                ) {
-                    when {
-                        subErrorCode == ResponseSubErrorsCodeEnum.Success -> {
-                            SharedPreferencesUtil.getInstance(this@SplashActivity)
+                this,
+                object : CustomObserverResponse.APICallBack<ConfigurationWrapperResponse> {
+                    override fun onSuccess(
+                            statusCode: Int,
+                            subErrorCode: ResponseSubErrorsCodeEnum,
+                            data: ConfigurationWrapperResponse?
+                    ) {
+                        SharedPreferencesUtil.getInstance(this@SplashActivity)
                                 .setConfigurationPreferences(data)
-                            goToNextPage()
-                        }
+                        goToNextPage()
                     }
-                }
-            })
-    }
 
-    private val configurationResultObserver =
-        Observer<APIResource<ConfigurationWrapperResponse>> {
-            when (it.status) {
-                RequestStatusEnum.SUCCESS -> {
-                    hideLoadingView()
-                    when {
-                        it.statusSubCode == ResponseSubErrorsCodeEnum.Success -> {
-                            SharedPreferencesUtil.getInstance(this)
-                                .setConfigurationPreferences(it.data)
-                            goToNextPage()
-                        }
-                        else -> {
-                            handleRequestFailedMessages(
-                                it.statusCode,
-                                it?.statusSubCode,
-                                it.messages ?: ""
-                            )
+                    override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String, errors: List<GeneralError>?) {
+                        super.onError(subErrorCode, message, errors)
+                        errors?.get(0)?.let {
+                            showErrorAlert(it.key, it.getErrorsString())
                         }
                     }
-                }
-                RequestStatusEnum.FAILED -> {
-                    hideLoadingView()
-                    handleRequestFailedMessages(
-                        it.statusCode,
-                        it.statusSubCode,
-                        it.messages
-                    )
-                }
-                RequestStatusEnum.LOADING -> showLoadingView()
-            }
-        }
+                })
+    }
 
     private fun goToNextPage() {
         if (!viewModel.isUserLoggedIn()) {
@@ -106,26 +75,6 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
 
     override fun onStart() {
         super.onStart()
-        val branch = Branch.getInstance()
-        // Branch init
-//        branch.initSession({ referringParams: JSONObject?, error: BranchError? ->
-//            if (error == null && referringParams != null) {
-//                try {
-//                    myApp.deeplink_id =
-//                        referringParams.optString(Constants.BundleData.OpId, "")
-//                } catch (e: Exception) {
-//                    Log.i(
-//                        "DIDNT_PARSED_LINK",
-//                        "DIDNT_PARSED_LINK " + error!!.message + referringParams.toString()
-//                    )
-//                }
-//            } else {
-//                Log.i(
-//                    "DIDNT_PARSED_LINK_NULL",
-//                    "DIDNT_PARSED_LINK_NULL" + error!!.message + referringParams.toString()
-//                )
-//            }
-//        }, this.intent.data, this)
     }
 
     override fun onNewIntent(intent: Intent?) {

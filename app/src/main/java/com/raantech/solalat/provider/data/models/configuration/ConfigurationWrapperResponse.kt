@@ -1,25 +1,30 @@
 package com.raantech.solalat.provider.data.models.configuration
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class ConfigurationWrapperResponse(
-    @field:Json(name = "configSetting")
-    val configSetting: ConfigSetting? = null,
 
-    @field:Json(name = "configString")
-    val configString: ConfigString? = null,
+	@field:SerializedName("facebook_url")
+	val facebookUrl: String? = null,
 
-    @field:Json(name = "updateStatus")
-    val updateStatus: UpdateStatus? = null,
+	@field:SerializedName("app_phone_number")
+	val appPhoneNumber: String? = null,
 
-    @field:Json(name = "developer")
-    val developer: Developer? = null,
+	@field:SerializedName("app_email")
+	val appEmail: String? = null,
 
-    @field:Json(name = "company")
-    val company: Company? = null,
+	@field:SerializedName("instagram_url")
+	val instagramUrl: String? = null,
 
-    @field:Json(name = "id")
-    val id: Int
+	@field:SerializedName("snapchat_url")
+	val snapchatUrl: String? = null,
+
+	@field:SerializedName("linkedin_url")
+	val linkedinUrl: String? = null,
+
+	@field:SerializedName("youtube_url")
+	val youtubeUrl: String? = null,
+
+	@field:SerializedName("twitter_url")
+	val twitterUrl: String? = null
 )
-
-

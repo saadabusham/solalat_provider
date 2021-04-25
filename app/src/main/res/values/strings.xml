@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BaseApp</string>
+    <string name="app_name">Solalat Provider</string>
     <string name="app_license">Copyright@Technzone Company</string>
 
     <!-- SelectLanguageFragment-->
@@ -50,6 +50,7 @@
     <!--  Validator strings  -->
     <string name="must_not_be_empty">must not be empty</string>
     <string name="must_not_be_at_least">must not be at least </string>
+    <string name="must_not_be">must not be </string>
     <string name="characters"> characters</string>
     <string name="numbers"> numbers</string>
     <string name="text">Text</string>
@@ -94,12 +95,13 @@
     <!--    Completed dialog-->
     <string name="completed_successfully">Completed Successfully</string>
 
-    <!--    Login-->
-    <string name="login">Login</string>
-
     <!--    Language    -->
     <string name="continue_">Continue</string>
     <string name="please_choose_your_preferred_language">Please choose your preferred language!</string>
+
+    <!--    Login-->
+    <string name="login">Login</string>
+    <string name="enter_your_mobile_number">Enter your mobile number</string>
 
     <!--    OnBoarding  -->
     <string name="title_on_boarding_1">title_on_boarding_1</string>
@@ -110,5 +112,14 @@
     <string name="description_on_boarding_3">description_on_boarding_3</string>
     <string name="title_on_boarding_4">title_on_boarding_4</string>
     <string name="description_on_boarding_4">description_on_boarding_4</string>
+
+    <!--    Verification Login   -->
+    <string name="verification">Verification</string>
+    <string name="please_check_you_message_for_a_five_digit_security_code_and_enter_it_below">Please check you message for a five-digit security code and enter it below.</string>
+    <string name="i_didn_t_receive_the_code">I didn’t receive the code</string>
+    <string name="confirm">Confirm</string>
+    <string name="resend_code">RESEND CODE</string>
+    <string name="verify">Verify</string>
+
 
 </resources>

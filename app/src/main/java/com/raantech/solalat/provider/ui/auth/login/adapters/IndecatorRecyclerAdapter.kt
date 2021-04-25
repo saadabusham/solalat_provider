@@ -1,4 +1,4 @@
-package com.raantech.solalat.provider.ui.auth.onboarding.adapters
+package com.raantech.solalat.provider.ui.auth.login.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -32,9 +32,11 @@ class IndecatorRecyclerAdapter(
 
         override fun bind(item: Boolean) {
             if (item) {
-                binding.imgDotImage.setCardBackgroundColor(context.resources.getColor(R.color.white))
+                binding.imgDotImage.setCardBackgroundColor(context.resources.getColor(R.color.button_color))
+                binding.imgDotImage.strokeWidth = context.resources.getDimension(R.dimen.dimen_zero).toInt()
             } else {
-                binding.imgDotImage.setCardBackgroundColor(context.resources.getColor(R.color.shimmer_background))
+                binding.imgDotImage.setCardBackgroundColor(context.resources.getColor(R.color.white))
+                binding.imgDotImage.strokeWidth = context.resources.getDimension(R.dimen._1sdp).toInt()
             }
         }
     }

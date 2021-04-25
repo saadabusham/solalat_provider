@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.raantech.solalat.provider.ui.auth.login.viewmodels.LoginViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:shapeAppearanceOverlay="@style/top_cardview_corner">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvHeader"
+                        style="@style/textview_normal_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_27sdp"
+                        android:text="@string/verification"
+                        android:textColor="@color/text_header_dark_gray"
+                        android:textSize="@dimen/_23ssp" />
+
+                    <TextView
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/please_check_you_message_for_a_five_digit_security_code_and_enter_it_below"
+                        android:textColor="@color/text_gray_color"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <com.mukesh.OtpView
+                        android:id="@+id/otp_view"
+                        style="@style/normalBoldFontStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:inputType="number"
+                        android:itemBackground="@color/white"
+                        android:text="@={viewModel.signUpVerificationCode}"
+                        android:textColor="@color/text_gray_color"
+                        android:textSize="@dimen/_20ssp"
+                        app:itemCount="4"
+                        app:itemHeight="@dimen/_50sdp"
+                        app:itemRadius="@dimen/_8sdp"
+                        app:itemSpacing="@dimen/_8sdp"
+                        app:itemWidth="@dimen/_43sdp"
+                        app:lineColor="@color/text_gray_color"
+                        app:lineWidth="1dp"
+                        app:state_filled="true"
+                        app:validateMaxLength="@{viewModel.VALIDATION_CODE_LENGTH}"
+                        app:validateMinLength="@{viewModel.VALIDATION_CODE_LENGTH}"
+                        app:viewType="rectangle"
+                        tools:text="12345" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:text="@string/i_didn_t_receive_the_code"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvTimeToResend"
+                        style="@style/textview_normal_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="@{viewModel.signUpResendTimer}"
+                        android:textColor="@color/button_color"
+                        android:textSize="@dimen/_11ssp"
+                        tools:text="@string/resend_code" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnVerify"
+                        style="@style/AppTheme.Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/button_height"
+                        android:layout_marginStart="@dimen/layouts_margin_start"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:text="@string/verify" />
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>

@@ -5,6 +5,7 @@ import com.raantech.solalat.provider.data.api.response.ResponseHandler
 import com.raantech.solalat.provider.data.api.response.ResponseWrapper
 import com.raantech.solalat.provider.data.daos.remote.user.UserRemoteDao
 import com.raantech.solalat.provider.data.enums.UserEnums
+import com.raantech.solalat.provider.data.models.auth.login.TokenModel
 import com.raantech.solalat.provider.data.models.auth.login.UserDetailsResponseModel
 import com.raantech.solalat.provider.data.pref.user.UserPref
 import com.raantech.solalat.provider.data.repos.base.BaseRepo
@@ -18,13 +19,36 @@ class UserRepoImp @Inject constructor(
 
 
     override suspend fun login(
-        userName: String,
-        password: String
-    ): APIResource<ResponseWrapper<UserDetailsResponseModel>> {
+        phoneNumber: String
+    ): APIResource<ResponseWrapper<TokenModel>> {
         return try {
             responseHandle.handleSuccess(userRemoteDao.login(
-                userName,
-                password
+                phoneNumber
+            ))
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun resendCode(token: String): APIResource<ResponseWrapper<TokenModel>> {
+        return try {
+            responseHandle.handleSuccess(userRemoteDao.resendCode(
+                token
+            ))
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun verify(
+        token: String,
+        code: Int,
+        device_token: String,
+        platform: String
+    ): APIResource<ResponseWrapper<UserDetailsResponseModel>> {
+        return try {
+            responseHandle.handleSuccess(userRemoteDao.verify(
+                token, code, device_token, platform
             ))
         } catch (e: Exception) {
             responseHandle.handleException(e)

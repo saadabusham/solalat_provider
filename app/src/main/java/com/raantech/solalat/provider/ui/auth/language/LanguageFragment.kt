@@ -32,7 +32,7 @@ class LanguageFragment : BaseBindingFragment<FragmentLanguageBinding>() {
                 activity?.let {
                     (it as BaseBindingActivity<*>).setLanguage(if (viewModel.englishSelected.value!!)
                        CommonEnums.Languages.English.value else CommonEnums.Languages.Arabic.value)
-                    navigationController.navigate(R.id.action_languageFragment_to_onBoardingFragment)
+                    navigationController.navigate(R.id.action_languageFragment_to_loginFragment)
                 }
             })
         }

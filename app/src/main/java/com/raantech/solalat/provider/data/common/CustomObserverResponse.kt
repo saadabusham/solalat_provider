@@ -2,19 +2,17 @@ package com.raantech.solalat.provider.data.common
 
 import android.app.Activity
 import androidx.lifecycle.Observer
-import com.raantech.solalat.provider.data.api.response.APIResource
-import com.raantech.solalat.provider.data.api.response.RequestStatusEnum
-import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
-import com.raantech.solalat.provider.data.api.response.ResponseWrapper
+import com.raantech.solalat.provider.data.api.response.*
 import com.raantech.solalat.provider.ui.base.dialogs.CustomDialogUtils
 import com.raantech.solalat.provider.utils.HandleRequestFailedUtil
 
 class CustomObserverResponse<T>(
-    private val activity: Activity,
-    private val apiCallBack: APICallBack<T>,
-    private val withProgress: Boolean = true
+        private val activity: Activity,
+        private val apiCallBack: APICallBack<T>,
+        private val withProgress: Boolean = true,
+        private val showError: Boolean = false
 ) : CustomDialogUtils(activity, withProgress, false),
-    Observer<APIResource<ResponseWrapper<T>>> {
+        Observer<APIResource<ResponseWrapper<T>>> {
 
     override fun onChanged(responseWrapperResponse: APIResource<ResponseWrapper<T>>) {
         when (responseWrapperResponse?.status) {
@@ -24,29 +22,30 @@ class CustomObserverResponse<T>(
                 }
                 if (responseWrapperResponse.statusSubCode == ResponseSubErrorsCodeEnum.Success) {
                     apiCallBack.onSuccess(
-                        responseWrapperResponse.statusCode
-                            ?: -1,
-                        responseWrapperResponse.statusSubCode,
-                        responseWrapperResponse.data?.data
+                            responseWrapperResponse.statusCode
+                                    ?: -1,
+                            responseWrapperResponse.statusSubCode,
+                            responseWrapperResponse.data?.body
                     )
                     apiCallBack.onSuccess(
-                        responseWrapperResponse.statusCode
-                            ?: -1,
-                        responseWrapperResponse.statusSubCode,
-                        responseWrapperResponse.data
+                            responseWrapperResponse.statusCode
+                                    ?: -1,
+                            responseWrapperResponse.statusSubCode,
+                            responseWrapperResponse.data
                     )
                     apiCallBack.onSuccess(
-                        responseWrapperResponse.statusCode
-                            ?: -1, responseWrapperResponse.statusSubCode, responseWrapperResponse
+                            responseWrapperResponse.statusCode
+                                    ?: -1, responseWrapperResponse.statusSubCode, responseWrapperResponse
                     )
                 } else {
-                    handleRequestFailedMessages(
-                        responseWrapperResponse.statusSubCode,
-                        responseWrapperResponse.messages
-                    )
+                    if (showError)
+                        handleRequestFailedMessages(
+                                responseWrapperResponse.statusSubCode,
+                                responseWrapperResponse.errors?.toString()?:responseWrapperResponse.messages
+                        )
                     responseWrapperResponse.messages?.let {
                         responseWrapperResponse.statusSubCode?.let { it1 ->
-                            apiCallBack.onError(it1, it)
+                            apiCallBack.onError(it1, it, responseWrapperResponse.errors)
                         }
                     }
                 }
@@ -55,13 +54,14 @@ class CustomObserverResponse<T>(
                 if (withProgress) {
                     hideProgress()
                 }
-                handleRequestFailedMessages(
-                    responseWrapperResponse.statusSubCode,
-                    responseWrapperResponse.messages
-                )
+                if (showError)
+                    handleRequestFailedMessages(
+                            responseWrapperResponse.statusSubCode,
+                            responseWrapperResponse.errors?.toString()?:responseWrapperResponse.messages
+                    )
                 responseWrapperResponse.messages?.let {
                     responseWrapperResponse.statusSubCode?.let { it1 ->
-                        apiCallBack.onError(it1, it)
+                        apiCallBack.onError(it1, it, responseWrapperResponse.errors)
                     }
                 }
             }
@@ -77,32 +77,32 @@ class CustomObserverResponse<T>(
     interface APICallBack<T> {
         fun onSuccess(statusCode: Int, subErrorCode: ResponseSubErrorsCodeEnum, data: T?) {}
         fun onSuccess(
-            statusCode: Int,
-            subErrorCode: ResponseSubErrorsCodeEnum,
-            data: ResponseWrapper<T>?
+                statusCode: Int,
+                subErrorCode: ResponseSubErrorsCodeEnum,
+                data: ResponseWrapper<T>?
         ) {
         }
 
         fun onSuccess(
-            statusCode: Int,
-            subErrorCode: ResponseSubErrorsCodeEnum,
-            data: APIResource<ResponseWrapper<T>>
+                statusCode: Int,
+                subErrorCode: ResponseSubErrorsCodeEnum,
+                data: APIResource<ResponseWrapper<T>>
         ) {
         }
 
-        fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {}
+        fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String, errors: List<GeneralError>?) {}
         fun onLoading() {}
     }
 
     fun handleRequestFailedMessages(
-        subErrorCode: ResponseSubErrorsCodeEnum?,
-        requestMessage: String?
+            subErrorCode: ResponseSubErrorsCodeEnum?,
+            requestMessage: String?
     ) {
         activity?.let {
             HandleRequestFailedUtil.handleRequestFailedMessages(
-                it,
-                subErrorCode,
-                requestMessage
+                    it,
+                    subErrorCode,
+                    requestMessage
             )
         }
 

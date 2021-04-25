@@ -9,7 +9,7 @@ class Validator() {
 
         private val FIRST_NAME_MIN_LENGTH = 3
         private val LAST_NAME_MIN_LENGTH = 3
-        private val OTP_LENGTH = 5
+        private val OTP_LENGTH = 4
         private val MINIMUM_COUNT = 1
 
 
@@ -19,6 +19,13 @@ class Validator() {
         //Phone Number
         const val JORDANIAN_PHONE_NUMBER_WITHOUT_COUNTRY_CODE_REGEX = "^(7|07)(7|8|9)([0-9]{7})\$"
         const val PHONE_MIN_LENGTH = 9
+        const val PHONE_MAX_LENGTH = 10
+
+
+        //Phone Number
+        const val SAUDI_PHONE_NUMBER_WITHOUT_COUNTRY_CODE_REGEX = "^(5|05)([0-9]{8})\$"
+        const val SAUDI_PHONE_MIN_LENGTH = 9
+        const val SAUDI_PHONE_MAX_LENGTH = 10
 
         //Text
         const val VALID_TEXT_REGEX = "(?<! )[-a-zA-Z0-9\\u0600-\\u06FF ]*"
@@ -167,25 +174,62 @@ class Validator() {
     private fun validatePhoneNumber(): ValidatedData {
         return if (textToValidate.isNullOrEmpty()) {
             return ValidatedData(
-                isValid = false,
-                errorTitle = context.resources.getString(R.string.phone_number),
-                errorMessage = context.resources.getString(R.string.must_not_be_empty)
+                    isValid = false,
+                    errorTitle = context.resources.getString(R.string.phone_number),
+                    errorMessage = context.resources.getString(R.string.must_not_be_empty)
             )
-        } else if (textToValidate.length < PHONE_MIN_LENGTH) {
+        } else if (textToValidate.startsWith("07") && (textToValidate.length < PHONE_MAX_LENGTH || textToValidate.length > PHONE_MAX_LENGTH)) {
             ValidatedData(
-                isValid = false,
-                errorTitle = context.resources.getString(R.string.phone_number),
-                errorMessage = context.resources.getString(R.string.must_not_be_at_least) + " " +
-                        PHONE_MIN_LENGTH + " " + context.resources.getString(R.string.numbers)
+                    isValid = false,
+                    errorTitle = context.resources.getString(R.string.phone_number),
+                    errorMessage = context.resources.getString(R.string.must_not_be) + " " +
+                            PHONE_MAX_LENGTH + " " + context.resources.getString(R.string.numbers)
+            )
+        } else if (textToValidate.startsWith("7") && (textToValidate.length < PHONE_MIN_LENGTH || textToValidate.length > PHONE_MIN_LENGTH)) {
+            ValidatedData(
+                    isValid = false,
+                    errorTitle = context.resources.getString(R.string.phone_number),
+                    errorMessage = context.resources.getString(R.string.must_not_be) + " " +
+                            PHONE_MIN_LENGTH + " " + context.resources.getString(R.string.numbers)
             )
         } else if (!textToValidate.matches(Regex(JORDANIAN_PHONE_NUMBER_WITHOUT_COUNTRY_CODE_REGEX))) {
             ValidatedData(
-                isValid = false,
-                errorTitle = context.resources.getString(R.string.phone_number),
-                errorMessage = context.resources.getString(R.string.phone_not_valid_err)
+                    isValid = false,
+                    errorTitle = context.resources.getString(R.string.phone_number),
+                    errorMessage = context.resources.getString(R.string.phone_not_valid_err)
             )
         } else ValidatedData(true, "", "")
     }
+
+//    private fun validatePhoneNumber(): ValidatedData {
+//        return if (textToValidate.isNullOrEmpty()) {
+//            return ValidatedData(
+//                    isValid = false,
+//                    errorTitle = context.resources.getString(R.string.phone_number),
+//                    errorMessage = context.resources.getString(R.string.must_not_be_empty)
+//            )
+//        } else if (textToValidate.startsWith("05") && (textToValidate.length < SAUDI_PHONE_MAX_LENGTH|| textToValidate.length > SAUDI_PHONE_MAX_LENGTH)) {
+//            ValidatedData(
+//                    isValid = false,
+//                    errorTitle = context.resources.getString(R.string.phone_number),
+//                    errorMessage = context.resources.getString(R.string.must_not_be) + " " +
+//                            SAUDI_PHONE_MAX_LENGTH + " " + context.resources.getString(R.string.numbers)
+//            )
+//        } else if (textToValidate.startsWith("5") && (textToValidate.length < SAUDI_PHONE_MIN_LENGTH || textToValidate.length > SAUDI_PHONE_MIN_LENGTH)) {
+//            ValidatedData(
+//                    isValid = false,
+//                    errorTitle = context.resources.getString(R.string.phone_number),
+//                    errorMessage = context.resources.getString(R.string.must_not_be) + " " +
+//                            PHONE_MIN_LENGTH + " " + context.resources.getString(R.string.numbers)
+//            )
+//        } else if (!textToValidate.matches(Regex(SAUDI_PHONE_NUMBER_WITHOUT_COUNTRY_CODE_REGEX))) {
+//            ValidatedData(
+//                    isValid = false,
+//                    errorTitle = context.resources.getString(R.string.phone_number),
+//                    errorMessage = context.resources.getString(R.string.phone_not_valid_err)
+//            )
+//        } else ValidatedData(true, "", "")
+//    }
 
     private fun validatePassword(): ValidatedData {
         return if (textToValidate.isNullOrEmpty()) {

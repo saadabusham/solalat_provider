@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface ConfigurationRemoteDao {
 
-    @GET("api/configuration")
+    @GET("app/settings")
     suspend fun getAppConfiguration(): ResponseWrapper<ConfigurationWrapperResponse>
 }

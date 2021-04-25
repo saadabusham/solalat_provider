@@ -10,6 +10,7 @@ object Constants {
     //    Bundle Constants
     const val title: String = "TITLE"
     const val body: String = "BODY"
+    const val AppPlatform: String = "android"
 
     object BundleData {
 

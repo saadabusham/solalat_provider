@@ -1,4 +1,4 @@
-package com.raantech.solalat.provider.ui.auth.onboarding.adapters
+package com.raantech.solalat.provider.ui.auth.login.adapters
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -18,4 +18,5 @@ class ConfigurationPrefImp @Inject constructor(private val prefUtil: SharedPrefe
            CommonEnums.Languages.English.value
         )
     }
+
 }

@@ -70,4 +70,36 @@ fun String.replaceArabicDigitsWithEnglish() :String{
     }
     return result
 }
+fun String.getFirstChars(): String {
+    val string = this.trim()
+    var initials = ""
+    string.split(" ").also {
+        if (it[0].trim().isNotEmpty())
+            initials += it[0][0]
+        if (it[it.size - 1].trim().isNotEmpty())
+            initials += it[it.size - 1][0]
+    }
+    return initials
+}
 
+fun String.checkPhoneNumberFormat(): String {
+    val mobile = if (this.startsWith("00962"))
+        this.replaceFirst("00962", "")
+    else if (this.startsWith("962"))
+        this.replaceFirst("962", "")
+    else if (this.startsWith("+962"))
+        this.replaceFirst("+962", "")
+    else this
+
+    return if (mobile.startsWith("07")) {
+        mobile.replaceFirst("07", "7")
+    } else {
+        mobile
+    }
+}
+
+fun String.concatStrings(stringToMerge: String, before: Boolean = true): String {
+    return if (before) {
+        stringToMerge + this
+    } else this + stringToMerge
+}
