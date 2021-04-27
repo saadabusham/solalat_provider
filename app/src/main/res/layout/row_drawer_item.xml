@@ -14,7 +14,10 @@
         android:id="@+id/relativeCellDrawer"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:selectableItemBackground">
 
         <TextView
             android:id="@+id/tvTitle"

@@ -15,41 +15,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/button_color"
-        android:fitsSystemWindows="true"
         tools:openDrawer="start">
-
-        <LinearLayout
-            android:id="@+id/navigationView"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="match_parent"
-            android:layout_gravity="left|start"
-            android:background="@color/button_color"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="@dimen/_120sdp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/drawer_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/row_drawer_item"
-                    tools:itemCount="5"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
 
         <include
             android:id="@+id/app_bar_main"
             layout="@layout/app_bar_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/navigationView"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/button_color"
+            android:orientation="vertical"
+            android:elevation="0dp"
+            android:gravity="center"
+            android:focusableInTouchMode="true"
+            android:focusable="true">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/drawer_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/row_drawer_item"
+                tools:itemCount="5"
+                android:focusableInTouchMode="true"
+                android:focusable="true"/>
+
+        </LinearLayout>
+
+
 
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

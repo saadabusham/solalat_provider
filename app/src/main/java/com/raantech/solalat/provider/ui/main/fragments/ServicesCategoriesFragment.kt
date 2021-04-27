@@ -11,6 +11,7 @@ import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListe
 import com.raantech.solalat.provider.ui.base.fragment.BaseBindingFragment
 import com.raantech.solalat.provider.ui.main.adapters.ServicesCategoriesRecyclerAdapter
 import com.raantech.solalat.provider.ui.main.viewmodels.MainViewModel
+import com.raantech.solalat.provider.utils.extensions.longToast
 import com.raantech.solalat.provider.utils.recycleviewutils.VerticalSpaceDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -72,8 +73,8 @@ class ServicesCategoriesFragment : BaseBindingFragment<FragmentServicesCategorie
     }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
-//        if (item is ServiceCategory)
-//            PolicyActivity.start(requireContext(), item)
+        if (item is ServiceCategory)
+            longToast(item.title)
     }
 
 

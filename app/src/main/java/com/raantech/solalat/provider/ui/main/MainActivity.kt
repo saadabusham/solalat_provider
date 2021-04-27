@@ -12,19 +12,22 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout.SimpleDrawerListener
 import androidx.navigation.fragment.NavHostFragment
 import com.raantech.solalat.provider.R
+import com.raantech.solalat.provider.data.models.main.home.ServiceCategory
 import com.raantech.solalat.provider.databinding.ActivityMainBinding
 import com.raantech.solalat.provider.ui.base.activity.BaseBindingActivity
+import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
+import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.solalat.provider.ui.main.adapters.DrawerRecyclerAdapter
 import com.raantech.solalat.provider.ui.main.viewmodels.MainViewModel
 import com.raantech.solalat.provider.utils.LocaleUtil
+import com.raantech.solalat.provider.utils.extensions.longToast
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_auth.*
-import kotlinx.android.synthetic.main.activity_auth.auth_nav_host_fragment
 import kotlinx.android.synthetic.main.activity_main_content.*
 import kotlin.math.abs
 
 @AndroidEntryPoint
-class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
+class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
+        BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: MainViewModel by viewModels { defaultViewModelProviderFactory }
     lateinit var drawerRecyclerAdapter: DrawerRecyclerAdapter
@@ -49,6 +52,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
         drawerRecyclerAdapter = DrawerRecyclerAdapter(this)
         drawerRecyclerAdapter.submitItems(getDrawerList())
         binding?.drawerRecyclerView?.adapter = drawerRecyclerAdapter
+        binding?.drawerRecyclerView?.setOnItemClickListener(this)
         val toggle = ActionBarDrawerToggle(
                 this, binding?.drawerLayout, binding?.appBarMain?.layoutToolbar?.toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -127,5 +131,14 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
             context?.startActivity(intent)
         }
 
+    }
+
+    override fun onItemClick(view: View?, position: Int, item: Any) {
+        if (item is ServiceCategory)
+            longToast(item.title)
+        else if(item is String) {
+            binding?.drawerLayout?.closeDrawer(GravityCompat.START)
+            longToast(item)
+        }
     }
 }
