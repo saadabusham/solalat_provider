@@ -1,5 +1,6 @@
 package com.raantech.solalat.provider.utils.extensions
 
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
@@ -9,6 +10,18 @@ fun ImageView.rotate(isDown: Boolean) {
     val rotate = RotateAnimation(
         if (isDown) 0.toFloat() else (-180).toFloat(),
         if (isDown) (-180).toFloat() else 0.toFloat(),
+        Animation.RELATIVE_TO_SELF,
+        0.5f, Animation.RELATIVE_TO_SELF,
+        0.5f
+    )
+    rotate.duration = 200
+    rotate.fillAfter = true
+    this.startAnimation(rotate)
+}
+fun View.rotate(percentage: Float , isDown: Boolean) {
+    val rotate = RotateAnimation(
+        if (isDown) 0.toFloat() else percentage,
+        if (isDown) percentage else 0.toFloat(),
         Animation.RELATIVE_TO_SELF,
         0.5f, Animation.RELATIVE_TO_SELF,
         0.5f

@@ -9,9 +9,9 @@ import com.raantech.solalat.provider.data.models.auth.login.TokenModel
 import com.raantech.solalat.provider.data.models.auth.login.UserDetailsResponseModel
 import com.raantech.solalat.provider.data.pref.user.UserPref
 import com.raantech.solalat.provider.databinding.FragmentVerificationLoginBinding
-import com.raantech.solalat.provider.ui.MainActivity
 import com.raantech.solalat.provider.ui.auth.login.viewmodels.LoginViewModel
 import com.raantech.solalat.provider.ui.base.fragment.BaseBindingFragment
+import com.raantech.solalat.provider.ui.main.MainActivity
 import com.raantech.solalat.provider.utils.extensions.showErrorAlert
 import com.raantech.solalat.provider.utils.extensions.validate
 import com.raantech.solalat.provider.utils.validation.ValidatorInputTypesEnums

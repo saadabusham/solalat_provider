@@ -132,7 +132,7 @@ class Validator {
             ValidatedData(
                 isValid = false,
                 errorTitle = context.resources.getString(R.string.first_name),
-                errorMessage = context.resources.getString(R.string.must_not_be_at_least) + " " +
+                errorMessage = context.resources.getString(R.string.must_be_at_least) + " " +
                         FIRST_NAME_MIN_LENGTH + " " + context.resources.getString(R.string.characters)
             )
         } else ValidatedData(true, "", "")
@@ -149,7 +149,7 @@ class Validator {
             ValidatedData(
                 isValid = false,
                 errorTitle = context.resources.getString(R.string.last_name),
-                errorMessage = context.resources.getString(R.string.must_not_be_at_least) + " " +
+                errorMessage = context.resources.getString(R.string.must_be_at_least) + " " +
                         LAST_NAME_MIN_LENGTH + " " + context.resources.getString(R.string.characters)
             )
         } else ValidatedData(true, "", "")
@@ -323,7 +323,7 @@ class Validator {
             ValidatedData(
                 isValid = false,
                 errorTitle = context.resources.getString(R.string.otp),
-                errorMessage = context.resources.getString(R.string.must_not_be_at_least) + " " +
+                errorMessage = context.resources.getString(R.string.must_be_at_least) + " " +
                         OTP_LENGTH + " " + context.resources.getString(R.string.digits)
             )
         } else ValidatedData(true, "", "")
@@ -343,7 +343,7 @@ class Validator {
                 ValidatedData(
                     isValid = false,
                     errorTitle = context.resources.getString(R.string.number),
-                    errorMessage = context.resources.getString(R.string.must_not_be_at_least)
+                    errorMessage = context.resources.getString(R.string.must_be_at_least)
                 )
             } else ValidatedData(true, "", "")
 

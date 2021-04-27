@@ -5,17 +5,19 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/relativeProgress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:background="@android:color/transparent">
+
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
-            android:indeterminateTint="@color/blue"
-            android:layout_centerInParent="true" />
-    </RelativeLayout>
+            android:indeterminateTint="@color/button_color" />
+
+    </LinearLayout>
 </layout>

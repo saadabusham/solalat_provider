@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">سلالات</string>
+    <string name="app_license">حقوق الملكية محفوظة لشركة ران</string>
+
+    <!-- SelectLanguageFragment-->
+    <string name="welcome">اهلا وسهلا</string>
+    <string name="please_choose_your_preference_language">يرجى اختيار اللغة!</string>
+    <string name="english">English</string>
+    <string name="arabic">العربية</string>
+    <string name="start">ابدأ</string>
+
+    <!-- error view -->
+    <string name="btn_try_again">اعادة المحاولة</string>
+    <string name="error_no_internet">لا يوجد اتصال بالشبكة</string>
+    <string name="error_server">timeout</string>
+    <string name="error_msg">لقد حدث خطأ ما!</string>
+    <string name="session_ended">Session Ended</string>
+    <string name="screen_shot_denied">Grant stoarge permission to take screenshot!</string>
+    <string name="camera_permission_denied">Grant camera permission to take the 3 seconds video</string>
+    <string name="screen_shot">take screenshot</string>
+
+    <string name="alert_dialog_title">سلالات</string>
+    <string name="alert_dialog_all_info_in_english">All information entered must be in English</string>
+    <string name="not_available_yet">This feature is coming soon to app!</string>
+    <!-- General -->
+    <string name="cancel">الغاء</string>
+    <string name="select">اختار</string>
+    <string name="loading">جاري التحميل ...</string>
+    <string name="under_development">قيد التطوير</string>
+    <string name="ok">حسنا</string>
+    <string name="none">لا شيئ</string>
+    <string name="edit">تعديل</string>
+    <string name="updated_successfully">تم التحديث بنجاح</string>
+    <string name="gender">الجنس</string>
+    <string name="male">ذكر</string>
+    <string name="female">انثى</string>
+    <string name="empty_string" />
+    <string name="you_re_not_logged_in">انت لم تسجل الدخول</string>
+    <string name="you_need_to_login_into_your_account_to_see_this_screen">You need to login into your account\nto see this screen</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Image Picker Strings -->
+    <string name="go_to_settings">اذهب للاعدادات</string>
+    <string name="no_activity_data_chart_err">لا يوجد بيانات بعد!</string>
+    <string name="choose_image_folders_mode_title">اختر صورة</string>
+    <string name="choose_image_done_button_txt">تم</string>
+    <string name="choose_image_max_select_message">لقد وصلت الى الحد الاعلى من الصور</string>
+    <string name="general_err_msg">لقد حدث خطأ ما !</string>
+
+    <!--  Validator strings  -->
+    <string name="must_not_be_empty">يجب ان لا يكون فارغا</string>
+    <string name="must_be_at_least">يجب ان يكون على الاقل</string>
+    <string name="must_not_be">لا يجب ان يكون </string>
+    <string name="characters"> رموز</string>
+    <string name="numbers"> ارقام</string>
+    <string name="text">نص</string>
+    <string name="date">تاريخ</string>
+    <string name="email_not_valid_err">أدخل عنوان بريد إلكتروني صالحًا (مثال: aaa@bbb.ccc)</string>
+    <string name="phone_not_valid_err">أدخل رقم هاتف صالحًا (مثال: 07xxxxxxx)</string>
+    <string name="password_not_valid_err">أدخل كلمة مرور صالحة (مثال: P@ssw0rd)</string>
+    <string name="please_select_your_gender">الرجاء تحديد جنسك</string>
+    <string name="password_not_match">كلمة المرور غير مطابقة</string>
+    <string name="text_not_valid_err">أدخل نصًا صالحًا</string>
+    <string name="date_not_valid_err">أدخل تاريخًا صالحًا</string>
+    <string name="time_not_valid_err">أدخل وقتًا صالحًا</string>
+    <string name="digits">أرقام</string>
+    <string name="next">التالي</string>
+    <string name="select_time">اختر الوقت</string>
+    <string name="submit">ارسال</string>
+    <string name="data_missing">بيانات مفقودة</string>
+    <string name="please_fill_data_fields">يرجى ملء جميع حقول البيانات</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="first_name">الاسم الأول</string>
+    <string name="last_name">الاسم الأخير</string>
+    <string name="already_have_an_account">هل لديك حساب؟</string>
+    <string name="hint_date">التاريخ</string>
+    <string name="time">الوقت</string>
+    <string name="email">البريد الالكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="otp">رمز التحقق</string>
+    <string name="number">رقم</string>
+
+    <!--    Update App-->
+    <string name="new_update">NEW UPDATE!</string>
+    <string name="there_s_a_new_update_available_for_fly_us_vip">There’s a new update available for\nFLY US VIP</string>
+    <string name="update_now">UPDATE NOW</string>
+    <string name="remind_me_later">REMIND ME LATER</string>
+    <string name="close_app">CLOSE APP</string>
+    <string name="important_update">IMPORTANT UPDATE!</string>
+
+    <!--    Completed dialog-->
+    <string name="completed_successfully">تمت العملية بنجاح</string>
+
+    <!--    Language    -->
+    <string name="continue_">تابع</string>
+
+    <!--    Login-->
+    <string name="login">Login</string>
+    <string name="enter_your_mobile_number">Enter your mobile number</string>
+
+    <!--    OnBoarding  -->
+    <string name="title_on_boarding_1">title_on_boarding_1</string>
+    <string name="description_on_boarding_1">description_on_boarding_1</string>
+    <string name="title_on_boarding_2">title_on_boarding_2</string>
+    <string name="description_on_boarding_2">description_on_boarding_2</string>
+    <string name="title_on_boarding_3">title_on_boarding_3</string>
+    <string name="description_on_boarding_3">description_on_boarding_3</string>
+    <string name="title_on_boarding_4">title_on_boarding_4</string>
+    <string name="description_on_boarding_4">description_on_boarding_4</string>
+
+    <!--    Verification Login   -->
+    <string name="verification">التحقق</string>
+    <string name="please_check_you_message_for_a_four_digit_security_code_and_enter_it_below">يرجى التحقق من رسالتك للحصول على رمز أمان مكون من أربعة أرقام وإدخاله أدناه.</string>
+    <string name="i_didn_t_receive_the_code">لم أستلم الرمز</string>
+    <string name="confirm">تأكيد</string>
+    <string name="resend_code">أعد إرسال الرمز</string>
+    <string name="verify">تحقق</string>
+
+    <!--    Menu    -->
+    <string name="menu_my_account">حسابي الشخصي</string>
+    <string name="menu_notifications">اشعارات</string>
+    <string name="menu_report_user">بلغ عن مستخدم</string>
+    <string name="menu_technical_support">الدعم الفني</string>
+    <string name="menu_about_us">عن سلالات</string>
+
+    <!--    Main Activity   -->
+    <string name="solalat_services">خدمات سلالات</string>
+
+    <!--    Services Categories    -->
+    <string name="add_accessories">اضافة اكسسوارات</string>
+    <string name="add_health_services">اضافة خدمات صحية</string>
+    <string name="add_stables">اضافة اسطبلات</string>
+    <string name="add_transportation_services">اضافة خدمات نقل</string>
+
+
+</resources>

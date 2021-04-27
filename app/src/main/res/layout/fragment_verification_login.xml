@@ -51,7 +51,7 @@
                         style="@style/textview_normal_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/please_check_you_message_for_a_five_digit_security_code_and_enter_it_below"
+                        android:text="@string/please_check_you_message_for_a_four_digit_security_code_and_enter_it_below"
                         android:textColor="@color/text_gray_color"
                         android:textSize="@dimen/_13ssp" />
 

@@ -13,9 +13,9 @@ import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.solalat.provider.data.common.CustomObserverResponse
 import com.raantech.solalat.provider.data.models.configuration.ConfigurationWrapperResponse
 import com.raantech.solalat.provider.databinding.ActivitySplashBinding
-import com.raantech.solalat.provider.ui.MainActivity
 import com.raantech.solalat.provider.ui.auth.AuthActivity
 import com.raantech.solalat.provider.ui.base.activity.BaseBindingActivity
+import com.raantech.solalat.provider.ui.main.MainActivity
 import com.raantech.solalat.provider.utils.extensions.showErrorAlert
 import com.raantech.solalat.provider.utils.pref.SharedPreferencesUtil
 import dagger.hilt.android.AndroidEntryPoint

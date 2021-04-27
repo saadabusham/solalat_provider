@@ -111,4 +111,5 @@
     <color name="textview_number_black">#1E1F20</color>
 
     <color name="defaultTextColor">#2F2C37</color>
+    <color name="toolbar_title_color">#101820</color>
 </resources>

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Solalat Provider</string>
-    <string name="app_license">Copyright@Technzone Company</string>
+    <string name="app_license">Copyright@Raantech Company</string>
 
     <!-- SelectLanguageFragment-->
     <string name="welcome">Welcome</string>
@@ -19,7 +19,7 @@
     <string name="camera_permission_denied">Grant camera permission to take the 3 seconds video</string>
     <string name="screen_shot">take screenshot</string>
 
-    <string name="alert_dialog_title">Fly US VIP</string>
+    <string name="alert_dialog_title">Solalat Provider</string>
     <string name="alert_dialog_all_info_in_english">All information entered must be in English</string>
     <string name="not_available_yet">This feature is coming soon to Al Alami app!</string>
     <!-- General -->
@@ -38,6 +38,8 @@
     <string name="km">km</string>
     <string name="you_re_not_logged_in">You\'re Not Logged In.</string>
     <string name="you_need_to_login_into_your_account_to_see_this_screen">You need to login into your account\nto see this screen</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- Image Picker Strings -->
     <string name="go_to_settings">Go To Settings</string>
@@ -49,7 +51,7 @@
 
     <!--  Validator strings  -->
     <string name="must_not_be_empty">must not be empty</string>
-    <string name="must_not_be_at_least">must not be at least </string>
+    <string name="must_be_at_least">must be at least </string>
     <string name="must_not_be">must not be </string>
     <string name="characters"> characters</string>
     <string name="numbers"> numbers</string>
@@ -64,10 +66,8 @@
     <string name="date_not_valid_err">Enter a valid date</string>
     <string name="time_not_valid_err">Enter a valid time</string>
     <string name="digits">digits</string>
-    <string name="travllers">Travellers</string>
     <string name="next">NEXT</string>
     <string name="select_time">Select time</string>
-    <string name="adult">Adult</string>
     <string name="submit">Submit</string>
     <string name="data_missing">Data missing</string>
     <string name="please_fill_data_fields">Please fill all the data fields</string>
@@ -97,11 +97,10 @@
 
     <!--    Language    -->
     <string name="continue_">Continue</string>
-    <string name="please_choose_your_preferred_language">Please choose your preferred language!</string>
 
     <!--    Login-->
-    <string name="login">Login</string>
-    <string name="enter_your_mobile_number">Enter your mobile number</string>
+    <string name="login">تسجيل دخول</string>
+    <string name="enter_your_mobile_number">ادخل رقم الهاتف</string>
 
     <!--    OnBoarding  -->
     <string name="title_on_boarding_1">title_on_boarding_1</string>
@@ -115,11 +114,27 @@
 
     <!--    Verification Login   -->
     <string name="verification">Verification</string>
-    <string name="please_check_you_message_for_a_five_digit_security_code_and_enter_it_below">Please check you message for a five-digit security code and enter it below.</string>
+    <string name="please_check_you_message_for_a_four_digit_security_code_and_enter_it_below">Please check you message for a four-digit security code and enter it below.</string>
     <string name="i_didn_t_receive_the_code">I didn’t receive the code</string>
     <string name="confirm">Confirm</string>
     <string name="resend_code">RESEND CODE</string>
     <string name="verify">Verify</string>
+
+    <!--    Menu    -->
+    <string name="menu_my_account">My Account</string>
+    <string name="menu_notifications">Notifications</string>
+    <string name="menu_report_user">Report User</string>
+    <string name="menu_technical_support">Technical Support</string>
+    <string name="menu_about_us">About solalat</string>
+
+    <!--    Main Activity   -->
+    <string name="solalat_services">Solalat Services</string>
+
+    <!--    Services Categories    -->
+    <string name="add_accessories">Add accessories</string>
+    <string name="add_health_services">Add health services</string>
+    <string name="add_stables">Add stables</string>
+    <string name="add_transportation_services">Add transportation services</string>
 
 
 </resources>

@@ -14,19 +14,21 @@ import androidx.appcompat.widget.PopupMenu
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.raantech.solalat.provider.BuildConfig
+import com.raantech.solalat.provider.R
+import com.raantech.solalat.provider.ui.base.views.ResizeAnimation
 import java.lang.System.currentTimeMillis
 
 fun View?.hideKeyboard(activity: Activity?) {
     val imm: InputMethodManager? =
-        activity?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            activity?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     //Find the currently focused view, so we can grab the correct window token from it.
     //Find the currently focused view, so we can grab the correct window token from it.
     imm?.hideSoftInputFromWindow(this?.windowToken, 0)
 }
 
 fun View?.showPopupMenu(
-    @MenuRes menu: Int,
-    clickListener: PopupMenu.OnMenuItemClickListener? = null
+        @MenuRes menu: Int,
+        clickListener: PopupMenu.OnMenuItemClickListener? = null
 ) {
     this?.let {
         PopupMenu(this.context, it).apply {
@@ -99,7 +101,6 @@ fun View.enableView() {
     isEnabled = true
 }
 
-
 fun View.disableViews() {
     val layout = this as ViewGroup
     for (i in 0 until layout.childCount) {
@@ -138,7 +139,7 @@ fun ImageView.loadImage(url: String?) {
     } as String
 
     Glide.with(this).load(fullUrl)
-        .into(this)
+            .into(this)
 }
 
 inline fun EditText.onTextChanged(crossinline callback: (text: CharSequence?) -> Unit) {
@@ -162,4 +163,5 @@ fun View.onClick(click: (View) -> Unit) {
         lastClickTime = currentTimeMillis()
     }
 }
+
 const val IMAGES_BASE_URL = BuildConfig.ImageSubUrl

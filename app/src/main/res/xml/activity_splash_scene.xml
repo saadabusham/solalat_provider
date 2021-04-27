@@ -35,14 +35,6 @@
                 motion:framePosition="40"
                 motion:motionTarget="@+id/ivLogo" />
 
-   <!--         <KeyAttribute
-                android:scaleX="1.0"
-                motion:framePosition="100"
-                motion:motionTarget="@+id/ivLogo" />
-            <KeyAttribute
-                android:scaleY="1.0"
-                motion:framePosition="100"
-                motion:motionTarget="@+id/ivLogo" />-->
         </KeyFrameSet>
     </Transition>
 
