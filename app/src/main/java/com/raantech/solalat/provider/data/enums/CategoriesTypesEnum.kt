@@ -1,8 +1,8 @@
 package com.raantech.solalat.provider.data.enums
 
-enum class ServicesCategoriesTypesEnum() {
+enum class CategoriesTypesEnum() {
     ACCESSORIES,
     MEDICAL,
-    STABLE,
+    BARN,
     TRANSPORTATION
 }

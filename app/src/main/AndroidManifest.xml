@@ -30,6 +30,15 @@
         <activity
             android:name=".ui.auth.AuthActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.products.ProductsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.add_new_service.AddNewServiceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.media.MediaActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

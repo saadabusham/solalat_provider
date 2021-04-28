@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.raantech.solalat.provider.data.models.main.home.ServiceCategory" />
+            type="com.raantech.solalat.provider.data.models.main.home.Category" />
     </data>
 
     <LinearLayout

@@ -1,6 +1,7 @@
 package com.raantech.solalat.provider.data.di.daos
 
 import com.raantech.solalat.provider.data.daos.remote.configuration.ConfigurationRemoteDao
+import com.raantech.solalat.provider.data.daos.remote.media.MediaRemoteDao
 import com.raantech.solalat.provider.data.daos.remote.user.UserRemoteDao
 import dagger.Module
 import dagger.Provides
@@ -30,4 +31,13 @@ object RemoteDaosModule {
     ): ConfigurationRemoteDao {
         return retrofit.create(ConfigurationRemoteDao::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideMediaRemoteDao(
+        retrofit: Retrofit
+    ): MediaRemoteDao {
+        return retrofit.create(MediaRemoteDao::class.java)
+    }
+
 }

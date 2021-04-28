@@ -92,13 +92,3 @@ fun Fragment.getLocationName(latitude: Double?, longitude: Double?): String {
 
     return ""
 }
-
-fun Context.getDistance(fromLocation: Location?, toLocation: Location?): String? {
-    val distance: Float = fromLocation?.distanceTo(toLocation) ?: 0f
-    val distanceInKM = distance / 1000
-    return if (distanceInKM != 0f) {
-        java.lang.String.format(Locale.ENGLISH, "%.2f %s", distanceInKM, getString(R.string.km))
-    } else {
-        null
-    }
-}

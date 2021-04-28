@@ -14,6 +14,8 @@ object Constants {
 
     object BundleData {
 
+        const val MEDIA: String = "media"
+        const val SELECT_MEDIA: String = "selectMedia"
     }
 
     object NotificationsChannels {

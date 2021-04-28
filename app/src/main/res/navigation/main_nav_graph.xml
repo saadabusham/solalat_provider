@@ -7,6 +7,8 @@
 
     <fragment
         android:id="@+id/servicesCategoriesFragment"
-        android:name="com.raantech.solalat.provider.ui.main.fragments.ServicesCategoriesFragment"
-        android:label="ServicesCategoriesFragment" />
+        android:name="com.raantech.solalat.provider.ui.main.fragments.MainCategoriesFragment"
+        android:label="ServicesCategoriesFragment" >
+
+    </fragment>
 </navigation>

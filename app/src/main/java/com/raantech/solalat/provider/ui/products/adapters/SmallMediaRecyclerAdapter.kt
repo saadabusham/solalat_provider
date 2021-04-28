@@ -1,40 +1,44 @@
-package com.raantech.solalat.provider.ui.main.adapters
+package com.raantech.solalat.provider.ui.products.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.raantech.solalat.provider.data.models.main.home.ServiceCategory
-import com.raantech.solalat.provider.databinding.RowServiceCategoryBinding
+import com.raantech.solalat.provider.data.models.media.Media
+import com.raantech.solalat.provider.databinding.RowImageViewSmallBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder
 
-class ServicesCategoriesRecyclerAdapter(
+class SmallMediaRecyclerAdapter(
         context: Context
-) : BaseBindingRecyclerViewAdapter<ServiceCategory>(context) {
+) : BaseBindingRecyclerViewAdapter<Media>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ViewHolder(
-                RowServiceCategoryBinding.inflate(
+        return ImageViewHolder(
+                RowImageViewSmallBinding.inflate(
                         LayoutInflater.from(context), parent, false
                 )
         )
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is ViewHolder) {
+        if (holder is ImageViewHolder) {
             holder.bind(items[position])
         }
     }
 
-    inner class ViewHolder(private val binding: RowServiceCategoryBinding) :
-            BaseViewHolder<ServiceCategory>(binding.root) {
+    inner class ImageViewHolder(private val binding: RowImageViewSmallBinding) :
+            BaseViewHolder<Media>(binding.root) {
 
-        override fun bind(item: ServiceCategory) {
+        override fun bind(item: Media) {
             binding.item = item
-            binding.root.setOnClickListener {
+            binding.imgRemove.setOnClickListener {
+                itemClickListener?.onItemClick(it, adapterPosition, item)
+            }
+            binding.relativePreview.setOnClickListener {
                 itemClickListener?.onItemClick(it, adapterPosition, item)
             }
         }
     }
+
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.raantech.solalat.provider.ui.main.viewmodels.AccessoriesViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="false"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:itemCount="4"
+            tools:listitem="@layout/row_product" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddProduct"
+                style="@style/AppTheme.Button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:text="@string/add_product" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnShareProduct"
+                style="@style/AppTheme.Button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:text="@string/share_products" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

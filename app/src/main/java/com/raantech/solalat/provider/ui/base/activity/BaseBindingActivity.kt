@@ -19,6 +19,7 @@ import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.solalat.provider.ui.base.dialogs.CustomDialogUtils
 import com.raantech.solalat.provider.utils.HandleRequestFailedUtil
 import com.raantech.solalat.provider.utils.extensions.longToast
+import com.raantech.solalat.provider.utils.extensions.visible
 import com.raantech.solalat.provider.utils.pref.SharedPreferencesUtil
 import kotlinx.android.synthetic.main.layout_toolbar.view.*
 import retrofit2.HttpException
@@ -118,7 +119,8 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
         }
 
         if (hasSubTitle) {
-            supportActionBar?.subtitle = getString(subTitle)
+            toolbar?.tvSubTitle?.text = getString(subTitle)
+            toolbar?.tvSubTitle?.visible()
         }
 
         if (hasBackButton) {

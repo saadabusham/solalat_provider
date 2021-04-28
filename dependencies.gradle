@@ -195,6 +195,8 @@ dependencies {
     implementation 'com.flipboard:bottomsheet-core:1.5.3'
     implementation 'com.flipboard:bottomsheet-commons:1.5.3'
 
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
 }
 //apply plugin: 'com.google.gms.google-services'
 //apply plugin: 'com.google.firebase.crashlytics'

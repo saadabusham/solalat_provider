@@ -12,17 +12,20 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout.SimpleDrawerListener
 import androidx.navigation.fragment.NavHostFragment
 import com.raantech.solalat.provider.R
-import com.raantech.solalat.provider.data.models.main.home.ServiceCategory
+import com.raantech.solalat.provider.data.models.main.home.Category
 import com.raantech.solalat.provider.databinding.ActivityMainBinding
 import com.raantech.solalat.provider.ui.base.activity.BaseBindingActivity
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.solalat.provider.ui.main.adapters.DrawerRecyclerAdapter
 import com.raantech.solalat.provider.ui.main.viewmodels.MainViewModel
+import com.raantech.solalat.provider.ui.media.MediaActivity
+import com.raantech.solalat.provider.ui.splash.SplashActivity
 import com.raantech.solalat.provider.utils.LocaleUtil
 import com.raantech.solalat.provider.utils.extensions.longToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main_content.*
+import kotlinx.android.synthetic.main.layout_home_toolbar.*
 import kotlin.math.abs
 
 @AndroidEntryPoint
@@ -36,6 +39,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
         setContentView(
                 layoutResID = R.layout.activity_main,
                 hasToolbar = true,
+                toolbarView = toolbar,
                 hasTitle = true,
                 title = R.string.solalat_services
         )
@@ -104,10 +108,12 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
     private fun getDrawerList(): List<String> {
         return arrayListOf(
                 resources.getString(R.string.menu_my_account),
+                resources.getString(R.string.media),
                 resources.getString(R.string.menu_notifications),
                 resources.getString(R.string.menu_report_user),
                 resources.getString(R.string.menu_technical_support),
-                resources.getString(R.string.menu_about_us))
+                resources.getString(R.string.menu_about_us),
+                resources.getString(R.string.login))
     }
 
     private fun setStartDestination() {
@@ -134,11 +140,20 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
     }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
-        if (item is ServiceCategory)
+        if (item is Category)
             longToast(item.title)
-        else if(item is String) {
+        else if (item is String) {
             binding?.drawerLayout?.closeDrawer(GravityCompat.START)
             longToast(item)
+            when (position) {
+                1 -> MediaActivity.start(this)
+                6 -> {
+                    viewModel.logout()
+                    SplashActivity.start(this)
+                }
+            }
         }
     }
+
+
 }

@@ -3,27 +3,27 @@ package com.raantech.solalat.provider.ui.main.fragments
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.raantech.solalat.provider.R
-import com.raantech.solalat.provider.data.enums.ServicesCategoriesTypesEnum
-import com.raantech.solalat.provider.data.models.main.home.ServiceCategory
-import com.raantech.solalat.provider.databinding.FragmentServicesCategoriesBinding
+import com.raantech.solalat.provider.data.enums.CategoriesTypesEnum
+import com.raantech.solalat.provider.data.models.main.home.Category
+import com.raantech.solalat.provider.databinding.FragmentMainCategoriesBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.solalat.provider.ui.base.fragment.BaseBindingFragment
-import com.raantech.solalat.provider.ui.main.adapters.ServicesCategoriesRecyclerAdapter
+import com.raantech.solalat.provider.ui.main.adapters.CategoriesRecyclerAdapter
 import com.raantech.solalat.provider.ui.main.viewmodels.MainViewModel
-import com.raantech.solalat.provider.utils.extensions.longToast
+import com.raantech.solalat.provider.ui.products.ProductsActivity
 import com.raantech.solalat.provider.utils.recycleviewutils.VerticalSpaceDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ServicesCategoriesFragment : BaseBindingFragment<FragmentServicesCategoriesBinding>(),
+class MainCategoriesFragment : BaseBindingFragment<FragmentMainCategoriesBinding>(),
         BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: MainViewModel by viewModels()
 
-    lateinit var servicesCategoriesRecyclerAdapter: ServicesCategoriesRecyclerAdapter
+    lateinit var servicesCategoriesRecyclerAdapter: CategoriesRecyclerAdapter
 
-    override fun getLayoutId(): Int = R.layout.fragment_services_categories
+    override fun getLayoutId(): Int = R.layout.fragment_main_categories
 
     override fun onViewVisible() {
         super.onViewVisible()
@@ -45,7 +45,7 @@ class ServicesCategoriesFragment : BaseBindingFragment<FragmentServicesCategorie
     }
 
     private fun setUpRecyclerView() {
-        servicesCategoriesRecyclerAdapter = ServicesCategoriesRecyclerAdapter(requireContext())
+        servicesCategoriesRecyclerAdapter = CategoriesRecyclerAdapter(requireContext())
         binding?.recyclerView?.adapter = servicesCategoriesRecyclerAdapter
         binding?.recyclerView?.setOnItemClickListener(this)
         binding?.recyclerView?.addItemDecoration(
@@ -55,26 +55,32 @@ class ServicesCategoriesFragment : BaseBindingFragment<FragmentServicesCategorie
         )
         servicesCategoriesRecyclerAdapter.submitItems(
                 arrayListOf(
-                        ServiceCategory(ServicesCategoriesTypesEnum.ACCESSORIES,
+                        Category(CategoriesTypesEnum.ACCESSORIES,
                                 resources.getString(R.string.add_accessories),
-                                R.drawable.ic_cat_medical),
+                                R.drawable.ic_cat_accessories),
 
-                        ServiceCategory(ServicesCategoriesTypesEnum.MEDICAL,
+                        Category(CategoriesTypesEnum.MEDICAL,
                                 resources.getString(R.string.add_health_services),
                                 R.drawable.ic_cat_medical),
 
-                        ServiceCategory(ServicesCategoriesTypesEnum.STABLE,
-                                resources.getString(R.string.add_stables),
-                                R.drawable.ic_cat_medical),
+                        Category(CategoriesTypesEnum.BARN,
+                                resources.getString(R.string.add_barn),
+                                R.drawable.ic_cat_barn),
 
-                        ServiceCategory(ServicesCategoriesTypesEnum.TRANSPORTATION,
+                        Category(CategoriesTypesEnum.TRANSPORTATION,
                                 resources.getString(R.string.add_transportation_services),
-                                R.drawable.ic_cat_medical)))
+                                R.drawable.ic_cat_transportation)))
     }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
-        if (item is ServiceCategory)
-            longToast(item.title)
+        if (item is Category) {
+            when(position){
+                CategoriesTypesEnum.ACCESSORIES.ordinal -> ProductsActivity.start(requireContext())
+                CategoriesTypesEnum.MEDICAL.ordinal -> ProductsActivity.start(requireContext())
+                CategoriesTypesEnum.BARN.ordinal -> ProductsActivity.start(requireContext())
+                CategoriesTypesEnum.TRANSPORTATION.ordinal -> ProductsActivity.start(requireContext())
+            }
+        }
     }
 
 

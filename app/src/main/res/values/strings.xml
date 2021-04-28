@@ -35,7 +35,6 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="empty_string" />
-    <string name="km">km</string>
     <string name="you_re_not_logged_in">You\'re Not Logged In.</string>
     <string name="you_need_to_login_into_your_account_to_see_this_screen">You need to login into your account\nto see this screen</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -133,8 +132,25 @@
     <!--    Services Categories    -->
     <string name="add_accessories">Add accessories</string>
     <string name="add_health_services">Add health services</string>
-    <string name="add_stables">Add stables</string>
+    <string name="add_barn">Add barn</string>
     <string name="add_transportation_services">Add transportation services</string>
+
+    <!--    Accessories   -->
+    <string name="view_products">View products</string>
+    <string name="add_product">Add Product</string>
+    <string name="share_products">Share Products</string>
+    <string name="product_name">Product name</string>
+    <string name="add_product_name">Add product name</string>
+    <string name="add_product_description">Add product description</string>
+    <string name="product_description">Product description</string>
+    <string name="enter_price">Enter price</string>
+    <string name="sar">Saudi Arabia Riyal</string>
+    <string name="enter_phone_number_to_contact">Enter phone number to contact</string>
+    <string name="upload_product_image">Upload product images</string>
+    <string name="add_Media">Add Media</string>
+    <string name="media">Media</string>
+    <string name="no_data_found">No Data Found</string>
+    <string name="no_available_data">-- No Available Data --</string>
 
 
 </resources>

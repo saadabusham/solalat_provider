@@ -132,8 +132,19 @@
     <!--    Services Categories    -->
     <string name="add_accessories">اضافة اكسسوارات</string>
     <string name="add_health_services">اضافة خدمات صحية</string>
-    <string name="add_stables">اضافة اسطبلات</string>
+    <string name="add_barn">اضافة اسطبلات</string>
     <string name="add_transportation_services">اضافة خدمات نقل</string>
 
-
+    <!--    Accessories   -->
+    <string name="view_products">عرض المنتجات المضافة</string>
+    <string name="add_product">اضافة منتج جديد</string>
+    <string name="share_products">نشر المنتجات</string>
+    <string name="product_name">اسم المنتج</string>
+    <string name="add_product_name">ادخل اسم المنتج</string>
+    <string name="add_product_description">ادخل تفصيل المنتج مثل : مصدر الصنع …. الخ</string>
+    <string name="product_description">تفاصيل المنتج</string>
+    <string name="enter_price">ادخل السعر</string>
+    <string name="sar">ريال سعودي</string>
+    <string name="enter_phone_number_to_contact">ادخل رقم الجوال للتواصل</string>
+    <string name="upload_product_image">ارفع صور المنتج</string>
 </resources>

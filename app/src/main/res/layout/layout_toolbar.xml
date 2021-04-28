@@ -16,47 +16,35 @@
             android:layout_height="wrap_content"
             android:elevation="0dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10sdp">
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:gravity="center|start"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvTitle"
                     style="@style/textview_normal_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
+                    android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
                     android:textColor="@color/toolbar_title_color"
                     android:textSize="@dimen/_18ssp"
-                    tools:text="Title"/>
-                
-                <ImageView
-                    android:id="@+id/imgNotifications"
-                    android:layout_width="@dimen/_28sdp"
-                    android:layout_height="@dimen/_28sdp"
-                    android:layout_centerInParent="true"
-                    android:padding="@dimen/_4sdp"
-                    android:src="@drawable/ic_notification"
-                    android:layout_toStartOf="@id/imgHelp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="?selectableItemBackgroundBorderless"/>
+                    tools:text="اضافة اكسسوارات"/>
+                <TextView
+                    android:id="@+id/tvSubTitle"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvTitle"
+                    android:textColor="@color/toolbar_title_color"
+                    android:textSize="@dimen/_13ssp"
+                    android:visibility="gone"
+                    tools:text="عرض المنتجات المضافة"/>
 
-                <ImageView
-                    android:id="@+id/imgHelp"
-                    android:layout_width="@dimen/_28sdp"
-                    android:layout_height="@dimen/_28sdp"
-                    android:src="@drawable/ic_help"
-                    android:padding="@dimen/_3sdp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="?selectableItemBackgroundBorderless"/>
-            </RelativeLayout>
+            </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
