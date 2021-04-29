@@ -120,6 +120,12 @@
     <string name="resend_code">أعد إرسال الرمز</string>
     <string name="verify">تحقق</string>
 
+    <!--    Media   -->
+    <string name="add_Media">اضف وسائط</string>
+    <string name="media">الوسائط</string>
+    <string name="no_data_found">لا يوجد بيانات</string>
+    <string name="no_available_data">-- لا يوجد بيانات متاحة --</string>
+
     <!--    Menu    -->
     <string name="menu_my_account">حسابي الشخصي</string>
     <string name="menu_notifications">اشعارات</string>
@@ -150,15 +156,14 @@
     <string name="enter_phone_number_to_contact">ادخل رقم الجوال للتواصل</string>
     <string name="upload_product_image">ارفع صور المنتج</string>
     <string name="accessory_type">نوع الاكسسوار</string>
-
-    <!--    Media   -->
-    <string name="add_Media">اضف وسائط</string>
-    <string name="media">الوسائط</string>
-    <string name="no_data_found">لا يوجد بيانات</string>
-    <string name="no_available_data">-- لا يوجد بيانات متاحة --</string>
     <string name="please_select_the_category">يرجى اختيار نوع الاكسسوار</string>
     <string name="product_price">سعر المنتج</string>
     <string name="product_images">صور المنتج</string>
     <string name="please_select_the_product_images">يرجى اختيار صور المنتج</string>
+
+    <!--    Main Accessories    -->
+    <string name="new_product">منتج جديد</string>
+    <string name="edit_information">تعديل البيانات</string>
+    <string name="add_new_service">اضافة خدمة جديدة</string>
 
 </resources>

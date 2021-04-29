@@ -18,7 +18,10 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:src="@drawable/ic_close" />
+            android:src="@drawable/ic_close"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?selectableItemBackgroundBorderless"/>
 
         <RelativeLayout
             android:id="@+id/holder"

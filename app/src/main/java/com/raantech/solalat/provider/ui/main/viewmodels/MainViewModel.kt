@@ -5,10 +5,11 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.liveData
 import com.raantech.solalat.provider.common.CommonEnums
+import com.raantech.solalat.provider.data.api.response.APIResource
 import com.raantech.solalat.provider.data.enums.UserEnums
 import com.raantech.solalat.provider.data.pref.configuration.ConfigurationPref
 import com.raantech.solalat.provider.data.pref.user.UserPref
-import com.raantech.solalat.provider.data.repos.auth.UserRepo
+import com.raantech.solalat.provider.data.repos.user.UserRepo
 import com.raantech.solalat.provider.ui.base.viewmodel.BaseViewModel
 import com.raantech.solalat.provider.utils.pref.SharedPreferencesUtil
 
@@ -39,5 +40,11 @@ class MainViewModel @ViewModelInject constructor(
     }
     fun getAppLanguage(): String {
         return configurationPref.getAppLanguageValue()
+    }
+
+    fun getMyServices() = liveData {
+        emit(APIResource.loading())
+        val response = userRepo.getMyServices()
+        emit(response)
     }
 }

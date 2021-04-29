@@ -163,7 +163,7 @@ class ProductsFragment : BaseBindingFragment<FragmentProductsBinding>(),
                 override fun onLoading() {
                     loading.postValue(true)
                 }
-            }, true
+            }, true,showError = false
         )
     }
 

@@ -11,4 +11,8 @@
         android:label="ServicesCategoriesFragment" >
 
     </fragment>
+    <fragment
+        android:id="@+id/mainAccessoriesFragment"
+        android:name="com.raantech.solalat.provider.ui.main.fragments.MainAccessoriesFragment"
+        android:label="MainAccessoriesFragment" />
 </navigation>

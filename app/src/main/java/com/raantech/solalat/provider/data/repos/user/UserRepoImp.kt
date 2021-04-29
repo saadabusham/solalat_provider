@@ -1,4 +1,4 @@
-package com.raantech.solalat.provider.data.repos.auth
+package com.raantech.solalat.provider.data.repos.user
 
 import com.raantech.solalat.provider.data.api.response.APIResource
 import com.raantech.solalat.provider.data.api.response.ResponseHandler
@@ -7,6 +7,7 @@ import com.raantech.solalat.provider.data.daos.remote.user.UserRemoteDao
 import com.raantech.solalat.provider.data.enums.UserEnums
 import com.raantech.solalat.provider.data.models.auth.login.TokenModel
 import com.raantech.solalat.provider.data.models.auth.login.UserDetailsResponseModel
+import com.raantech.solalat.provider.data.models.main.home.MyService
 import com.raantech.solalat.provider.data.pref.user.UserPref
 import com.raantech.solalat.provider.data.repos.base.BaseRepo
 import javax.inject.Inject
@@ -24,6 +25,15 @@ class UserRepoImp @Inject constructor(
         return try {
             responseHandle.handleSuccess(userRemoteDao.login(
                 phoneNumber
+            ))
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun getMyServices(): APIResource<ResponseWrapper<List<MyService>>> {
+        return try {
+            responseHandle.handleSuccess(userRemoteDao.getMyServices(
             ))
         } catch (e: Exception) {
             responseHandle.handleException(e)

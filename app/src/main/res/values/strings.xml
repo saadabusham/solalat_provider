@@ -120,6 +120,12 @@
     <string name="resend_code">RESEND CODE</string>
     <string name="verify">Verify</string>
 
+    <!--    Media   -->
+    <string name="add_Media">Add Media</string>
+    <string name="media">Media</string>
+    <string name="no_data_found">No Data Found</string>
+    <string name="no_available_data">-- No Available Data --</string>
+
     <!--    Menu    -->
     <string name="menu_my_account">My Account</string>
     <string name="menu_notifications">Notifications</string>
@@ -150,17 +156,15 @@
     <string name="enter_phone_number_to_contact">Enter phone number to contact</string>
     <string name="upload_product_image">Upload product images</string>
     <string name="accessory_type">Accessory Type</string>
-
-    <!--    Media   -->
-    <string name="add_Media">Add Media</string>
-    <string name="media">Media</string>
-    <string name="no_data_found">No Data Found</string>
-    <string name="no_available_data">-- No Available Data --</string>
     <string name="please_select_the_category">Please select the category</string>
     <string name="product_price">Product Price</string>
     <string name="product_images">Product Images</string>
     <string name="please_select_the_product_images">Please select the product images</string>
 
+    <!--    Main Accessories    -->
+    <string name="new_product">New Product</string>
+    <string name="add_new_service">Add new service</string>
+    <string name="edit_information">Edit Information</string>
 
 
 </resources>

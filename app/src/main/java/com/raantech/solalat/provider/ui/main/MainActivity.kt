@@ -14,6 +14,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.common.CommonEnums
+import com.raantech.solalat.provider.data.api.response.GeneralError
+import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
+import com.raantech.solalat.provider.data.common.CustomObserverResponse
+import com.raantech.solalat.provider.data.models.main.home.MyService
 import com.raantech.solalat.provider.databinding.ActivityMainBinding
 import com.raantech.solalat.provider.ui.base.activity.BaseBindingActivity
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
@@ -45,8 +49,8 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
                 title = R.string.solalat_services
         )
         setUpBinding()
-        setStartDestination()
         setUpDrawer()
+        viewModel.getMyServices().observe(this,myServicesObserver())
     }
 
     private fun setUpBinding() {
@@ -118,15 +122,41 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
                 resources.getString(R.string.logout))
     }
 
-    private fun setStartDestination() {
+
+    private fun myServicesObserver(): CustomObserverResponse<List<MyService>> {
+        return CustomObserverResponse(
+                this,
+                object : CustomObserverResponse.APICallBack<List<MyService>> {
+                    override fun onSuccess(
+                            statusCode: Int,
+                            subErrorCode: ResponseSubErrorsCodeEnum,
+                            data: List<MyService>?
+                    ) {
+                        data?.let { setStartDestination(it) }?:setStartDestination(arrayListOf())
+                    }
+
+                    override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String, errors: List<GeneralError>?) {
+                        super.onError(subErrorCode, message, errors)
+                        setStartDestination(arrayListOf())
+                    }
+                }
+        )
+    }
+
+    private fun setStartDestination(myServices:List<MyService>) {
         val navHostFragment = main_nav_host_fragment as NavHostFragment
         val inflater = navHostFragment.navController.navInflater
         val graph = inflater.inflate(R.navigation.main_nav_graph)
 
-        if (true) {
-            graph.startDestination = R.id.servicesCategoriesFragment
-        } else {
-            graph.startDestination = R.id.loginFragment
+        when (myServices.size) {
+            0-> graph.startDestination = R.id.servicesCategoriesFragment
+            1-> graph.startDestination = R.id.mainAccessoriesFragment
+            2-> graph.startDestination = R.id.servicesCategoriesFragment
+            3-> graph.startDestination = R.id.servicesCategoriesFragment
+            4-> graph.startDestination = R.id.servicesCategoriesFragment
+            else -> {
+                graph.startDestination = R.id.loginFragment
+            }
         }
         navHostFragment.navController.graph = graph
     }

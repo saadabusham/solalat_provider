@@ -1,29 +1,33 @@
-package com.raantech.solalat.provider.data.repos.auth
+package com.raantech.solalat.provider.data.repos.user
 
 import com.raantech.solalat.provider.data.api.response.APIResource
 import com.raantech.solalat.provider.data.api.response.ResponseWrapper
 import com.raantech.solalat.provider.data.enums.UserEnums
 import com.raantech.solalat.provider.data.models.auth.login.TokenModel
 import com.raantech.solalat.provider.data.models.auth.login.UserDetailsResponseModel
-import retrofit2.http.Field
+import com.raantech.solalat.provider.data.models.main.home.MyService
 
 
 interface UserRepo {
 
 
     suspend fun login(
-        phoneNumber: String
+            phoneNumber: String
     ): APIResource<ResponseWrapper<TokenModel>>
 
+    suspend fun getMyServices(
+
+    ): APIResource<ResponseWrapper<List<MyService>>>
+
     suspend fun resendCode(
-        token: String
+            token: String
     ): APIResource<ResponseWrapper<TokenModel>>
 
     suspend fun verify(
-        token: String,
-        code: Int,
-        device_token: String,
-        platform: String
+            token: String,
+            code: Int,
+            device_token: String,
+            platform: String
     ): APIResource<ResponseWrapper<UserDetailsResponseModel>>
 
     fun saveNotificationStatus(flag: Boolean)

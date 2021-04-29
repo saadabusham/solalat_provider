@@ -230,7 +230,7 @@ class MediaActivity : BaseBindingActivity<ActivityMediaBinding>(),
                 override fun onLoading() {
                     loading.postValue(true)
                 }
-            }, true
+            }, true,showError = false
         )
     }
 

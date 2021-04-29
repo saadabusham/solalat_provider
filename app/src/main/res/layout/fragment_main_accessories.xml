@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.raantech.solalat.provider.ui.main.viewmodels.AccessoriesViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnAddProduct"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_35sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:drawableStart="@drawable/ic_close"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/add_product"
+            app:cardBackgroundColor="@color/button_color"
+            app:cardCornerRadius="@dimen/_15sdp">
+
+            <TextView
+                style="@style/textview_normal_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center"
+                android:drawablePadding="@dimen/_10sdp"
+                android:text="@string/new_product"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnEditInfo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:strokeColor="@color/button_color"
+            app:strokeWidth="@dimen/_1sdp">
+
+            <TextView
+                style="@style/textview_normal_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:text="@string/edit_information"
+                android:gravity="center"
+                android:textColor="@color/button_color"
+                android:textSize="@dimen/_15ssp"
+                app:drawableStartCompat="@drawable/ic_edit" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnAddService"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="0dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:strokeColor="@color/button_color"
+            app:strokeWidth="@dimen/_1sdp">
+
+            <TextView
+                style="@style/textview_normal_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:drawablePadding="@dimen/_10sdp"
+                android:text="@string/add_new_service"
+                android:gravity="center"
+                android:textColor="@color/button_color"
+                android:textSize="@dimen/_15ssp"
+                app:drawableStartCompat="@drawable/ic_add"
+                app:drawableTint="@color/button_color" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+</layout>

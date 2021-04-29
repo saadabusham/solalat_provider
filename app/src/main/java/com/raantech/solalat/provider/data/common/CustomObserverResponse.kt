@@ -10,7 +10,7 @@ class CustomObserverResponse<T>(
         private val activity: Activity,
         private val apiCallBack: APICallBack<T>,
         private val withProgress: Boolean = true,
-        private val showError: Boolean = false
+        private val showError: Boolean = true
 ) : CustomDialogUtils(activity, withProgress, false),
         Observer<APIResource<ResponseWrapper<T>>> {
 

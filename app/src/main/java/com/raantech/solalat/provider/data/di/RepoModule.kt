@@ -1,8 +1,8 @@
 package com.raantech.solalat.provider.data.di
 
 
-import com.raantech.solalat.provider.data.repos.auth.UserRepo
-import com.raantech.solalat.provider.data.repos.auth.UserRepoImp
+import com.raantech.solalat.provider.data.repos.user.UserRepo
+import com.raantech.solalat.provider.data.repos.user.UserRepoImp
 import com.raantech.solalat.provider.data.repos.configuration.ConfigurationRepo
 import com.raantech.solalat.provider.data.repos.configuration.ConfigurationRepoImp
 import com.raantech.solalat.provider.data.repos.media.MediaRepo

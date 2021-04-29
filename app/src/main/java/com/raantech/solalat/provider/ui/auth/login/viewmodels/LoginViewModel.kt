@@ -10,7 +10,7 @@ import com.raantech.solalat.provider.data.api.response.APIResource
 import com.raantech.solalat.provider.data.common.Constants
 import com.raantech.solalat.provider.data.enums.UserEnums
 import com.raantech.solalat.provider.data.models.auth.login.UserDetailsResponseModel
-import com.raantech.solalat.provider.data.repos.auth.UserRepo
+import com.raantech.solalat.provider.data.repos.user.UserRepo
 import com.raantech.solalat.provider.ui.base.viewmodel.BaseViewModel
 import com.raantech.solalat.provider.utils.DateTimeUtil
 import com.raantech.solalat.provider.utils.extensions.*

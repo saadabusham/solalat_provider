@@ -6,7 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.liveData
 import com.raantech.solalat.provider.data.api.response.APIResource
 import com.raantech.solalat.provider.data.enums.UserEnums
-import com.raantech.solalat.provider.data.repos.auth.UserRepo
+import com.raantech.solalat.provider.data.repos.user.UserRepo
 import com.raantech.solalat.provider.data.repos.configuration.ConfigurationRepo
 import com.raantech.solalat.provider.ui.base.viewmodel.BaseViewModel
 import com.raantech.solalat.provider.utils.pref.SharedPreferencesUtil

@@ -32,6 +32,7 @@
     <color name="white">#ffffff</color>
     <color name="alpha_white">#4DFFFFFF</color>
     <color name="alpha_white_60">#4DFFFFFF</color>
+    <color name="off_white">#FAF8F3</color>
 
     <!-- Black -->
     <color name="black">#000000</color>
