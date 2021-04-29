@@ -1,10 +1,10 @@
 package com.raantech.solalat.provider.ui.media
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -20,6 +20,7 @@ import com.raantech.solalat.provider.databinding.ActivityMediaBinding
 import com.raantech.solalat.provider.ui.base.activity.BaseBindingActivity
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListener
+import com.raantech.solalat.provider.ui.dataview.viewimage.ViewImageActivity
 import com.raantech.solalat.provider.ui.media.adapters.MediaRecyclerAdapter
 import com.raantech.solalat.provider.ui.media.viewmodel.MediaViewModel
 import com.raantech.solalat.provider.utils.ImagePickerUtil.Companion.TAKE_USER_IMAGE_REQUEST_CODE
@@ -30,6 +31,7 @@ import com.raantech.solalat.provider.utils.pickImages
 import com.raantech.solalat.provider.utils.recycleviewutils.VerticalSpaceDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
+import kotlinx.android.synthetic.main.row_image_view.view.*
 
 @AndroidEntryPoint
 class MediaActivity : BaseBindingActivity<ActivityMediaBinding>(),
@@ -183,12 +185,20 @@ class MediaActivity : BaseBindingActivity<ActivityMediaBinding>(),
         } else {
             if (selectMedia == true) {
                 val data = Intent()
-                data.putExtra(Constants.BundleData.MEDIA,item)
-                setResult(RESULT_OK,data)
+                data.putExtra(Constants.BundleData.MEDIA, item)
+                setResult(RESULT_OK, data)
+                finish()
+            } else {
+                view?.imgMedia?.let { ViewImageActivity.start(this, item.url, it) }
             }
         }
     }
 
+    override fun onItemLongClick(view: View?, position: Int, item: Any) {
+        super.onItemLongClick(view, position, item)
+        item as Media
+        view?.imgMedia?.let { ViewImageActivity.start(this, item.url, it) }
+    }
 
     private fun mediaObserver(): CustomObserverResponse<List<Media>> {
         return CustomObserverResponse(
@@ -225,20 +235,23 @@ class MediaActivity : BaseBindingActivity<ActivityMediaBinding>(),
     }
 
     companion object {
-        private const val requestCode:Int = 101
+        private const val requestCode: Int = 101
         fun start(
             context: Activity?
         ) {
             val intent = Intent(context, MediaActivity::class.java)
             context?.startActivity(intent)
         }
+
         fun start(
             context: Activity?,
-            selectMedia: Boolean? = false
+            selectMedia: Boolean? = false,
+            resultLauncher: ActivityResultLauncher<Intent>
         ) {
             val intent = Intent(context, MediaActivity::class.java)
             intent.putExtra(Constants.BundleData.SELECT_MEDIA, selectMedia)
-            context?.startActivityForResult(intent, requestCode)
+//            context?.startActivityForResult(intent, requestCode)
+            resultLauncher.launch(intent)
         }
     }
 

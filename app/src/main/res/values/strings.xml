@@ -98,8 +98,9 @@
     <string name="continue_">Continue</string>
 
     <!--    Login-->
-    <string name="login">تسجيل دخول</string>
-    <string name="enter_your_mobile_number">ادخل رقم الهاتف</string>
+    <string name="login">Login</string>
+    <string name="enter_your_mobile_number">Enter your mobile number</string>
+    <string name="logout">Logout</string>
 
     <!--    OnBoarding  -->
     <string name="title_on_boarding_1">title_on_boarding_1</string>
@@ -122,6 +123,7 @@
     <!--    Menu    -->
     <string name="menu_my_account">My Account</string>
     <string name="menu_notifications">Notifications</string>
+    <string name="menu_language">Language</string>
     <string name="menu_report_user">Report User</string>
     <string name="menu_technical_support">Technical Support</string>
     <string name="menu_about_us">About solalat</string>
@@ -147,10 +149,18 @@
     <string name="sar">Saudi Arabia Riyal</string>
     <string name="enter_phone_number_to_contact">Enter phone number to contact</string>
     <string name="upload_product_image">Upload product images</string>
+    <string name="accessory_type">Accessory Type</string>
+
+    <!--    Media   -->
     <string name="add_Media">Add Media</string>
     <string name="media">Media</string>
     <string name="no_data_found">No Data Found</string>
     <string name="no_available_data">-- No Available Data --</string>
+    <string name="please_select_the_category">Please select the category</string>
+    <string name="product_price">Product Price</string>
+    <string name="product_images">Product Images</string>
+    <string name="please_select_the_product_images">Please select the product images</string>
+
 
 
 </resources>

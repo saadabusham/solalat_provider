@@ -9,5 +9,17 @@
         android:id="@+id/productsFragment"
         android:name="com.raantech.solalat.provider.ui.products.fragments.ProductsFragment"
         android:label="ProductsFragment"
-        tools:layout="@layout/fragment_products"/>
+        tools:layout="@layout/fragment_products">
+        <action
+            android:id="@+id/action_productsFragment_to_addProductsFragment"
+            app:destination="@id/addProductsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/addProductsFragment"
+        android:name="com.raantech.solalat.provider.ui.products.fragments.AddProductsFragment"
+        android:label="AddProductsFragment" />
 </navigation>

@@ -10,9 +10,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout.SimpleDrawerListener
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.raantech.solalat.provider.R
-import com.raantech.solalat.provider.data.models.main.home.Category
+import com.raantech.solalat.provider.common.CommonEnums
 import com.raantech.solalat.provider.databinding.ActivityMainBinding
 import com.raantech.solalat.provider.ui.base.activity.BaseBindingActivity
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
@@ -110,10 +111,11 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
                 resources.getString(R.string.menu_my_account),
                 resources.getString(R.string.media),
                 resources.getString(R.string.menu_notifications),
+                resources.getString(R.string.menu_language),
                 resources.getString(R.string.menu_report_user),
                 resources.getString(R.string.menu_technical_support),
                 resources.getString(R.string.menu_about_us),
-                resources.getString(R.string.login))
+                resources.getString(R.string.logout))
     }
 
     private fun setStartDestination() {
@@ -140,14 +142,18 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
     }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
-        if (item is Category)
-            longToast(item.title)
-        else if (item is String) {
+        if (item is String) {
             binding?.drawerLayout?.closeDrawer(GravityCompat.START)
             longToast(item)
             when (position) {
                 1 -> MediaActivity.start(this)
-                6 -> {
+                3 -> viewModel.saveLanguage().observe(this, Observer {
+                    this.let {
+                        (it as BaseBindingActivity<*>).setLanguage(if (viewModel.getAppLanguage() == "ar")
+                            CommonEnums.Languages.Arabic.value else CommonEnums.Languages.English.value)
+                    }
+                })
+                7 -> {
                     viewModel.logout()
                     SplashActivity.start(this)
                 }

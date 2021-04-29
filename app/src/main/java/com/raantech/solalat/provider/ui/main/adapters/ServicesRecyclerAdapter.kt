@@ -4,18 +4,18 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.raantech.solalat.provider.data.models.main.home.Category
-import com.raantech.solalat.provider.databinding.RowCategoryBinding
+import com.raantech.solalat.provider.data.models.main.home.Service
+import com.raantech.solalat.provider.databinding.RowServiceBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder
 
-class CategoriesRecyclerAdapter(
+class ServicesRecyclerAdapter(
         context: Context
-) : BaseBindingRecyclerViewAdapter<Category>(context) {
+) : BaseBindingRecyclerViewAdapter<Service>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
-                RowCategoryBinding.inflate(
+                RowServiceBinding.inflate(
                         LayoutInflater.from(context), parent, false
                 )
         )
@@ -27,10 +27,10 @@ class CategoriesRecyclerAdapter(
         }
     }
 
-    inner class ViewHolder(private val binding: RowCategoryBinding) :
-            BaseViewHolder<Category>(binding.root) {
+    inner class ViewHolder(private val binding: RowServiceBinding) :
+            BaseViewHolder<Service>(binding.root) {
 
-        override fun bind(item: Category) {
+        override fun bind(item: Service) {
             binding.item = item
             binding.root.setOnClickListener {
                 itemClickListener?.onItemClick(it, adapterPosition, item)

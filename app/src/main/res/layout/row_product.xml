@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.raantech.solalat.provider.data.models.main.home.accessories.Product" />
+            type="com.raantech.solalat.provider.data.models.product.response.product.Product" />
     </data>
 
     <LinearLayout
@@ -32,7 +32,8 @@
                 android:id="@+id/imgMedia"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:src="@drawable/ic_cat_medical" />
+                tools:src="@drawable/ic_cat_medical"
+                ivImageUrl="@{item.baseImage.url}"/>
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
@@ -42,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_gravity="center|start"
-            android:text="حذو اغريقي  رمادي"
+            android:text="@{item.name}"
             android:textColor="@color/product_title_color"
             android:textSize="@dimen/_11ssp"
             tools:text="حذو اغريقي  رمادي" />
@@ -54,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|start"
             android:layout_marginTop="@dimen/_1sdp"
-            android:text="1000 ر.س"
+            android:text="@{item.price.formatted}"
             android:textColor="@color/button_color"
             android:textSize="@dimen/_11ssp"
             tools:text="1000 ر.س" />

@@ -7,6 +7,8 @@ import com.raantech.solalat.provider.data.repos.configuration.ConfigurationRepo
 import com.raantech.solalat.provider.data.repos.configuration.ConfigurationRepoImp
 import com.raantech.solalat.provider.data.repos.media.MediaRepo
 import com.raantech.solalat.provider.data.repos.media.MediaRepoImp
+import com.raantech.solalat.provider.data.repos.product.ProductsRepo
+import com.raantech.solalat.provider.data.repos.product.ProductsRepoImp
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -23,12 +25,16 @@ abstract class RepoModule {
 
     @Singleton
     @Binds
-    abstract fun bindUserRepo(userRepoImp: UserRepoImp) : UserRepo
+    abstract fun bindUserRepo(userRepoImp: UserRepoImp): UserRepo
 
     @Singleton
     @Binds
-    abstract fun bindMediaRepo(mediaRepoImp: MediaRepoImp) : MediaRepo
+    abstract fun bindMediaRepo(mediaRepoImp: MediaRepoImp): MediaRepo
 
+
+    @Singleton
+    @Binds
+    abstract fun bindProductsRepo(productsRepoImp: ProductsRepoImp): ProductsRepo
 
 
 }

@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.raantech.solalat.provider.data.models.main.home.accessories.Product
+import com.raantech.solalat.provider.data.models.product.response.product.Product
 import com.raantech.solalat.provider.databinding.RowProductBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder

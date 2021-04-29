@@ -98,8 +98,9 @@
     <string name="continue_">تابع</string>
 
     <!--    Login-->
-    <string name="login">Login</string>
-    <string name="enter_your_mobile_number">Enter your mobile number</string>
+    <string name="login">تسجيل دخول</string>
+    <string name="logout">تسجيل خروج</string>
+    <string name="enter_your_mobile_number">ادخل رقم الهاتف</string>
 
     <!--    OnBoarding  -->
     <string name="title_on_boarding_1">title_on_boarding_1</string>
@@ -122,6 +123,7 @@
     <!--    Menu    -->
     <string name="menu_my_account">حسابي الشخصي</string>
     <string name="menu_notifications">اشعارات</string>
+    <string name="menu_language">اللغة</string>
     <string name="menu_report_user">بلغ عن مستخدم</string>
     <string name="menu_technical_support">الدعم الفني</string>
     <string name="menu_about_us">عن سلالات</string>
@@ -147,4 +149,16 @@
     <string name="sar">ريال سعودي</string>
     <string name="enter_phone_number_to_contact">ادخل رقم الجوال للتواصل</string>
     <string name="upload_product_image">ارفع صور المنتج</string>
+    <string name="accessory_type">نوع الاكسسوار</string>
+
+    <!--    Media   -->
+    <string name="add_Media">اضف وسائط</string>
+    <string name="media">الوسائط</string>
+    <string name="no_data_found">لا يوجد بيانات</string>
+    <string name="no_available_data">-- لا يوجد بيانات متاحة --</string>
+    <string name="please_select_the_category">يرجى اختيار نوع الاكسسوار</string>
+    <string name="product_price">سعر المنتج</string>
+    <string name="product_images">صور المنتج</string>
+    <string name="please_select_the_product_images">يرجى اختيار صور المنتج</string>
+
 </resources>

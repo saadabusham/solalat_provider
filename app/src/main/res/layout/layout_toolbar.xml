@@ -28,8 +28,6 @@
                     style="@style/textview_normal_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
                     android:textColor="@color/toolbar_title_color"
                     android:textSize="@dimen/_18ssp"
                     tools:text="اضافة اكسسوارات"/>
@@ -38,7 +36,6 @@
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tvTitle"
                     android:textColor="@color/toolbar_title_color"
                     android:textSize="@dimen/_13ssp"
                     android:visibility="gone"

@@ -24,12 +24,13 @@
             app:cardElevation="0dp">
 
             <ImageView
-                android:id="@+id/image"
+                android:id="@+id/imgMedia"
                 ivImageUrl="@{item.url}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:src="@tools:sample/avatars"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:transitionName="image"
+                tools:src="@tools:sample/avatars" />
         </com.google.android.material.card.MaterialCardView>
 
         <ImageView
@@ -40,8 +41,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_5sdp"
-            android:padding="@dimen/_3sdp"
             android:background="?selectableItemBackgroundBorderless"
+            android:padding="@dimen/_3sdp"
             android:src="@drawable/ic_close" />
     </RelativeLayout>
 </layout>

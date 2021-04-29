@@ -39,6 +39,12 @@
         <activity
             android:name=".ui.media.MediaActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.dataview.viewimage.ViewImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.dataview.dataviewer.DataViewerActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

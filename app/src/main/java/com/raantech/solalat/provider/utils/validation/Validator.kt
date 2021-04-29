@@ -102,6 +102,9 @@ class Validator {
             ValidatorInputTypesEnums.SEARCH_TEXT -> {
                 validateSearchText()
             }
+            ValidatorInputTypesEnums.DOUBLE -> {
+                validateDouble()
+            }
             else -> ValidatedData(true, "", "")
         }
     }
@@ -346,6 +349,23 @@ class Validator {
                     errorMessage = context.resources.getString(R.string.must_be_at_least)
                 )
             } else ValidatedData(true, "", "")
+
+        } catch (ex: NumberFormatException) {
+            println("The given string is non-numeric")
+            ValidatedData(true, "", "")
+        }
+        return ValidatedData(true, "", "")
+    }
+
+    private fun validateDouble(): ValidatedData {
+        try {
+            return if (textToValidate.isNullOrEmpty()) {
+                return ValidatedData(
+                    isValid = false,
+                    errorTitle = context.resources.getString(R.string.number),
+                    errorMessage = context.resources.getString(R.string.must_not_be_empty)
+                )
+            }else ValidatedData(true, "", "")
 
         } catch (ex: NumberFormatException) {
             println("The given string is non-numeric")

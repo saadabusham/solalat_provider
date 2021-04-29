@@ -38,6 +38,10 @@ class MediaRecyclerAdapter(
             binding.relativePreview.setOnClickListener {
                 itemClickListener?.onItemClick(it, adapterPosition, item)
             }
+            binding.relativePreview.setOnLongClickListener {
+                itemClickListener?.onItemLongClick(it, adapterPosition, item)
+                return@setOnLongClickListener true
+            }
         }
     }
 

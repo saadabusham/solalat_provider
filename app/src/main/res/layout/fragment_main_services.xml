@@ -29,7 +29,7 @@
             android:paddingEnd="@dimen/_7sdp"
             android:layout_marginTop="@dimen/_25sdp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/row_category"
+            tools:listitem="@layout/row_service"
             tools:itemCount="4"
             app:spanCount="2"/>
 

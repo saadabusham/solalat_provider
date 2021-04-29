@@ -9,10 +9,10 @@
 
         <variable
             name="viewModel"
-            type="com.raantech.solalat.provider.ui.main.viewmodels.AccessoriesViewModel" />
+            type="com.raantech.solalat.provider.ui.products.viewmodels.ProductsViewModel" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -21,12 +21,21 @@
             android:id="@+id/layout_toolbar"
             layout="@layout/layout_toolbar" />
 
+        <include
+            android:id="@+id/layout_no_data"
+            layout="@layout/layout_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/linearActions"
+            android:layout_below="@id/layout_toolbar"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/_15sdp"
-            android:layout_weight="1"
+            android:layout_above="@id/linearActions"
+            android:layout_below="@id/layout_no_data"
             android:clipToPadding="false"
             android:nestedScrollingEnabled="false"
             android:orientation="vertical"
@@ -36,9 +45,11 @@
             tools:listitem="@layout/row_product" />
 
         <LinearLayout
+            android:id="@+id/linearActions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAddProduct"
@@ -61,5 +72,5 @@
                 android:layout_marginBottom="@dimen/_20sdp"
                 android:text="@string/share_products" />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

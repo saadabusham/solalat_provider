@@ -17,7 +17,7 @@
 
         <include
             android:id="@+id/layout_toolbar"
-            layout="@layout/layout_home_toolbar" />
+            layout="@layout/layout_toolbar" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -44,6 +44,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_27sdp"
                         android:text="@string/verification"
+                        android:layout_gravity="start"
                         android:textColor="@color/text_header_dark_gray"
                         android:textSize="@dimen/_23ssp" />
 
