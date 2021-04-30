@@ -165,6 +165,22 @@
     <string name="new_product">New Product</string>
     <string name="add_new_service">Add new service</string>
     <string name="edit_information">Edit Information</string>
+    <string name="products_views">Products Views</string>
+    <string name="balance">Balance</string>
+    <string name="sold_products">Sold products</string>
+    <string name="Visit">Visit</string>
+    <string name="sold">Sold</string>
+
+    <!--    About Us    -->
+    <string name="contact_us">Contact us</string>
+    <string name="search_here">Search here</string>
+
+    <!--    Faqs    -->
+    <string name="no_faq_s_found">No Faq\'s Found</string>
+    <string name="help_request">Help Request</string>
+    <string name="didnt_find_answer">Didn\'t find answer</string>
+    <string name="call_us_now">Call us now</string>
+    <string name="receive_whatsapp">Receive WhatsApp</string>
 
 
 </resources>

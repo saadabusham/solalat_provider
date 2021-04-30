@@ -71,7 +71,11 @@ class AddProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
 
         binding?.btnAddProduct?.setOnClickListener {
             if (isDataValid()) {
-                viewModel.addProduct(smallMediaRecyclerAdapter.items,categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index]).observe(this,addProductResultObserver()   )
+                viewModel.addProduct(
+                    smallMediaRecyclerAdapter.items,
+                    categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index],
+                    binding?.checkboxReceiveWhatsapp?.isChecked ?: false
+                ).observe(this, addProductResultObserver())
             }
         }
     }
@@ -124,7 +128,7 @@ class AddProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
                 }
             }
 
-        if(smallMediaRecyclerAdapter.itemCount == 0){
+        if (smallMediaRecyclerAdapter.itemCount == 0) {
             requireActivity().showErrorAlert(
                 resources.getString(R.string.product_images),
                 resources.getString(R.string.please_select_the_product_images)
@@ -196,7 +200,8 @@ class AddProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
                 ) {
                     navigationController.navigateUp()
                 }
-            },showError = true)
+            }, showError = true
+        )
     }
 
     var resultLauncher =

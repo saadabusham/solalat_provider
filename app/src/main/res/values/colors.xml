@@ -41,7 +41,7 @@
 
     <!-- Gray -->
     <color name="default_gary">#dfe0e5</color>
-    <color name="lite_gray">#f4f5f7</color>
+    <color name="lite_gray">#1CA2A2A2</color>
     <color name="edittext_boarder_gray">#E6E6E6</color>
 
     <!-- Blue -->
@@ -116,4 +116,5 @@
     <color name="product_title_color">#515151</color>
     <color name="edittext_hint_color">#80383838</color>
     <color name="edittext_color">#383838</color>
+    <color name="dark_gray">#2F2F2F</color>
 </resources>

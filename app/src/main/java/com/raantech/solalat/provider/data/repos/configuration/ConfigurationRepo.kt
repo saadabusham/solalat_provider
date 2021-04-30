@@ -4,6 +4,8 @@ import com.raantech.solalat.provider.common.CommonEnums
 import com.raantech.solalat.provider.data.api.response.APIResource
 import com.raantech.solalat.provider.data.api.response.ResponseWrapper
 import com.raantech.solalat.provider.data.models.configuration.ConfigurationWrapperResponse
+import com.raantech.solalat.provider.data.models.more.AboutUsResponse
+import com.raantech.solalat.provider.data.models.more.FaqsResponse
 
 interface ConfigurationRepo {
 
@@ -11,4 +13,9 @@ interface ConfigurationRepo {
     fun getAppLanguage(): CommonEnums.Languages
 
     suspend fun loadConfigurationData(): APIResource<ResponseWrapper<ConfigurationWrapperResponse>>
+    suspend fun getAboutUs(): APIResource<ResponseWrapper<AboutUsResponse>>
+    suspend fun getFaqs(
+        skip: Int,
+        type: String
+    ): APIResource<ResponseWrapper<List<FaqsResponse>>>
 }

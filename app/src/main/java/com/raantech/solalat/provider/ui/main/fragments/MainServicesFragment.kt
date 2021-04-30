@@ -1,6 +1,7 @@
 package com.raantech.solalat.provider.ui.main.fragments
 
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.enums.ServiceTypesEnum
@@ -19,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainServicesFragment : BaseBindingFragment<FragmentMainServicesBinding>(),
         BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by activityViewModels()
 
     lateinit var servicesCategoriesRecyclerAdapter: ServicesRecyclerAdapter
 

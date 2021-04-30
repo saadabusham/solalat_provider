@@ -18,10 +18,10 @@ fun ImageView.rotate(isDown: Boolean) {
     rotate.fillAfter = true
     this.startAnimation(rotate)
 }
-fun View.rotate(percentage: Float , isDown: Boolean) {
+fun View.halfRotate(percentage: Float , isDown: Boolean) {
     val rotate = RotateAnimation(
-        if (isDown) 0.toFloat() else percentage,
-        if (isDown) percentage else 0.toFloat(),
+        if (isDown) 0.toFloat() else (-90).toFloat(),
+        if (isDown) (-90).toFloat() else 0.toFloat(),
         Animation.RELATIVE_TO_SELF,
         0.5f, Animation.RELATIVE_TO_SELF,
         0.5f

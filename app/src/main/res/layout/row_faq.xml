@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginBottom="@dimen/_15sdp">
+
+    <data>
+
+        <variable
+            name="help"
+            type="com.raantech.solalat.provider.data.models.more.FaqsResponse" />
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/linearTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                style="@style/textview_normal_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:text="title goes here"
+                android:textColor="@color/button_color"
+                android:textSize="@dimen/_15ssp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_next" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDesc"
+            style="@style/textview_normal_regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearTitle"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:maxLines="1"
+            android:visibility="gone"
+            android:text="desc goes here"
+            android:textColor="@color/button_color"
+            android:textSize="@dimen/_12ssp" />
+
+        <View
+            android:id="@+id/divLegend"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_below="@id/tvDesc"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@color/border_color" />
+    </RelativeLayout>
+</layout>

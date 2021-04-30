@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -21,6 +22,8 @@ import com.raantech.solalat.provider.ui.base.dialogs.progressdialog.ProgressDial
 import com.raantech.solalat.provider.utils.HandleRequestFailedUtil
 import com.raantech.solalat.provider.utils.extensions.longToast
 import com.raantech.solalat.provider.utils.extensions.refreshLocal
+import com.raantech.solalat.provider.utils.extensions.visible
+import kotlinx.android.synthetic.main.layout_toolbar.view.*
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -28,6 +31,7 @@ import java.net.SocketTimeoutException
 abstract class BaseBindingFragment<BINDING : ViewDataBinding> : Fragment(),
     IBaseBindingFragment, OnLocaleChangedListener {
 
+    private var toolbar: Toolbar? = null
     protected var binding: BINDING? = null
     protected lateinit var navigationController: NavController
 
@@ -156,6 +160,46 @@ abstract class BaseBindingFragment<BINDING : ViewDataBinding> : Fragment(),
         }
     }
 
+    open fun addToolbarLocale(
+        toolbarView: Toolbar?,
+        hasBackButton: Boolean,
+        hasTitle: Boolean,
+        title: Int,
+        titleString: String?,
+        hasSubTitle: Boolean,
+        subTitle: Int,
+        navigationIcon: Int?
+    ) {
+        toolbar = toolbarView ?: binding?.root?.findViewById(R.id.toolbar)
+
+        if (toolbar == null) return
+        if (hasTitle) {
+            toolbar?.tvTitle?.text =
+                if (titleString.isNullOrEmpty()) getString(title) else titleString
+        }
+
+        if (hasSubTitle) {
+            toolbar?.tvSubTitle?.text = getString(subTitle)
+            toolbar?.tvSubTitle?.visible()
+        }
+
+        if (hasBackButton) {
+            if (navigationIcon != null) {
+                toolbar?.navigationIcon = ContextCompat.getDrawable(
+                    requireContext(),
+                    navigationIcon
+                )
+            } else {
+                toolbar?.navigationIcon = resources.getDrawable(R.drawable.ic_back)
+            }
+            toolbar?.setNavigationOnClickListener { v ->
+                navigationController.navigateUp()
+            }
+        } else {
+            toolbar?.navigationIcon = null
+        }
+    }
+
     override fun updateToolbarTitle(hasTitle: Boolean, title: Int, titleString: String?) {
         if (activity is IBaseBindingActivity) {
             (activity as IBaseBindingActivity).updateToolbarTitle(
@@ -188,6 +232,12 @@ abstract class BaseBindingFragment<BINDING : ViewDataBinding> : Fragment(),
             (activity as IBaseBindingActivity).updateToolbarSubTitle(
                 hasSubTitle, subTitle, subTitleString
             )
+        }
+    }
+
+    fun updateDrawer(enableDrawer: Boolean) {
+        if (activity is IBaseBindingActivity) {
+            (activity as IBaseBindingActivity).updateDrawer(enableDrawer)
         }
     }
 

@@ -12,12 +12,15 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.drawerlayout.widget.DrawerLayout
 import com.akexorcist.localizationactivity.core.LocalizationActivityDelegate
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
+import com.raantech.solalat.provider.databinding.ActivityMainBinding
 import com.raantech.solalat.provider.ui.base.dialogs.CustomDialogUtils
 import com.raantech.solalat.provider.utils.HandleRequestFailedUtil
+import com.raantech.solalat.provider.utils.extensions.gone
 import com.raantech.solalat.provider.utils.extensions.longToast
 import com.raantech.solalat.provider.utils.extensions.visible
 import com.raantech.solalat.provider.utils.pref.SharedPreferencesUtil
@@ -41,6 +44,7 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
     override fun hideLoadingView() {
         customDialogUtils.hideProgress()
     }
+
     private val localizationDelegate = LocalizationActivityDelegate(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -204,6 +208,27 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
             } else {
                 supportActionBar?.subtitle = null
             }
+        }
+    }
+
+
+    override fun updateDrawer(enableDrawer: Boolean) {
+        if (!enableDrawer) {
+            if (binding is ActivityMainBinding) {
+                (binding as ActivityMainBinding).drawerLayout.setDrawerLockMode(
+                    DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+                )
+            }
+            if (toolbar == null) return
+            toolbar?.gone()
+        } else {
+            if (binding is ActivityMainBinding) {
+                (binding as ActivityMainBinding).drawerLayout.setDrawerLockMode(
+                    DrawerLayout.LOCK_MODE_UNLOCKED
+                )
+            }
+            if (toolbar == null) return
+            toolbar?.visible()
         }
     }
 

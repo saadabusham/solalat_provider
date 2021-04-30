@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 
 data class ResponseWrapper<RETURN_MODEL>(
     @field:Json(name = "errors")
-    val errors: List<GeneralError>,
+    val errors: Any,
     @field:Json(name = "code")
     val code: Int,
     @field:Json(name = "message")

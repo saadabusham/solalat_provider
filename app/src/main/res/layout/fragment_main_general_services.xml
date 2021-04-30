@@ -17,54 +17,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/btnAddProduct"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_35sdp"
-            android:layout_marginEnd="@dimen/_12sdp"
-            android:clickable="true"
-            android:drawableStart="@drawable/ic_close"
-            android:focusable="true"
-            android:text="@string/add_product"
-            app:cardBackgroundColor="@color/button_color"
-            app:cardCornerRadius="@dimen/_15sdp">
-
-            <TextView
-                style="@style/textview_normal_regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/_7sdp"
-                android:drawableStart="@drawable/ic_add"
-                android:drawablePadding="@dimen/_10sdp"
-                android:gravity="center"
-                android:text="@string/new_product"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_15ssp" />
-        </com.google.android.material.card.MaterialCardView>
-
         <LinearLayout
-            android:id="@+id/linearDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/btnAddProduct"
             android:layout_marginTop="@dimen/_20sdp"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp">
+            android:paddingBottom="@dimen/_10sdp"
+            android:paddingTop="@dimen/_10sdp">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_20sdp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/products_views"
@@ -94,14 +63,13 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/balance"
@@ -129,90 +97,15 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvSoldProducts"
-            style="@style/textview_normal_regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearDetails"
-            android:layout_marginStart="@dimen/_15sdp"
-            android:text="@string/sold_products"
-            android:textColor="@color/dark_gray"
-            android:textSize="@dimen/_15ssp" />
-
-        <LinearLayout
-            android:id="@+id/linearLegend"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvSoldProducts"
-            android:layout_marginStart="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_15sdp"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/textview_normal_bold"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|start"
-                android:layout_weight="1"
-                android:text="@string/product_name"
-                android:textColor="@color/product_title_color"
-                android:textSize="@dimen/_15ssp" />
-
-            <TextView
-                style="@style/textview_normal_bold"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="@string/Visit"
-                android:textColor="@color/product_title_color"
-                android:textSize="@dimen/_15ssp" />
-
-            <TextView
-                style="@style/textview_normal_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:minWidth="@dimen/_50sdp"
-                android:text="@string/sold"
-                android:textColor="@color/product_title_color"
-                android:textSize="@dimen/_15ssp"
-                android:layout_marginStart="@dimen/_10ssp" />
-
-        </LinearLayout>
-
-        <View
-            android:id="@+id/divLegend"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_below="@id/linearLegend"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:background="@color/border_color" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvProducts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/btnEditInfo"
-            android:layout_below="@id/divLegend"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:clipToPadding="false"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/row_product_vertical" />
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btnEditInfo"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
-            android:layout_above="@id/btnAddService"
             android:layout_marginStart="@dimen/_12sdp"
             android:layout_marginEnd="@dimen/_12sdp"
             android:clickable="true"
             android:focusable="true"
+            android:layout_above="@id/btnAddService"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_15sdp"
             app:cardElevation="0dp"
@@ -237,11 +130,11 @@
             android:id="@+id/btnAddService"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_12sdp"
             android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_alignParentBottom="true"
             android:clickable="true"
             android:focusable="true"
             app:cardBackgroundColor="@color/white"
@@ -264,6 +157,7 @@
                 app:drawableStartCompat="@drawable/ic_add"
                 app:drawableTint="@color/button_color" />
         </com.google.android.material.card.MaterialCardView>
+
 
     </RelativeLayout>
 </layout>

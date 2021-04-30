@@ -17,6 +17,7 @@ import com.raantech.solalat.provider.common.CommonEnums
 import com.raantech.solalat.provider.data.api.response.GeneralError
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.solalat.provider.data.common.CustomObserverResponse
+import com.raantech.solalat.provider.data.enums.ServiceTypesEnum
 import com.raantech.solalat.provider.data.models.main.home.MyService
 import com.raantech.solalat.provider.databinding.ActivityMainBinding
 import com.raantech.solalat.provider.ui.base.activity.BaseBindingActivity
@@ -25,6 +26,8 @@ import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListe
 import com.raantech.solalat.provider.ui.main.adapters.DrawerRecyclerAdapter
 import com.raantech.solalat.provider.ui.main.viewmodels.MainViewModel
 import com.raantech.solalat.provider.ui.media.MediaActivity
+import com.raantech.solalat.provider.ui.more.aboutus.AboutUsActivity
+import com.raantech.solalat.provider.ui.more.faqs.FaqsActivity
 import com.raantech.solalat.provider.ui.splash.SplashActivity
 import com.raantech.solalat.provider.utils.LocaleUtil
 import com.raantech.solalat.provider.utils.extensions.longToast
@@ -35,22 +38,32 @@ import kotlin.math.abs
 
 @AndroidEntryPoint
 class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
-        BaseBindingRecyclerViewAdapter.OnItemClickListener {
+    BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
-    private val viewModel: MainViewModel by viewModels { defaultViewModelProviderFactory }
+    private val viewModel: MainViewModel by viewModels()
     lateinit var drawerRecyclerAdapter: DrawerRecyclerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(
-                layoutResID = R.layout.activity_main,
-                hasToolbar = true,
-                toolbarView = toolbar,
-                hasTitle = true,
-                title = R.string.solalat_services
+            layoutResID = R.layout.activity_main,
+            hasToolbar = true,
+            toolbarView = toolbar,
+            hasTitle = true,
+            title = R.string.solalat_services
         )
         setUpBinding()
         setUpDrawer()
-        viewModel.getMyServices().observe(this,myServicesObserver())
+        setUpListeners()
+        viewModel.getMyServices().observe(this, myServicesObserver())
+    }
+
+    private fun setUpListeners() {
+        binding?.appBarMain?.layoutToolbar?.imgHelp?.setOnClickListener {
+            FaqsActivity.start(this)
+        }
+        binding?.appBarMain?.layoutToolbar?.imgNotifications?.setOnClickListener {
+
+        }
     }
 
     private fun setUpBinding() {
@@ -63,15 +76,18 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
         binding?.drawerRecyclerView?.adapter = drawerRecyclerAdapter
         binding?.drawerRecyclerView?.setOnItemClickListener(this)
         val toggle = ActionBarDrawerToggle(
-                this, binding?.drawerLayout, binding?.appBarMain?.layoutToolbar?.toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+            this, binding?.drawerLayout, binding?.appBarMain?.layoutToolbar?.toolbar,
+            R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
         initDrawer(toggle)
     }
 
 
     private fun initDrawer(toggle: ActionBarDrawerToggle) {
-        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_menu,
-                theme)
+        val drawable = ResourcesCompat.getDrawable(
+            resources, R.drawable.ic_menu,
+            theme
+        )
         toggle.isDrawerIndicatorEnabled = false
         toggle.setHomeAsUpIndicator(drawable)
         binding?.drawerLayout?.addDrawerListener(toggle)
@@ -96,7 +112,8 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
                     binding?.appBarMain?.container?.pivotX = 0.toFloat()
                     binding?.appBarMain?.container?.pivotY = (1000).toFloat()
                 } else {
-                    binding?.appBarMain?.container?.x = (binding?.navigationView?.width!! * (slideOffset))
+                    binding?.appBarMain?.container?.x =
+                        (binding?.navigationView?.width!! * (slideOffset))
                     binding?.appBarMain?.holder?.rotation = slideOffset * 10
                     binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.4f - 1)
                     binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.4f - 1)
@@ -112,50 +129,63 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
 
     private fun getDrawerList(): List<String> {
         return arrayListOf(
-                resources.getString(R.string.menu_my_account),
-                resources.getString(R.string.media),
-                resources.getString(R.string.menu_notifications),
-                resources.getString(R.string.menu_language),
-                resources.getString(R.string.menu_report_user),
-                resources.getString(R.string.menu_technical_support),
-                resources.getString(R.string.menu_about_us),
-                resources.getString(R.string.logout))
+            resources.getString(R.string.menu_my_account),
+            resources.getString(R.string.media),
+            resources.getString(R.string.menu_notifications),
+            resources.getString(R.string.menu_language),
+            resources.getString(R.string.menu_report_user),
+            resources.getString(R.string.menu_technical_support),
+            resources.getString(R.string.menu_about_us),
+            resources.getString(R.string.logout)
+        )
     }
 
 
     private fun myServicesObserver(): CustomObserverResponse<List<MyService>> {
         return CustomObserverResponse(
-                this,
-                object : CustomObserverResponse.APICallBack<List<MyService>> {
-                    override fun onSuccess(
-                            statusCode: Int,
-                            subErrorCode: ResponseSubErrorsCodeEnum,
-                            data: List<MyService>?
-                    ) {
-                        data?.let { setStartDestination(it) }?:setStartDestination(arrayListOf())
-                    }
-
-                    override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String, errors: List<GeneralError>?) {
-                        super.onError(subErrorCode, message, errors)
-                        setStartDestination(arrayListOf())
-                    }
+            this,
+            object : CustomObserverResponse.APICallBack<List<MyService>> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: List<MyService>?
+                ) {
+                    data?.let {
+                        setStartDestination(it)
+                    } ?: setStartDestination(arrayListOf())
                 }
+
+                override fun onError(
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    message: String,
+                    errors: List<GeneralError>?
+                ) {
+                    super.onError(subErrorCode, message, errors)
+                    setStartDestination(arrayListOf())
+                }
+            }
         )
     }
 
-    private fun setStartDestination(myServices:List<MyService>) {
+    private fun setStartDestination(myServices: List<MyService>) {
+        viewModel.myServices.clear()
+        viewModel.myServices.addAll(myServices)
         val navHostFragment = main_nav_host_fragment as NavHostFragment
         val inflater = navHostFragment.navController.navInflater
         val graph = inflater.inflate(R.navigation.main_nav_graph)
 
         when (myServices.size) {
-            0-> graph.startDestination = R.id.servicesCategoriesFragment
-            1-> graph.startDestination = R.id.mainAccessoriesFragment
-            2-> graph.startDestination = R.id.servicesCategoriesFragment
-            3-> graph.startDestination = R.id.servicesCategoriesFragment
-            4-> graph.startDestination = R.id.servicesCategoriesFragment
+            0 -> graph.startDestination = R.id.servicesCategoriesFragment
+            1 -> {
+                viewModel.currentService.postValue(myServices[0])
+                if (myServices[0].service == ServiceTypesEnum.ACCESSORIES.value) {
+                    graph.startDestination = R.id.mainAccessoriesFragment
+                } else {
+                    graph.startDestination = R.id.mainGeneralServiceFragment
+                }
+            }
             else -> {
-                graph.startDestination = R.id.loginFragment
+                graph.startDestination = R.id.mainMultipleServicesFragment
             }
         }
         navHostFragment.navController.graph = graph
@@ -179,10 +209,14 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
                 1 -> MediaActivity.start(this)
                 3 -> viewModel.saveLanguage().observe(this, Observer {
                     this.let {
-                        (it as BaseBindingActivity<*>).setLanguage(if (viewModel.getAppLanguage() == "ar")
-                            CommonEnums.Languages.Arabic.value else CommonEnums.Languages.English.value)
+                        (it as BaseBindingActivity<*>).setLanguage(
+                            if (viewModel.getAppLanguage() == "ar")
+                                CommonEnums.Languages.Arabic.value else CommonEnums.Languages.English.value
+                        )
                     }
                 })
+                5 -> FaqsActivity.start(this)
+                6 -> AboutUsActivity.start(this)
                 7 -> {
                     viewModel.logout()
                     SplashActivity.start(this)

@@ -15,7 +15,7 @@ import com.raantech.solalat.provider.databinding.FragmentProductsBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.solalat.provider.ui.base.fragment.BaseBindingFragment
-import com.raantech.solalat.provider.ui.products.adapters.ProductsRecyclerAdapter
+import com.raantech.solalat.provider.ui.products.adapters.ProductsGridRecyclerAdapter
 import com.raantech.solalat.provider.ui.products.viewmodels.ProductsViewModel
 import com.raantech.solalat.provider.utils.extensions.gone
 import com.raantech.solalat.provider.utils.extensions.visible
@@ -31,7 +31,7 @@ class ProductsFragment : BaseBindingFragment<FragmentProductsBinding>(),
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
     private var isFinished = false
 
-    lateinit var productsRecyclerAdapter: ProductsRecyclerAdapter
+    lateinit var productsRecyclerAdapter: ProductsGridRecyclerAdapter
 
     var refreshData: Boolean = false
 
@@ -85,10 +85,7 @@ class ProductsFragment : BaseBindingFragment<FragmentProductsBinding>(),
     }
 
     private fun setUpRecyclerView() {
-        productsRecyclerAdapter = ProductsRecyclerAdapter(requireContext())
-        binding?.recyclerView?.adapter = productsRecyclerAdapter
-        binding?.recyclerView?.setOnItemClickListener(this)
-        Paginate.with(binding?.recyclerView, object : Paginate.Callbacks {
+        productsRecyclerAdapter = ProductsGridRecyclerAdapter(requireContext(),object : Paginate.Callbacks {
             override fun onLoadMore() {
                 if (loading.value == false && productsRecyclerAdapter.itemCount > 0 && !isFinished) {
                     loadProducts()
@@ -104,9 +101,6 @@ class ProductsFragment : BaseBindingFragment<FragmentProductsBinding>(),
             }
 
         })
-            .setLoadingTriggerThreshold(1)
-            .addLoadingListItem(false)
-            .build()
     }
 
     private fun hideShowNoData() {

@@ -1,18 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/servicesCategoriesFragment">
 
     <fragment
         android:id="@+id/servicesCategoriesFragment"
         android:name="com.raantech.solalat.provider.ui.main.fragments.MainServicesFragment"
-        android:label="ServicesCategoriesFragment" >
-
-    </fragment>
+        android:label="ServicesCategoriesFragment" />
     <fragment
         android:id="@+id/mainAccessoriesFragment"
         android:name="com.raantech.solalat.provider.ui.main.fragments.MainAccessoriesFragment"
         android:label="MainAccessoriesFragment" />
+    <fragment
+        android:id="@+id/mainGeneralServiceFragment"
+        android:name="com.raantech.solalat.provider.ui.main.fragments.MainGeneralServiceFragment"
+        android:label="MainGeneralServiceFragment" />
+    <fragment
+        android:id="@+id/mainMultipleServicesFragment"
+        android:name="com.raantech.solalat.provider.ui.main.fragments.MainMultipleServicesFragment"
+        android:label="MainMultipleServicesFragment">
+        <action
+            android:id="@+id/action_mainMultipleServicesFragment_to_mainAccessoriesFragment"
+            app:destination="@id/mainAccessoriesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_mainMultipleServicesFragment_to_mainGeneralServiceFragment"
+            app:destination="@id/mainGeneralServiceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 </navigation>

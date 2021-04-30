@@ -40,13 +40,13 @@ class ProductsViewModel @ViewModelInject constructor(
         emit(response)
     }
 
-    fun addProduct(files: List<Media>, serviceCategory: ServiceCategory) = liveData {
+    fun addProduct(files: List<Media>, serviceCategory: ServiceCategory,receivedWhatsapp:Boolean) = liveData {
         emit(APIResource.loading())
-        val response = productsRepo.addProduct(getAddProductRequest(files.map { it.id },serviceCategory.id))
+        val response = productsRepo.addProduct(getAddProductRequest(files.map { it.id },serviceCategory.id,receivedWhatsapp))
         emit(response)
     }
 
-    private fun getAddProductRequest(files: List<Int>, categoryId: Int?): AddProductRequest {
+    private fun getAddProductRequest(files: List<Int>, categoryId: Int?, receivedWhatsapp: Boolean): AddProductRequest {
         return AddProductRequest(
             isActive = true,
             categoryId = categoryId,
@@ -56,7 +56,7 @@ class ProductsViewModel @ViewModelInject constructor(
             contactNumber = phoneNumber.value.toString().checkPhoneNumberFormat()
                 .concatStrings(selectedCountryCode.value.toString()),
             files = Files(baseImage = files[0], additionalImages = files),
-            receivedWhatsapp = true
+            receivedWhatsapp = receivedWhatsapp
         )
     }
 }

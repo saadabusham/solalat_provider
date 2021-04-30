@@ -45,6 +45,7 @@ interface IBaseBindingActivity {
         subTitleString: String? = null
     )
 
+    fun updateDrawer(enableDrawer: Boolean)
     fun handleRequestFailedMessages(
         errorCode: Int?,
         subErrorCode: ResponseSubErrorsCodeEnum?,

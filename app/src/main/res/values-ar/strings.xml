@@ -165,5 +165,20 @@
     <string name="new_product">منتج جديد</string>
     <string name="edit_information">تعديل البيانات</string>
     <string name="add_new_service">اضافة خدمة جديدة</string>
+    <string name="products_views">الزياريات لمنتجاتك</string>
+    <string name="balance">رصيد حسابك</string>
+    <string name="sold_products">المنتجات المباعة</string>
+    <string name="Visit">زيارة</string>
+    <string name="sold">بيع</string>
+
+    <!--    About Us    -->
+    <string name="contact_us">تواصل معنا</string>
+    <string name="search_here">اكتب ما تود السؤال عنه</string>
+
+    <!--    Faqs    -->
+    <string name="no_faq_s_found">لم يتم العثور على أسئلة وأجوبة</string>
+    <string name="help_request">طلب مساعدة</string>
+    <string name="didnt_find_answer">اذا لم تجد جوابا شافيا لاستفسارك</string>
+    <string name="call_us_now">اتصل بنا الان</string>
 
 </resources>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.raantech.solalat.provider.data.models.product.response.product.Product" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="@dimen/_65sdp"
+                android:layout_height="@dimen/_65sdp"
+                app:cardBackgroundColor="@color/cardview_stroke_gray"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="0dp">
+
+                <ImageView
+                    android:id="@+id/imgMedia"
+                    ivImageUrl="@{item.baseImage.url}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:src="@drawable/ic_cat_medical" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvProductName"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="@{item.name}"
+                    android:textColor="@color/product_title_color"
+                    android:textSize="@dimen/_11ssp"
+                    tools:text="حذو اغريقي  رمادي" />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:text="@{item.price.formatted}"
+                    android:textColor="@color/button_color"
+                    android:textSize="@dimen/_11ssp"
+                    tools:text="1000 ر.س" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvProductViewed"
+                style="@style/textview_normal_regular"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@{item.viewed.toString()}"
+                android:textColor="@color/button_color"
+                android:textSize="@dimen/_15ssp"
+                tools:text="5" />
+
+            <TextView
+                android:id="@+id/tvProductSell"
+                style="@style/textview_normal_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_10ssp"
+                android:gravity="center"
+                android:minWidth="@dimen/_50sdp"
+                android:text="@{item.numberOfOrders.toString()}"
+                android:textColor="@color/button_color"
+                android:textSize="@dimen/_15ssp"
+                tools:text="12" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divLegend"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/border_color" />
+
+    </LinearLayout>
+
+
+</layout>
