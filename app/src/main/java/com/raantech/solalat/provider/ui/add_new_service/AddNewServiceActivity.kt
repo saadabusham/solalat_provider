@@ -14,6 +14,7 @@ import com.raantech.solalat.provider.ui.base.activity.BaseBindingActivity
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.solalat.provider.ui.main.adapters.ServicesRecyclerAdapter
+import com.raantech.solalat.provider.ui.medical.MedicalServicesActivity
 import com.raantech.solalat.provider.ui.products.ProductsActivity
 import com.raantech.solalat.provider.utils.recycleviewutils.VerticalSpaceDecoration
 import dagger.hilt.android.AndroidEntryPoint
@@ -102,8 +103,8 @@ class AddNewServiceActivity : BaseBindingActivity<ActivityAddNewServiceBinding>(
     override fun onItemClick(view: View?, position: Int, item: Any) {
         if (item is Service) {
             when (position) {
-                ServiceTypesEnum.ACCESSORIES.ordinal -> ProductsActivity.start(this)
-                ServiceTypesEnum.MEDICAL.ordinal -> ProductsActivity.start(this)
+                ServiceTypesEnum.ACCESSORIES.ordinal -> ProductsActivity.start(this,true)
+                ServiceTypesEnum.MEDICAL.ordinal -> MedicalServicesActivity.start(this,true)
                 ServiceTypesEnum.BARN.ordinal -> ProductsActivity.start(this)
                 ServiceTypesEnum.TRANSPORTATION.ordinal -> ProductsActivity.start(this)
             }

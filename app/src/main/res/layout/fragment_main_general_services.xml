@@ -36,7 +36,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/products_views"
+                    android:text="@string/services_views"
                     android:textColor="@color/dark_gray"
                     android:textSize="@dimen/_15ssp" />
 
@@ -72,7 +72,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/balance"
+                    android:text="@string/number_of_call"
                     android:textColor="@color/dark_gray"
                     android:textSize="@dimen/_15ssp" />
 
@@ -88,7 +88,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50sdp"
                         android:gravity="center"
-                        android:text="@{viewModel.currentService.account_balance.formatted}"
+                        android:text="@{viewModel.currentService.calls.toString()}"
                         android:textColor="@color/button_color"
                         android:textSize="@dimen/_15ssp"
                         tools:text="2300 ر.س" />

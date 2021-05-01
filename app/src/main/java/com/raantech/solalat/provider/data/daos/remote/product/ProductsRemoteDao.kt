@@ -2,11 +2,9 @@ package com.raantech.solalat.provider.data.daos.remote.product
 
 import com.raantech.solalat.provider.data.api.response.ResponseWrapper
 import com.raantech.solalat.provider.data.common.NetworkConstants
-import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.data.models.product.request.AddProductRequest
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategoriesResponse
 import com.raantech.solalat.provider.data.models.product.response.product.Product
-import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface ProductsRemoteDao {

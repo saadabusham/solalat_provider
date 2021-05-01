@@ -37,16 +37,8 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:src="@mipmap/ic_launcher"/>
+                        tools:src="@drawable/ic_splash_logo"/>
 
-                    <TextView
-                        style="@style/textview_normal_medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:text="@string/app_name"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_28ssp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 

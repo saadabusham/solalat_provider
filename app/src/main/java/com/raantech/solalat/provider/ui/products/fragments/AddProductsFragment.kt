@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
@@ -32,7 +32,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 class AddProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
     BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
-    private val viewModel: ProductsViewModel by viewModels()
+    private val viewModel: ProductsViewModel by activityViewModels()
 
     lateinit var smallMediaRecyclerAdapter: SmallMediaRecyclerAdapter
 
@@ -48,7 +48,7 @@ class AddProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
             hasTitle = true,
             title = R.string.solalat_services,
             hasSubTitle = true,
-            subTitle = R.string.view_products
+            subTitle = R.string.add_product
         )
         setUpBinding()
         setUpListeners()

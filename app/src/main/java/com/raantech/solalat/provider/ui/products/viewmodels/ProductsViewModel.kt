@@ -11,6 +11,7 @@ import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.data.models.product.request.AddProductRequest
 import com.raantech.solalat.provider.data.models.product.request.Files
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategory
+import com.raantech.solalat.provider.data.repos.configuration.ConfigurationRepo
 import com.raantech.solalat.provider.data.repos.product.ProductsRepo
 import com.raantech.solalat.provider.ui.base.viewmodel.BaseViewModel
 import com.raantech.solalat.provider.utils.extensions.checkPhoneNumberFormat
@@ -18,9 +19,11 @@ import com.raantech.solalat.provider.utils.extensions.concatStrings
 
 class ProductsViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
-    val productsRepo: ProductsRepo
+    val productsRepo: ProductsRepo,
+    private val configurationRepo: ConfigurationRepo
 ) : BaseViewModel() {
 
+    var addNew:Boolean = false
     val productName: MutableLiveData<String> = MutableLiveData()
     val productDescription: MutableLiveData<String> = MutableLiveData()
     val productPrice: MutableLiveData<String> = MutableLiveData()
@@ -36,7 +39,7 @@ class ProductsViewModel @ViewModelInject constructor(
 
     fun getAccessoriesCategories() = liveData {
         emit(APIResource.loading())
-        val response = productsRepo.getServiceCategories(ServiceTypesEnum.ACCESSORIES.value)
+        val response = configurationRepo.getServiceCategories(ServiceTypesEnum.ACCESSORIES.value)
         emit(response)
     }
 

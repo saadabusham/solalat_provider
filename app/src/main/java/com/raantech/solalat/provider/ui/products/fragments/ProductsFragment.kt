@@ -1,6 +1,7 @@
 package com.raantech.solalat.provider.ui.products.fragments
 
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -26,7 +27,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 class ProductsFragment : BaseBindingFragment<FragmentProductsBinding>(),
     BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
-    private val viewModel: ProductsViewModel by viewModels()
+    private val viewModel: ProductsViewModel by activityViewModels()
 
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
     private var isFinished = false
@@ -101,6 +102,7 @@ class ProductsFragment : BaseBindingFragment<FragmentProductsBinding>(),
             }
 
         })
+        binding?.recyclerView?.adapter = productsRecyclerAdapter
     }
 
     private fun hideShowNoData() {

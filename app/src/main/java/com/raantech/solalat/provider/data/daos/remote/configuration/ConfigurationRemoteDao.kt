@@ -6,6 +6,7 @@ import com.raantech.solalat.provider.data.models.more.AboutUsResponse
 import com.raantech.solalat.provider.data.models.configuration.ConfigurationWrapperResponse
 import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.data.models.more.FaqsResponse
+import com.raantech.solalat.provider.data.models.product.response.ServiceCategoriesResponse
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
@@ -26,4 +27,10 @@ interface ConfigurationRemoteDao {
         @Query("skip") skip: Int,
         @Query("type") type: String
     ): ResponseWrapper<List<FaqsResponse>>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @GET("categories")
+    suspend fun getServiceCategories(
+        @Query("type") type: String
+    ): ResponseWrapper<ServiceCategoriesResponse>
 }

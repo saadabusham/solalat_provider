@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="#00000000"
-                    android:hint="@string/search_here"
+                    android:hint="@string/search_what_to_ask_here"
                     android:imeOptions="actionSearch"
                     android:maxEms="50"
                     android:maxLength="50"

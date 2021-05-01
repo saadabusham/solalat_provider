@@ -10,6 +10,7 @@ import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -115,6 +116,11 @@ fun Context?.deviceIsConnectedToInternet(): Boolean {
         }
     }
     return false
+}
+
+fun Context.hideKeyboard(view: View) {
+    val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 }
 
 

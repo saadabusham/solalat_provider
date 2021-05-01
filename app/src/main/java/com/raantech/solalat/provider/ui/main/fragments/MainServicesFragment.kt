@@ -12,6 +12,7 @@ import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListe
 import com.raantech.solalat.provider.ui.base.fragment.BaseBindingFragment
 import com.raantech.solalat.provider.ui.main.adapters.ServicesRecyclerAdapter
 import com.raantech.solalat.provider.ui.main.viewmodels.MainViewModel
+import com.raantech.solalat.provider.ui.medical.MedicalServicesActivity
 import com.raantech.solalat.provider.ui.products.ProductsActivity
 import com.raantech.solalat.provider.utils.recycleviewutils.VerticalSpaceDecoration
 import dagger.hilt.android.AndroidEntryPoint
@@ -77,7 +78,7 @@ class MainServicesFragment : BaseBindingFragment<FragmentMainServicesBinding>(),
         if (item is Service) {
             when(position){
                 ServiceTypesEnum.ACCESSORIES.ordinal -> ProductsActivity.start(requireContext())
-                ServiceTypesEnum.MEDICAL.ordinal -> ProductsActivity.start(requireContext())
+                ServiceTypesEnum.MEDICAL.ordinal -> MedicalServicesActivity.start(requireContext())
                 ServiceTypesEnum.BARN.ordinal -> ProductsActivity.start(requireContext())
                 ServiceTypesEnum.TRANSPORTATION.ordinal -> ProductsActivity.start(requireContext())
             }

@@ -117,4 +117,6 @@
     <color name="edittext_hint_color">#80383838</color>
     <color name="edittext_color">#383838</color>
     <color name="dark_gray">#2F2F2F</color>
+
+    <color name="service_title_color">#3F444A</color>
 </resources>

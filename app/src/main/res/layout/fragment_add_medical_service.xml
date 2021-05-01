@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.raantech.solalat.provider.ui.medical.viewmodels.MedicalServicesViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/service_type"
+                    android:textColor="@color/edittext_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <com.skydoves.powerspinner.PowerSpinnerView
+                    android:id="@+id/spinnerCategory"
+                    style="@style/normalRegularFontStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/edittext_background"
+                    android:gravity="center|start"
+                    android:hint="@string/select"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/defaultTextColor"
+                    android:textSize="@dimen/_12ssp"
+                    app:spinner_arrow_gravity="end"
+                    app:spinner_arrow_padding="8dp"
+                    app:spinner_arrow_tint="@color/button_color"
+                    app:spinner_divider_show="false"
+                    app:spinner_divider_size="0.4dp"
+                    app:spinner_popup_animation="dropdown"
+                    app:spinner_popup_background="@color/white"
+                    app:spinner_popup_elevation="14dp" />
+
+                <TextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/name"
+                    android:textColor="@color/edittext_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/edName"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_background"
+                    android:hint="@string/add_name"
+                    android:minHeight="@dimen/_35sdp"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:text="@={viewModel.productName}"
+                    android:textColor="@color/edittext_color"
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textSize="@dimen/_15ssp" />
+
+                <TextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="@string/experiences"
+                    android:textColor="@color/edittext_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/edExperiences"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_background"
+                    android:hint="@string/add_experiences"
+                    android:inputType="text"
+                    android:minHeight="@dimen/_35sdp"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:text="@={viewModel.productDescription}"
+                    android:textColor="@color/edittext_color"
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textSize="@dimen/_15ssp" />
+
+                <TextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="@string/address"
+                    android:textColor="@color/edittext_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvLocation"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_background"
+                        android:hint="@string/enter_address"
+                        android:minHeight="@dimen/_35sdp"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"
+                        android:text="@{viewModel.addressString}"
+                        android:textColor="@color/edittext_color"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textSize="@dimen/_15ssp" />
+
+
+                    <ImageView
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_service_location"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_3sdp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="@string/enter_phone_number_to_contact"
+                    android:textColor="@color/text_gray_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <LinearLayout
+                    android:id="@+id/linearMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                            android:id="@+id/country_code_picker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/Edittext_height"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:layoutDirection="ltr"
+                            app:ccp_arrowSize="0dp"
+                            app:ccp_clickable="false"
+                            app:ccp_defaultNameCode="JO"
+                            app:ccp_dialogTextColor="@color/text_default_color"
+                            app:ccp_enablePhoneAutoFormatter="true"
+                            app:ccp_hideNameCode="true"
+                            app:ccp_hidePhoneCode="false"
+                            app:ccp_keyboardAutoPopOnSearch="false"
+                            app:ccp_selectionDialogShowSearch="true"
+                            app:ccp_setCountryByTimeZone="false"
+                            app:ccp_showFlag="false"
+                            app:ccp_showFullName="false"
+                            app:ccp_textColor="@color/text_default_color"
+                            app:ccp_textSize="@dimen/_17ssp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/border_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edPhoneNumber"
+                            style="@style/textview_normal_regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/Edittext_height"
+                            android:background="@android:color/transparent"
+                            android:hint="XXXXXXXXX"
+                            android:includeFontPadding="false"
+                            android:inputType="phone"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
+                            android:text="@={viewModel.phoneNumber}"
+                            android:textColor="@color/edittext_color"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:textSize="@dimen/_16ssp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/border_color" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkboxReceiveWhatsapp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:button="@drawable/checkbox_selector"
+                    android:checked="true"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_7sdp"
+                    android:text="@string/receive_whatsapp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAddProduct"
+                    style="@style/AppTheme.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:text="@string/add_ads" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

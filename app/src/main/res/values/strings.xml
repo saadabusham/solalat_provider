@@ -142,6 +142,10 @@
     <string name="add_health_services">Add health services</string>
     <string name="add_barn">Add barn</string>
     <string name="add_transportation_services">Add transportation services</string>
+    <string name="my_accessories">My accessories</string>
+    <string name="my_health_services">My health services</string>
+    <string name="my_barn">My barn</string>
+    <string name="my_transportation_services">My transportation services</string>
 
     <!--    Accessories   -->
     <string name="view_products">View products</string>
@@ -170,17 +174,47 @@
     <string name="sold_products">Sold products</string>
     <string name="Visit">Visit</string>
     <string name="sold">Sold</string>
+    <string name="receive_whatsapp">Receive WhatsApp</string>
 
     <!--    About Us    -->
     <string name="contact_us">Contact us</string>
-    <string name="search_here">Search here</string>
+    <string name="search_what_to_ask_here">Search here</string>
 
     <!--    Faqs    -->
     <string name="no_faq_s_found">No Faq\'s Found</string>
     <string name="help_request">Help Request</string>
     <string name="didnt_find_answer">Didn\'t find answer</string>
     <string name="call_us_now">Call us now</string>
-    <string name="receive_whatsapp">Receive WhatsApp</string>
 
+    <!--    Main Medical Service    -->
+    <string name="new_medical_service">New Medical Service</string>
+    <!--    Medical Service   -->
+    <string name="view_medical_service">View medical service</string>
+    <string name="add_medical_service">Add Medical Service</string>
+    <string name="share_service">Share service</string>
+    <string name="name">Name</string>
+    <string name="add_name">Add name</string>
+    <string name="experiences">Experiences</string>
+    <string name="add_experiences">Add Experiences</string>
+    <string name="enter_address">Enter Address</string>
+    <string name="address">Address</string>
+    <string name="service_type">Service type</string>
+    <string name="add_ads">Add ads</string>
+
+    <!--    Map    -->
+    <string name="search_here">Search here</string>
+    <string name="location">Location</string>
+    <string name="please_pick_location">Please pick location</string>
+
+    <!--    General Services    -->
+    <string name="services_views">Services Views</string>
+    <string name="number_of_call">Number of calls</string>
+    <string name="call_now">Call Now</string>
+
+    <!--    Transportation -->
+    <string name="global_transportation">Global Transportation</string>
+    <string name="truck_images">Truck images</string>
+    <string name="plate_number">Plate number</string>
+    <string name="enter_plate_number">Enter plate number</string>
 
 </resources>

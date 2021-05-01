@@ -142,6 +142,10 @@
     <string name="add_health_services">اضافة خدمات صحية</string>
     <string name="add_barn">اضافة اسطبلات</string>
     <string name="add_transportation_services">اضافة خدمات نقل</string>
+    <string name="my_accessories">منتجاتي</string>
+    <string name="my_health_services">خدماتي الصحية</string>
+    <string name="my_barn">اسطبلاتي</string>
+    <string name="my_transportation_services">نقالاتي</string>
 
     <!--    Accessories   -->
     <string name="view_products">عرض المنتجات المضافة</string>
@@ -170,15 +174,47 @@
     <string name="sold_products">المنتجات المباعة</string>
     <string name="Visit">زيارة</string>
     <string name="sold">بيع</string>
+    <string name="receive_whatsapp">استقبل واتس اب</string>
 
     <!--    About Us    -->
     <string name="contact_us">تواصل معنا</string>
-    <string name="search_here">اكتب ما تود السؤال عنه</string>
+    <string name="search_what_to_ask_here">اكتب ما تود السؤال عنه</string>
 
     <!--    Faqs    -->
     <string name="no_faq_s_found">لم يتم العثور على أسئلة وأجوبة</string>
     <string name="help_request">طلب مساعدة</string>
     <string name="didnt_find_answer">اذا لم تجد جوابا شافيا لاستفسارك</string>
     <string name="call_us_now">اتصل بنا الان</string>
+
+    <!--    Main Medical Service    -->
+    <string name="new_medical_service">خدمة صحية جديدة</string>
+    <!--    Medical Service   -->
+    <string name="view_medical_service">عرض الخدمة الصحية</string>
+    <string name="add_medical_service">اضف خدمة صحية</string>
+    <string name="share_service">Share service</string>
+    <string name="name">الاسم</string>
+    <string name="add_name">اضف الاسم</string>
+    <string name="experiences">الخبرات</string>
+    <string name="add_experiences">اضف تفاصيل عن خبراتك والمؤهلات العلمية</string>
+    <string name="enter_address">ادخل عنوان المقر</string>
+    <string name="address">العنوان</string>
+    <string name="service_type">نوع الخدمة</string>
+    <string name="add_ads">اضافة الاعلان</string>
+
+    <!--    Map    -->
+    <string name="search_here">ابحث هنا</string>
+    <string name="location">الموقع</string>
+    <string name="please_pick_location">يرجى اخيار الموقع</string>
+
+    <!--    General Services    -->
+    <string name="services_views">عدد الزيارات لخدماتك</string>
+    <string name="number_of_call">عدد الذين اتصلوا بك </string>
+    <string name="call_now">اتصل الان</string>
+
+    <!--    Transportation -->
+    <string name="global_transportation">مستعد للنقل الدولي</string>
+    <string name="truck_images">صور الشاحنة</string>
+    <string name="plate_number">رقم نمرة شاحنة النقل</string>
+    <string name="enter_plate_number">ادخل رقم نمرة الشاحنة</string>
 
 </resources>

@@ -20,6 +20,7 @@ import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListe
 import com.raantech.solalat.provider.ui.base.fragment.BaseBindingFragment
 import com.raantech.solalat.provider.ui.main.adapters.ProductsVerticalGridRecyclerAdapter
 import com.raantech.solalat.provider.ui.main.viewmodels.MainViewModel
+import com.raantech.solalat.provider.ui.medical.MedicalServicesActivity
 import com.raantech.solalat.provider.ui.products.ProductsActivity
 import com.raantech.solalat.provider.utils.extensions.gone
 import com.raantech.solalat.provider.utils.extensions.visible
@@ -69,7 +70,7 @@ class MainAccessoriesFragment : BaseBindingFragment<FragmentMainAccessoriesBindi
 
     private fun setUpListeners() {
         binding?.btnAddProduct?.setOnClickListener {
-            ProductsActivity.start(requireContext())
+            ProductsActivity.start(requireContext(),true)
         }
         binding?.btnAddService?.setOnClickListener {
             AddNewServiceActivity.start(requireContext())
@@ -167,14 +168,7 @@ class MainAccessoriesFragment : BaseBindingFragment<FragmentMainAccessoriesBindi
     }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
-        if (item is Service) {
-            when (position) {
-                ServiceTypesEnum.ACCESSORIES.ordinal -> ProductsActivity.start(requireContext())
-                ServiceTypesEnum.MEDICAL.ordinal -> ProductsActivity.start(requireContext())
-                ServiceTypesEnum.BARN.ordinal -> ProductsActivity.start(requireContext())
-                ServiceTypesEnum.TRANSPORTATION.ordinal -> ProductsActivity.start(requireContext())
-            }
-        }
+
     }
 
 

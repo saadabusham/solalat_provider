@@ -75,15 +75,16 @@ abstract class BaseBindingFragment<BINDING : ViewDataBinding> : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (shouldCallVisibleView) {
-            onViewVisible()
-        }
         if (hasNavigation())
             try {
                 navigationController = Navigation.findNavController(view)
             } catch (e: Exception) {
 
             }
+        if (shouldCallVisibleView) {
+            onViewVisible()
+        }
+
     }
 
 

@@ -57,7 +57,7 @@ class MainMultipleServicesFragment : BaseBindingFragment<FragmentMainMultipleSer
                 servicesCategoriesRecyclerAdapter.submitItem(
                     Service(
                         ServiceTypesEnum.ACCESSORIES,
-                        resources.getString(R.string.add_accessories),
+                        resources.getString(R.string.my_accessories),
                         R.drawable.ic_cat_accessories,
                         it
                     )
@@ -66,7 +66,7 @@ class MainMultipleServicesFragment : BaseBindingFragment<FragmentMainMultipleSer
                 servicesCategoriesRecyclerAdapter.submitItem(
                     Service(
                         ServiceTypesEnum.MEDICAL,
-                        resources.getString(R.string.add_health_services),
+                        resources.getString(R.string.my_health_services),
                         R.drawable.ic_cat_medical,
                         it
                     )
@@ -75,7 +75,7 @@ class MainMultipleServicesFragment : BaseBindingFragment<FragmentMainMultipleSer
                 servicesCategoriesRecyclerAdapter.submitItem(
                     Service(
                         ServiceTypesEnum.BARN,
-                        resources.getString(R.string.add_barn),
+                        resources.getString(R.string.my_barn),
                         R.drawable.ic_cat_barn,
                         it
                     )
@@ -85,7 +85,7 @@ class MainMultipleServicesFragment : BaseBindingFragment<FragmentMainMultipleSer
                 servicesCategoriesRecyclerAdapter.submitItem(
                     Service(
                         ServiceTypesEnum.TRANSPORTATION,
-                        resources.getString(R.string.add_transportation_services),
+                        resources.getString(R.string.my_transportation_services),
                         R.drawable.ic_cat_transportation,
                         it
                     )
