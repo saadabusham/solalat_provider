@@ -38,28 +38,5 @@ class TransportationActivity : BaseBindingActivity<ActivityTransportationBinding
         super.onCreate(savedInstanceState)
         viewModel.addNew = intent.getBooleanExtra(Constants.BundleData.ADD_NEW, false)
         setContentView(R.layout.activity_transportation, hasToolbar = false)
-        setStartDestination()
-//        if (intent.getBooleanExtra(Constants.BundleData.ADD_NEW, false))
-//            try {
-//                val navigationController =
-//                    Navigation.findNavController(this, R.id.products_nav_host_fragment)
-//                navigationController.navigate(R.id.action_productsFragment_to_addProductsFragment)
-//            } catch (e: Exception) {
-//
-//            }
-    }
-
-    private fun setStartDestination() {
-        val navHostFragment = products_nav_host_fragment as NavHostFragment
-        val inflater = navHostFragment.navController.navInflater
-        val graph = inflater.inflate(R.navigation.products_nav_graph)
-
-        if (intent.getBooleanExtra(Constants.BundleData.ADD_NEW, false)) {
-            graph.startDestination = R.id.productsFragment
-//            graph.startDestination = R.id.addProductsFragment
-        } else {
-            graph.startDestination = R.id.productsFragment
-        }
-        navHostFragment.navController.graph = graph
     }
 }

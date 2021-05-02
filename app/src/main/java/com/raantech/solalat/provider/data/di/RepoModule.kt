@@ -11,6 +11,8 @@ import com.raantech.solalat.provider.data.repos.medical.MedicalRepo
 import com.raantech.solalat.provider.data.repos.medical.MedicalRepoImp
 import com.raantech.solalat.provider.data.repos.product.ProductsRepo
 import com.raantech.solalat.provider.data.repos.product.ProductsRepoImp
+import com.raantech.solalat.provider.data.repos.transportation.TransportationRepo
+import com.raantech.solalat.provider.data.repos.transportation.TransportationRepoImp
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -41,6 +43,10 @@ abstract class RepoModule {
     @Singleton
     @Binds
     abstract fun bindMedicalRepo(medicalRepoImp: MedicalRepoImp): MedicalRepo
+
+    @Singleton
+    @Binds
+    abstract fun bindTransportationRepo(transportationRepoImp: TransportationRepoImp): TransportationRepo
 
 
 }

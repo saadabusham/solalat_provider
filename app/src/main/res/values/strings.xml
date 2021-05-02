@@ -216,5 +216,13 @@
     <string name="truck_images">Truck images</string>
     <string name="plate_number">Plate number</string>
     <string name="enter_plate_number">Enter plate number</string>
+    <string name="factoring_year">Factoring year</string>
+    <string name="please_select_the_manufacturing_year">Please select manufacturing year</string>
+    <string name="you_can_select_multiple_cities">You can select multiple cities</string>
+    <string name="cities">Cities</string>
+    <string name="please_select_city">Please select city</string>
+    <string name="the_areas_you_serve">The area you serve</string>
+    <string name="add_truck">Add Truck</string>
+    <string name="view_transport_service">View transport services</string>
 
 </resources>

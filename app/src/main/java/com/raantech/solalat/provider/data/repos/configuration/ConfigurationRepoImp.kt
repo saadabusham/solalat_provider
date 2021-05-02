@@ -9,6 +9,7 @@ import com.raantech.solalat.provider.data.models.more.AboutUsResponse
 import com.raantech.solalat.provider.data.models.configuration.ConfigurationWrapperResponse
 import com.raantech.solalat.provider.data.models.more.FaqsResponse
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategoriesResponse
+import com.raantech.solalat.provider.data.models.transportation.response.City
 import com.raantech.solalat.provider.data.pref.configuration.ConfigurationPref
 import com.raantech.solalat.provider.data.repos.base.BaseRepo
 import javax.inject.Inject
@@ -46,7 +47,15 @@ class ConfigurationRepoImp @Inject constructor(
 
     override suspend fun getFaqs(skip: Int, type: String): APIResource<ResponseWrapper<List<FaqsResponse>>> {
         return try {
-            responseHandle.handleSuccess(configurationRemoteDao.getFaqs(skip, type))
+            responseHandle.handleSuccess(configurationRemoteDao.getFaqs(type))
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun getCities(): APIResource<ResponseWrapper<List<City>>> {
+        return try {
+            responseHandle.handleSuccess(configurationRemoteDao.getCities())
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }

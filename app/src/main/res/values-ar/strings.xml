@@ -216,5 +216,14 @@
     <string name="truck_images">صور الشاحنة</string>
     <string name="plate_number">رقم نمرة شاحنة النقل</string>
     <string name="enter_plate_number">ادخل رقم نمرة الشاحنة</string>
+    <string name="factoring_year">سنة الصنع</string>
+    <string name="please_select_the_manufacturing_year">يرجى اختيار سنة الصنع</string>
+    <string name="you_can_select_multiple_cities">بامكانك اختيار اكثر من منطقة</string>
+    <string name="cities">المدن</string>
+    <string name="please_select_city">يرجى اختيار مدينة</string>
+    <string name="the_areas_you_serve">المناطق التي تخدمها</string>
+    <string name="add_truck">اضف ناقلة</string>
+    <string name="view_transport_service">عرض خدمات النقل</string>
+
 
 </resources>

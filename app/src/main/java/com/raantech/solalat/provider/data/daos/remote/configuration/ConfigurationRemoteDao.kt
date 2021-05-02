@@ -7,6 +7,7 @@ import com.raantech.solalat.provider.data.models.configuration.ConfigurationWrap
 import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.data.models.more.FaqsResponse
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategoriesResponse
+import com.raantech.solalat.provider.data.models.transportation.response.City
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
@@ -24,7 +25,6 @@ interface ConfigurationRemoteDao {
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @GET("provider/media")
     suspend fun getFaqs(
-        @Query("skip") skip: Int,
         @Query("type") type: String
     ): ResponseWrapper<List<FaqsResponse>>
 
@@ -33,4 +33,11 @@ interface ConfigurationRemoteDao {
     suspend fun getServiceCategories(
         @Query("type") type: String
     ): ResponseWrapper<ServiceCategoriesResponse>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @GET("app/cities")
+    suspend fun getCities(
+    ): ResponseWrapper<List<City>>
+
+
 }

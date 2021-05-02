@@ -18,7 +18,7 @@ data class AddTransportationRequest(
 	val latitude: Double? = null,
 
 	@field:SerializedName("truck_number")
-	val truckNumber: Int? = null,
+	val truckNumber: String? = null,
 
 	@field:SerializedName("contact_number")
 	val contactNumber: String? = null,

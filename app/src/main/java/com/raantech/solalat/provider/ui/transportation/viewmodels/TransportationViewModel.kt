@@ -8,34 +8,32 @@ import androidx.lifecycle.liveData
 import com.raantech.solalat.provider.data.api.response.APIResource
 import com.raantech.solalat.provider.data.enums.ServiceTypesEnum
 import com.raantech.solalat.provider.data.models.map.Address
-import com.raantech.solalat.provider.data.models.media.Media
-import com.raantech.solalat.provider.data.models.product.request.AddProductRequest
 import com.raantech.solalat.provider.data.models.product.request.Files
-import com.raantech.solalat.provider.data.models.product.response.ServiceCategory
 import com.raantech.solalat.provider.data.models.transportation.request.AddTransportationRequest
+import com.raantech.solalat.provider.data.models.transportation.response.City
 import com.raantech.solalat.provider.data.repos.configuration.ConfigurationRepo
-import com.raantech.solalat.provider.data.repos.product.ProductsRepo
 import com.raantech.solalat.provider.data.repos.transportation.TransportationRepo
 import com.raantech.solalat.provider.ui.base.viewmodel.BaseViewModel
 import com.raantech.solalat.provider.utils.extensions.checkPhoneNumberFormat
 import com.raantech.solalat.provider.utils.extensions.concatStrings
+import org.intellij.lang.annotations.Language
 
 class TransportationViewModel @ViewModelInject constructor(
-    @Assisted private val savedStateHandle: SavedStateHandle,
-    val transportationRepo: TransportationRepo,
-    private val configurationRepo: ConfigurationRepo
+        @Assisted private val savedStateHandle: SavedStateHandle,
+        val transportationRepo: TransportationRepo,
+        private val configurationRepo: ConfigurationRepo
 ) : BaseViewModel() {
 
-    var addNew:Boolean = false
+    var addNew: Boolean = false
     val productName: MutableLiveData<String> = MutableLiveData()
-    val productDescription: MutableLiveData<String> = MutableLiveData()
+    val plateNumber: MutableLiveData<String> = MutableLiveData()
     val productPrice: MutableLiveData<String> = MutableLiveData()
     val phoneNumber: MutableLiveData<String> = MutableLiveData()
     val selectedCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val address: MutableLiveData<Address> = MutableLiveData()
     val addressString: MutableLiveData<String> = MutableLiveData()
     val categoryId: MutableLiveData<Int> = MutableLiveData()
-
+    var cities: MutableList<City> = mutableListOf()
     fun getTransportation(skip: Int) = liveData {
         emit(APIResource.loading())
         val response = transportationRepo.getTransportation(skip)
@@ -48,24 +46,34 @@ class TransportationViewModel @ViewModelInject constructor(
         emit(response)
     }
 
-    fun addTransportation(files: List<Media>, serviceCategory: ServiceCategory,receivedWhatsapp:Boolean) = liveData {
+    fun getCities() = liveData {
         emit(APIResource.loading())
-        val response = transportationRepo.addTransportation(getAddProductRequest(files.map { it.id },serviceCategory.id,receivedWhatsapp))
+        val response = configurationRepo.getCities()
         emit(response)
     }
 
-    private fun getAddProductRequest(files: List<Int>, categoryId: Int?, receivedWhatsapp: Boolean): AddTransportationRequest {
+    fun addTransportation(addTransportationRequest: AddTransportationRequest) = liveData {
+        emit(APIResource.loading())
+        val response = transportationRepo.addTransportation(addTransportationRequest)
+        emit(response)
+    }
+
+    fun getTransportationRequest(files: List<Int>, categoryId: Int?, year: Int, receivedWhatsapp: Boolean, globalTransportation: Boolean): AddTransportationRequest {
         return AddTransportationRequest(
-            isActive = true,
-            categoryId = categoryId,
-            latitude = address.value?.lat,
-            longitude = address.value?.lon,
-            address = addressString.value.toString(),
-            name = productName.value,
-            contactNumber = phoneNumber.value.toString().checkPhoneNumberFormat()
-                .concatStrings(selectedCountryCode.value.toString()),
-            files = Files(baseImage = files[0], additionalImages = files),
-            receivedWhatsapp = receivedWhatsapp
+                isActive = true,
+                address = addressString.value.toString(),
+                latitude = address.value?.lat,
+                longitude = address.value?.lon,
+                truckNumber = plateNumber.value?.toString(),
+                contactNumber = phoneNumber.value.toString().checkPhoneNumberFormat()
+                        .concatStrings(selectedCountryCode.value.toString()),
+                manufacturingYear = year,
+                categoryId = categoryId,
+                name = productName.value,
+                files = Files(baseImage = files[0], additionalImages = files),
+                receivedWhatsapp = receivedWhatsapp,
+                availableIt = globalTransportation,
+                cities = cities.map { it.id }
         )
     }
 }

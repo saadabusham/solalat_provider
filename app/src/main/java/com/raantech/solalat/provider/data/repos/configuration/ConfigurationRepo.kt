@@ -7,6 +7,7 @@ import com.raantech.solalat.provider.data.models.configuration.ConfigurationWrap
 import com.raantech.solalat.provider.data.models.more.AboutUsResponse
 import com.raantech.solalat.provider.data.models.more.FaqsResponse
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategoriesResponse
+import com.raantech.solalat.provider.data.models.transportation.response.City
 
 interface ConfigurationRepo {
 
@@ -23,4 +24,7 @@ interface ConfigurationRepo {
         skip: Int,
         type: String
     ): APIResource<ResponseWrapper<List<FaqsResponse>>>
+
+    suspend fun getCities(
+    ): APIResource<ResponseWrapper<List<City>>>
 }

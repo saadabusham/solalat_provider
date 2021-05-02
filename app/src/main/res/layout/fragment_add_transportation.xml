@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.raantech.solalat.provider.ui.medical.viewmodels.MedicalServicesViewModel" />
+            type="com.raantech.solalat.provider.ui.transportation.viewmodels.TransportationViewModel" />
     </data>
 
     <LinearLayout
@@ -101,36 +101,87 @@
 
                 </LinearLayout>
 
-                <TextView
-                    style="@style/textview_normal_regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:text="@string/service_type"
-                    android:textColor="@color/edittext_color"
-                    android:textSize="@dimen/_14ssp" />
-
-                <com.skydoves.powerspinner.PowerSpinnerView
-                    android:id="@+id/spinnerCategory"
-                    style="@style/normalRegularFontStyle"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:background="@drawable/edittext_background"
-                    android:gravity="center|start"
-                    android:hint="@string/select"
-                    android:padding="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/defaultTextColor"
-                    android:textSize="@dimen/_12ssp"
-                    app:spinner_arrow_gravity="end"
-                    app:spinner_arrow_padding="8dp"
-                    app:spinner_arrow_tint="@color/button_color"
-                    app:spinner_divider_show="false"
-                    app:spinner_divider_size="0.4dp"
-                    app:spinner_popup_animation="dropdown"
-                    app:spinner_popup_background="@color/white"
-                    app:spinner_popup_elevation="14dp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/textview_normal_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:text="@string/service_type"
+                            android:textColor="@color/edittext_color"
+                            android:textSize="@dimen/_14ssp" />
+
+                        <com.skydoves.powerspinner.PowerSpinnerView
+                            android:id="@+id/spinnerCategory"
+                            style="@style/normalRegularFontStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_45sdp"
+                            android:background="@drawable/edittext_background"
+                            android:gravity="center|start"
+                            android:hint="@string/select"
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/defaultTextColor"
+                            android:textSize="@dimen/_12ssp"
+                            app:spinner_arrow_gravity="end"
+                            app:spinner_arrow_padding="8dp"
+                            app:spinner_arrow_tint="@color/button_color"
+                            app:spinner_divider_show="false"
+                            app:spinner_divider_size="0.4dp"
+                            app:spinner_popup_animation="dropdown"
+                            app:spinner_popup_background="@color/white"
+                            app:spinner_popup_elevation="14dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/textview_normal_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:text="@string/factoring_year"
+                            android:textColor="@color/edittext_color"
+                            android:textSize="@dimen/_14ssp" />
+
+                        <com.skydoves.powerspinner.PowerSpinnerView
+                            android:id="@+id/spinnerYear"
+                            style="@style/normalRegularFontStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_45sdp"
+                            android:background="@drawable/edittext_background"
+                            android:gravity="center|start"
+                            android:hint="@string/select"
+                            android:padding="10dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/defaultTextColor"
+                            android:textSize="@dimen/_12ssp"
+                            app:spinner_arrow_gravity="end"
+                            app:spinner_arrow_padding="8dp"
+                            app:spinner_arrow_tint="@color/button_color"
+                            app:spinner_divider_show="false"
+                            app:spinner_divider_size="0.4dp"
+                            app:spinner_popup_animation="dropdown"
+                            app:spinner_popup_background="@color/white"
+                            app:spinner_popup_elevation="14dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
 
                 <TextView
                     style="@style/textview_normal_regular"
@@ -142,7 +193,7 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <EditText
-                    android:id="@+id/edExperiences"
+                    android:id="@+id/edPlateNumber"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -152,10 +203,53 @@
                     android:minHeight="@dimen/_35sdp"
                     android:paddingStart="0dp"
                     android:paddingEnd="0dp"
-                    android:text="@={viewModel.productDescription}"
+                    android:text="@={viewModel.plateNumber}"
                     android:textColor="@color/edittext_color"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textSize="@dimen/_15ssp" />
+
+                <TextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="@string/the_areas_you_serve"
+                    android:textColor="@color/text_gray_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvSelectCities"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_background"
+                        android:hint="@string/the_areas_you_serve"
+                        android:minHeight="@dimen/_35sdp"
+                        android:textColor="@color/edittext_color"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivShow"
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:scaleX="0.9"
+                        android:scaleY="0.9"
+                        android:src="@drawable/ic_spinner_arrow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </LinearLayout>
 
                 <TextView
                     style="@style/textview_normal_regular"

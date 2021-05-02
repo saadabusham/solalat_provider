@@ -198,7 +198,7 @@ class AddProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: Any?
                 ) {
-                    navigationController.navigateUp()
+                    navigationController.navigate(R.id.action_addProductsFragment_to_productsFragment)
                 }
             }, showError = true
         )

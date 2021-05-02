@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/transportation_nav_graph"
-    app:startDestination="@id/medicalServicesFragment">
+    app:startDestination="@id/addTransportationFragment">
+
 
     <fragment
-        android:id="@+id/medicalServicesFragment"
-        android:name="com.raantech.solalat.provider.ui.medical.fragments.MedicalServicesFragment"
-        android:label="MedicalServicesFragment"
-        tools:layout="@layout/fragment_medical_services">
+        android:id="@+id/addTransportationFragment"
+        android:name="com.raantech.solalat.provider.ui.transportation.fragments.AddTransportationFragment"
+        android:label="AddTransportationFragment">
         <action
-            android:id="@+id/action_medicalServicesFragment_to_addMedicalServiceFragment"
-            app:destination="@id/addMedicalServiceFragment"
+            android:id="@+id/action_addTransportationFragment_to_transportationFragment"
+            app:destination="@id/transportationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/addTransportationFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/transportationFragment"
+        android:name="com.raantech.solalat.provider.ui.transportation.fragments.TransportationFragment"
+        android:label="TransportationFragment">
+        <action
+            android:id="@+id/action_transportationFragment_to_addTransportationFragment"
+            app:destination="@id/addTransportationFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment
-        android:id="@+id/addMedicalServiceFragment"
-        android:name="com.raantech.solalat.provider.ui.medical.fragments.AddMedicalServiceFragment"
-        android:label="AddMedicalServiceFragment"
-        tools:layout="@layout/fragment_add_medical_service"/>
 </navigation>

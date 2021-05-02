@@ -286,3 +286,16 @@ fun Date.decrementDateByDay(amount: Int): Date {
     return cal.time
 }
 
+fun Date.decrementDateByYear(amount: Int): Date {
+    val cal = Calendar.getInstance()
+    cal.time = this
+    cal.add(Calendar.YEAR, amount.absoluteValue.times(-1)) //Goes to previous day
+    return cal.time
+}
+
+fun Date.incrementDateByYear(amount: Int): Date {
+    val cal = Calendar.getInstance()
+    cal.time = this
+    cal.add(Calendar.YEAR, amount) //Adds a day
+    return cal.time
+}

@@ -16,6 +16,7 @@ import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListe
 import com.raantech.solalat.provider.ui.main.adapters.ServicesRecyclerAdapter
 import com.raantech.solalat.provider.ui.medical.MedicalServicesActivity
 import com.raantech.solalat.provider.ui.products.ProductsActivity
+import com.raantech.solalat.provider.ui.transportation.TransportationActivity
 import com.raantech.solalat.provider.utils.recycleviewutils.VerticalSpaceDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -106,7 +107,7 @@ class AddNewServiceActivity : BaseBindingActivity<ActivityAddNewServiceBinding>(
                 ServiceTypesEnum.ACCESSORIES.ordinal -> ProductsActivity.start(this,true)
                 ServiceTypesEnum.MEDICAL.ordinal -> MedicalServicesActivity.start(this,true)
                 ServiceTypesEnum.BARN.ordinal -> ProductsActivity.start(this)
-                ServiceTypesEnum.TRANSPORTATION.ordinal -> ProductsActivity.start(this)
+                ServiceTypesEnum.TRANSPORTATION.ordinal -> TransportationActivity.start(this)
             }
         }
     }
