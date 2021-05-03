@@ -9,6 +9,7 @@ import com.raantech.solalat.provider.databinding.RowFaqBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder
 import com.raantech.solalat.provider.utils.extensions.gone
+import com.raantech.solalat.provider.utils.extensions.halfRotate
 import com.raantech.solalat.provider.utils.extensions.rotate
 import com.raantech.solalat.provider.utils.extensions.visible
 
@@ -37,11 +38,11 @@ class FaqsRecyclerAdapter constructor(
             binding.root.setOnClickListener {
                 if (!item.isExpanded) {
                     binding.tvDesc.maxLines = 1000
-                    binding.ivArrow.rotate(true)
+                    binding.ivArrow.halfRotate(true)
                     binding.tvDesc.visible()
                 } else {
                     binding.tvDesc.maxLines = 1
-                    binding.ivArrow.rotate(false)
+                    binding.ivArrow.halfRotate(false)
                     binding.tvDesc.gone()
                 }
                 item.isExpanded = !item.isExpanded

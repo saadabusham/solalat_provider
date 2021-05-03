@@ -86,7 +86,7 @@
             android:layout_height="match_parent"
             android:layout_above="@id/tv"
             android:layout_below="@id/tvNoData"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:clipToPadding="false"
             android:scrollbars="none"

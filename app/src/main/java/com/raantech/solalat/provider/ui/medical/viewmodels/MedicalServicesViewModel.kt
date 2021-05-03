@@ -36,7 +36,7 @@ class MedicalServicesViewModel @ViewModelInject constructor(
         emit(response)
     }
 
-    fun getAccessoriesCategories() = liveData {
+    fun getServicesCategories() = liveData {
         emit(APIResource.loading())
         val response = configurationRepo.getServiceCategories(ServiceTypesEnum.MEDICAL.value)
         emit(response)

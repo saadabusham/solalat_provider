@@ -7,6 +7,7 @@ import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.enums.ServiceTypesEnum
 import com.raantech.solalat.provider.data.models.main.home.Service
 import com.raantech.solalat.provider.databinding.FragmentMainServicesBinding
+import com.raantech.solalat.provider.ui.barn.BarnActivity
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.solalat.provider.ui.base.fragment.BaseBindingFragment
@@ -14,6 +15,7 @@ import com.raantech.solalat.provider.ui.main.adapters.ServicesRecyclerAdapter
 import com.raantech.solalat.provider.ui.main.viewmodels.MainViewModel
 import com.raantech.solalat.provider.ui.medical.MedicalServicesActivity
 import com.raantech.solalat.provider.ui.products.ProductsActivity
+import com.raantech.solalat.provider.ui.transportation.TransportationActivity
 import com.raantech.solalat.provider.utils.recycleviewutils.VerticalSpaceDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -79,8 +81,8 @@ class MainServicesFragment : BaseBindingFragment<FragmentMainServicesBinding>(),
             when(position){
                 ServiceTypesEnum.ACCESSORIES.ordinal -> ProductsActivity.start(requireContext())
                 ServiceTypesEnum.MEDICAL.ordinal -> MedicalServicesActivity.start(requireContext())
-                ServiceTypesEnum.BARN.ordinal -> ProductsActivity.start(requireContext())
-                ServiceTypesEnum.TRANSPORTATION.ordinal -> ProductsActivity.start(requireContext())
+                ServiceTypesEnum.BARN.ordinal -> BarnActivity.start(requireContext())
+                ServiceTypesEnum.TRANSPORTATION.ordinal -> TransportationActivity.start(requireContext())
             }
         }
     }

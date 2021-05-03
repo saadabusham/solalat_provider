@@ -37,7 +37,7 @@ class ProductsViewModel @ViewModelInject constructor(
         emit(response)
     }
 
-    fun getAccessoriesCategories() = liveData {
+    fun getServicesCategories() = liveData {
         emit(APIResource.loading())
         val response = configurationRepo.getServiceCategories(ServiceTypesEnum.ACCESSORIES.value)
         emit(response)

@@ -10,6 +10,7 @@ import com.raantech.solalat.provider.data.enums.ServiceTypesEnum
 import com.raantech.solalat.provider.data.models.main.home.Service
 import com.raantech.solalat.provider.databinding.ActivityAddNewServiceBinding
 import com.raantech.solalat.provider.ui.add_new_service.viewmodels.AddNewServiceViewModel
+import com.raantech.solalat.provider.ui.barn.BarnActivity
 import com.raantech.solalat.provider.ui.base.activity.BaseBindingActivity
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListener
@@ -106,7 +107,7 @@ class AddNewServiceActivity : BaseBindingActivity<ActivityAddNewServiceBinding>(
             when (position) {
                 ServiceTypesEnum.ACCESSORIES.ordinal -> ProductsActivity.start(this,true)
                 ServiceTypesEnum.MEDICAL.ordinal -> MedicalServicesActivity.start(this,true)
-                ServiceTypesEnum.BARN.ordinal -> ProductsActivity.start(this)
+                ServiceTypesEnum.BARN.ordinal -> BarnActivity.start(this)
                 ServiceTypesEnum.TRANSPORTATION.ordinal -> TransportationActivity.start(this)
             }
         }

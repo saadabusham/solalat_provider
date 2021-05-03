@@ -23,7 +23,7 @@ interface ConfigurationRemoteDao {
     suspend fun getAboutUs(): ResponseWrapper<AboutUsResponse>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @GET("provider/media")
+    @GET("faqs")
     suspend fun getFaqs(
         @Query("type") type: String
     ): ResponseWrapper<List<FaqsResponse>>

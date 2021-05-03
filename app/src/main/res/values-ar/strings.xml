@@ -225,5 +225,14 @@
     <string name="add_truck">اضف ناقلة</string>
     <string name="view_transport_service">عرض خدمات النقل</string>
 
+    <!--    Barn    -->
+    <string name="barn_name">اسم الاسطبل</string>
+    <string name="add_the_barn_name">اضف اسم الاسطبل الذي تملكه </string>
+    <string name="barn_logo">شعار الاسطبل</string>
+    <string name="barn_images">صور البايكة</string>
+    <string name="add_new_barn">اضافة اسطبل جديد</string>
+    <string name="monthly_rental_price">سعر الاجار الشهري</string>
+    <string name="services_provided">الخدمات المقدمة</string>
+    <string name="you_can_select_multiple_items">بإمكانك اختيار اكثر من خدمة</string>
 
 </resources>

@@ -65,6 +65,9 @@
         <activity
             android:name=".ui.transportation.TransportationActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.barn.BarnActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

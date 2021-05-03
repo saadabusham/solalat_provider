@@ -152,7 +152,7 @@ class AddMedicalServiceFragment : BaseBindingFragment<FragmentAddMedicalServiceB
         binding?.spinnerCategory?.setOnSpinnerItemSelectedListener<ServiceCategory> { oldIndex, oldItem, newIndex, newItem ->
             binding?.spinnerCategory?.dismiss()
         }
-        viewModel.getAccessoriesCategories()
+        viewModel.getServicesCategories()
                 .observe(this, categoriesResultObserver())
     }
 

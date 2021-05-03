@@ -21,5 +21,6 @@ data class ServiceCategory(
 	val banner: String? = null,
 
 	@field:SerializedName("id")
-	val id: Int? = null
+	val id: Int,
+	var selected: Boolean = false
 ):Serializable

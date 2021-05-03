@@ -225,4 +225,18 @@
     <string name="add_truck">Add Truck</string>
     <string name="view_transport_service">View transport services</string>
 
+    <!--    Barn    -->
+    <string name="barn_name">Barn name</string>
+    <string name="add_the_barn_name">Add the barn name</string>
+    <string name="barn_logo">Barn logo</string>
+    <string name="barn_images">Barn images</string>
+    <string name="add_new_barn">Add new barn</string>
+    <string name="monthly_rental_price">Monthly rental price</string>
+    <string name="services_provided">Services provided</string>
+    <string name="you_can_select_multiple_items">You can select multiple items</string>
+    <string name="services">Services</string>
+    <string name="please_select_the_provided_cities">Please select the provided cities</string>
+    <string name="please_select_the_provided_services">Please select the provided services</string>
+    <string name="please_select_the_barn_logo">Please select the barn logo</string>
+
 </resources>

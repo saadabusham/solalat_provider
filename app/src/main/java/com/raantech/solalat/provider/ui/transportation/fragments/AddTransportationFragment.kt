@@ -82,7 +82,7 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
                         categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index].id,
                         yearsDropDownAdapter.spinnerItems[yearsDropDownAdapter.index].toInt(),
                         binding?.checkboxReceiveWhatsapp?.isChecked ?: false,
-                        binding?.checkboxGlobalTransport?.isChecked?:false)
+                        binding?.checkboxGlobalTransport?.isChecked ?: false)
                 ).observe(this, addTransportationResultObserver())
             }
         }
@@ -93,7 +93,7 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
                     viewModel.cities.addAll(selectedCities)
                     binding?.tvSelectCities?.text = selectedCities.map { it.name }.joinToString()
                 }
-            },viewModel,viewModel.cities).show(childFragmentManager, "CitiesPicker")
+            }, viewModel, viewModel.cities).show(childFragmentManager, "CitiesPicker")
         }
         binding?.tvLocation?.setOnClickListener {
             MapActivity.start(requireActivity(), locationResultLauncher)
@@ -156,6 +156,14 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
             return false
         }
 
+        if (viewModel.cities.size == 0) {
+            requireActivity().showErrorAlert(
+                    resources.getString(R.string.cities),
+                    resources.getString(R.string.please_select_the_provided_cities)
+            )
+            return false
+        }
+
         binding?.edPhoneNumber?.text.toString().validate(
                 ValidatorInputTypesEnums.PHONE_NUMBER,
                 requireContext()
@@ -188,7 +196,7 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
         binding?.spinnerCategory?.setOnSpinnerItemSelectedListener<ServiceCategory> { oldIndex, oldItem, newIndex, newItem ->
             binding?.spinnerCategory?.dismiss()
         }
-        viewModel.getAccessoriesCategories()
+        viewModel.getServicesCategories()
                 .observe(this, categoriesResultObserver())
     }
 

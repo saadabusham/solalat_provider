@@ -1,6 +1,8 @@
 package com.raantech.solalat.provider.data.di
 
 
+import com.raantech.solalat.provider.data.repos.barn.BarnRepo
+import com.raantech.solalat.provider.data.repos.barn.BarnRepoImp
 import com.raantech.solalat.provider.data.repos.user.UserRepo
 import com.raantech.solalat.provider.data.repos.user.UserRepoImp
 import com.raantech.solalat.provider.data.repos.configuration.ConfigurationRepo
@@ -47,6 +49,10 @@ abstract class RepoModule {
     @Singleton
     @Binds
     abstract fun bindTransportationRepo(transportationRepoImp: TransportationRepoImp): TransportationRepo
+
+    @Singleton
+    @Binds
+    abstract fun bindBarnRepo(barnRepoImp: BarnRepoImp): BarnRepo
 
 
 }

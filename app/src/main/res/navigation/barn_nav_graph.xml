@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/transportation_nav_graph"
+    app:startDestination="@id/addBarnStep1Fragment">
+
+    <fragment
+        android:id="@+id/addBarnStep1Fragment"
+        android:name="com.raantech.solalat.provider.ui.barn.fragments.AddBarnStep1Fragment"
+        android:label="AddBarnStep1Fragment"
+        tools:layout="@layout/fragment_add_barn_step_1">
+        <action
+            android:id="@+id/action_addBarnStep1Fragment_to_addBarnStep2Fragment"
+            app:destination="@id/addBarnStep2Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/addBarnStep2Fragment"
+        android:name="com.raantech.solalat.provider.ui.barn.fragments.AddBarnStep2Fragment"
+        android:label="AddBarnStep2Fragment"
+        tools:layout="@layout/fragment_add_barn_step_2"/>
+</navigation>

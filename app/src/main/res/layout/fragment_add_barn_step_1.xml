@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.raantech.solalat.provider.ui.barn.viewmodels.BarnViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/barn_name"
+                    android:textColor="@color/edittext_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/edName"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_background"
+                    android:hint="@string/add_the_barn_name"
+                    android:minHeight="@dimen/_35sdp"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:text="@={viewModel.productName}"
+                    android:textColor="@color/edittext_color"
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textSize="@dimen/_15ssp" />
+
+                <TextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="@string/barn_logo"
+                    android:textColor="@color/text_gray_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/logoRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:nestedScrollingEnabled="false"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:spanCount="3"
+                            tools:itemCount="5"
+                            tools:listitem="@layout/row_image_view_small" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/border_color" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imgLogoUpload"
+                        android:layout_width="@dimen/_23sdp"
+                        android:layout_height="@dimen/_23sdp"
+                        android:src="@drawable/ic_upload" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="@string/address"
+                    android:textColor="@color/edittext_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvLocation"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_background"
+                        android:hint="@string/enter_address"
+                        android:minHeight="@dimen/_35sdp"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"
+                        android:text="@{viewModel.addressString}"
+                        android:textColor="@color/edittext_color"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textSize="@dimen/_15ssp" />
+
+
+                    <ImageView
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_3sdp"
+                        android:src="@drawable/ic_service_location" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="@string/barn_images"
+                    android:textColor="@color/text_gray_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/imagesRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:nestedScrollingEnabled="false"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:spanCount="3"
+                            tools:itemCount="5"
+                            tools:listitem="@layout/row_image_view_small" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/border_color" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imgUpload"
+                        android:layout_width="@dimen/_23sdp"
+                        android:layout_height="@dimen/_23sdp"
+                        android:src="@drawable/ic_upload" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNext"
+                    style="@style/AppTheme.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:text="@string/next" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</layout>
