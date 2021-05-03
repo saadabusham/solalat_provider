@@ -10,6 +10,7 @@ import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.solalat.provider.data.common.Constants
 import com.raantech.solalat.provider.data.common.CustomObserverResponse
+import com.raantech.solalat.provider.data.models.barn.respnose.ServicesItem
 import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategoriesResponse
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategory
@@ -62,7 +63,7 @@ class AddBarnStep2Fragment : BaseBindingFragment<FragmentAddBarnStep2Binding>() 
     private fun setUpListeners() {
         binding?.tvSelectServices?.setOnClickListener {
             ServicesBottomSheet(object : ServicesBottomSheet.ServicesPickerCallBack {
-                override fun callBack(selectedServices: List<ServiceCategory>) {
+                override fun callBack(selectedServices: List<ServicesItem>) {
                     viewModel.services.clear()
                     viewModel.services.addAll(selectedServices)
                     binding?.tvSelectServices?.text = selectedServices.map { it.name }.joinToString()
@@ -127,7 +128,7 @@ class AddBarnStep2Fragment : BaseBindingFragment<FragmentAddBarnStep2Binding>() 
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: Any?
                 ) {
-                    navigationController.navigate(R.id.action_addProductsFragment_to_productsFragment)
+//                    navigationController.navigate(R.id.action_addProductsFragment_to_productsFragment)
                 }
             }, showError = true
         )

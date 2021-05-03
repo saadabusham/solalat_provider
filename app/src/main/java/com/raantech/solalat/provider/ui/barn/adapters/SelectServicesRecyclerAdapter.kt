@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.raantech.solalat.provider.data.models.barn.respnose.ServicesItem
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategory
 import com.raantech.solalat.provider.data.models.transportation.response.City
 import com.raantech.solalat.provider.databinding.RowCityBinding
@@ -13,7 +14,7 @@ import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder
 
 class SelectServicesRecyclerAdapter constructor(
     context: Context
-) : BaseBindingRecyclerViewAdapter<ServiceCategory>(context) {
+) : BaseBindingRecyclerViewAdapter<ServicesItem>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
@@ -30,10 +31,10 @@ class SelectServicesRecyclerAdapter constructor(
     }
 
     inner class ViewHolder(private val binding: RowSelectServiceBinding) :
-        BaseViewHolder<ServiceCategory>(binding.root) {
+        BaseViewHolder<ServicesItem>(binding.root) {
 
-        override fun bind(item: ServiceCategory) {
-            binding.city = item
+        override fun bind(item: ServicesItem) {
+            binding.item = item
             binding.root.setOnClickListener {
                 item.selected = !item.selected!!
                 notifyItemChanged(adapterPosition)

@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="city"
-            type="com.raantech.solalat.provider.data.models.product.response.ServiceCategory" />
+            name="item"
+            type="com.raantech.solalat.provider.data.models.barn.respnose.ServicesItem" />
 
         <import type="android.view.View" />
     </data>
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@{city.selected ? @color/button_color :  @color/white}">
+            android:background="@{item.selected ? @color/button_color :  @color/white}">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/name"
@@ -33,9 +33,9 @@
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_alignParentStart="true"
                 android:gravity="center|start"
-                android:text="@{city.name}"
+                android:text="@{item.name}"
                 android:textAppearance="@style/textview_normal_regular"
-                android:textColor="@{city.selected ? @color/white : @color/edittext_color}"
+                android:textColor="@{item.selected ? @color/white : @color/edittext_color}"
                 android:textSize="@dimen/_12ssp"
                 tools:text="Amman , Jordan" />
 
@@ -47,7 +47,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:src="@drawable/ic_true"
-                android:visibility="@{city.selected ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{item.selected ? View.VISIBLE : View.GONE}" />
         </RelativeLayout>
 
     </LinearLayout>

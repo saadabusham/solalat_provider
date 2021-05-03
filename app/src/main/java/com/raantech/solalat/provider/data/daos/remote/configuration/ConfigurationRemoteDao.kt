@@ -2,6 +2,7 @@ package com.raantech.solalat.provider.data.daos.remote.configuration
 
 import com.raantech.solalat.provider.data.api.response.ResponseWrapper
 import com.raantech.solalat.provider.data.common.NetworkConstants
+import com.raantech.solalat.provider.data.models.barn.respnose.ServicesItem
 import com.raantech.solalat.provider.data.models.more.AboutUsResponse
 import com.raantech.solalat.provider.data.models.configuration.ConfigurationWrapperResponse
 import com.raantech.solalat.provider.data.models.media.Media
@@ -38,6 +39,12 @@ interface ConfigurationRemoteDao {
     @GET("app/cities")
     suspend fun getCities(
     ): ResponseWrapper<List<City>>
+
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @GET("services/stables")
+    suspend fun getBarnServices(
+    ): ResponseWrapper<List<ServicesItem>>
 
 
 }

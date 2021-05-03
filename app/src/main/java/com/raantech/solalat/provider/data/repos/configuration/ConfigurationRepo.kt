@@ -3,6 +3,7 @@ package com.raantech.solalat.provider.data.repos.configuration
 import com.raantech.solalat.provider.common.CommonEnums
 import com.raantech.solalat.provider.data.api.response.APIResource
 import com.raantech.solalat.provider.data.api.response.ResponseWrapper
+import com.raantech.solalat.provider.data.models.barn.respnose.ServicesItem
 import com.raantech.solalat.provider.data.models.configuration.ConfigurationWrapperResponse
 import com.raantech.solalat.provider.data.models.more.AboutUsResponse
 import com.raantech.solalat.provider.data.models.more.FaqsResponse
@@ -27,4 +28,8 @@ interface ConfigurationRepo {
 
     suspend fun getCities(
     ): APIResource<ResponseWrapper<List<City>>>
+
+    suspend fun getBarnServices(
+    ): APIResource<ResponseWrapper<List<ServicesItem>>>
+
 }

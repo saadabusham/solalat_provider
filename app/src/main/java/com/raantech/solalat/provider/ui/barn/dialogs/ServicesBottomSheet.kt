@@ -15,6 +15,7 @@ import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.solalat.provider.data.api.response.ResponseWrapper
 import com.raantech.solalat.provider.data.common.CustomObserverResponse
+import com.raantech.solalat.provider.data.models.barn.respnose.ServicesItem
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategoriesResponse
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategory
 import com.raantech.solalat.provider.databinding.BottomSheetServicesBinding
@@ -28,7 +29,7 @@ import com.raantech.solalat.provider.utils.recycleviewutils.VerticalSpaceDecorat
 class ServicesBottomSheet(
         private val servicesPickerCallBack: ServicesPickerCallBack,
         private val viewModel: BarnViewModel,
-        private val selectedList: MutableList<ServiceCategory>) :
+        private val selectedList: MutableList<ServicesItem>) :
         BottomSheetDialogFragment(), BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     lateinit var bottomSheetServicesBinding: BottomSheetServicesBinding
@@ -73,19 +74,19 @@ class ServicesBottomSheet(
                         0
                 )
         )
-        viewModel.getServicesCategories().observe(this, servicesObserver())
+        viewModel.getBarnServices().observe(this, servicesObserver())
     }
 
-    private fun servicesObserver(): CustomObserverResponse<ServiceCategoriesResponse> {
+    private fun servicesObserver(): CustomObserverResponse<List<ServicesItem>> {
         return CustomObserverResponse(
                 requireActivity(),
-                object : CustomObserverResponse.APICallBack<ServiceCategoriesResponse> {
+                object : CustomObserverResponse.APICallBack<List<ServicesItem>> {
                     override fun onSuccess(
                             statusCode: Int,
                             subErrorCode: ResponseSubErrorsCodeEnum,
-                            data: ResponseWrapper<ServiceCategoriesResponse>?
+                            data: ResponseWrapper<List<ServicesItem>>?
                     ) {
-                        data?.body?.categories?.let {
+                        data?.body?.let {
                             selectedList.forEach { selectedLanguage ->
                                 it.forEach { city ->
                                     if (selectedLanguage.name == city.name) {
@@ -104,7 +105,7 @@ class ServicesBottomSheet(
     fun onDoneClicked() {
         if (!selectServicesRecyclerAdapter.items.filter { it.selected }.isNullOrEmpty()) {
             dismiss()
-            val list = mutableListOf<ServiceCategory>()
+            val list = mutableListOf<ServicesItem>()
             selectServicesRecyclerAdapter.items.forEach {
                 if (it.selected)
                     list.add(it)
@@ -129,7 +130,7 @@ class ServicesBottomSheet(
     }
 
     interface ServicesPickerCallBack {
-        fun callBack(citiesList: List<ServiceCategory>)
+        fun callBack(citiesList: List<ServicesItem>)
     }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {

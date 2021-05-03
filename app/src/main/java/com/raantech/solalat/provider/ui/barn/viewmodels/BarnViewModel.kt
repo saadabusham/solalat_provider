@@ -8,6 +8,7 @@ import androidx.lifecycle.liveData
 import com.raantech.solalat.provider.data.api.response.APIResource
 import com.raantech.solalat.provider.data.enums.ServiceTypesEnum
 import com.raantech.solalat.provider.data.models.barn.request.AddBarnRequest
+import com.raantech.solalat.provider.data.models.barn.respnose.ServicesItem
 import com.raantech.solalat.provider.data.models.map.Address
 import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.data.models.product.request.Files
@@ -36,7 +37,7 @@ class BarnViewModel @ViewModelInject constructor(
     val selectedCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val address: MutableLiveData<Address> = MutableLiveData()
     val addressString: MutableLiveData<String> = MutableLiveData()
-    var services: MutableList<ServiceCategory> = mutableListOf()
+    var services: MutableList<ServicesItem> = mutableListOf()
     val files : MutableList<Media> = mutableListOf()
     val logo : MutableList<Media> = mutableListOf()
     fun getBarns(skip: Int) = liveData {
@@ -45,9 +46,9 @@ class BarnViewModel @ViewModelInject constructor(
         emit(response)
     }
 
-    fun getServicesCategories() = liveData {
+    fun getBarnServices() = liveData {
         emit(APIResource.loading())
-        val response = configurationRepo.getServiceCategories(ServiceTypesEnum.HORSES.value)
+        val response = configurationRepo.getBarnServices()
         emit(response)
     }
 
@@ -66,7 +67,7 @@ class BarnViewModel @ViewModelInject constructor(
                 contactNumber = phoneNumber.value.toString().checkPhoneNumberFormat()
                         .concatStrings(selectedCountryCode.value.toString()),
                 name = productName.value,
-                files = Files(baseImage = files[0].id, additionalImages = files.apply { removeAt(0) }.map { it.id }),
+                files = Files(baseImage = logo[0].id, additionalImages = files.map { it.id }),
                 receivedWhatsapp = receivedWhatsapp,
                 price = price.value.toString().toDouble(),
                 description = description.value.toString(),
