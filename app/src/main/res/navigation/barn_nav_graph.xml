@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/transportation_nav_graph"
-    app:startDestination="@id/addBarnStep1Fragment">
+    app:startDestination="@id/barnsFragment">
 
     <fragment
         android:id="@+id/addBarnStep1Fragment"
@@ -22,5 +22,64 @@
         android:id="@+id/addBarnStep2Fragment"
         android:name="com.raantech.solalat.provider.ui.barn.fragments.AddBarnStep2Fragment"
         android:label="AddBarnStep2Fragment"
-        tools:layout="@layout/fragment_add_barn_step_2"/>
+        tools:layout="@layout/fragment_add_barn_step_2">
+        <action
+            android:id="@+id/action_addBarnStep2Fragment_to_barnsFragment"
+            app:destination="@id/barnsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/editBarnStep1Fragment"
+        android:name="com.raantech.solalat.provider.ui.barn.fragments.EditBarnStep1Fragment"
+        android:label="EditBarnStep1Fragment"
+        tools:layout="@layout/fragment_add_barn_step_1">
+        <action
+            android:id="@+id/action_editBarnStep1Fragment_to_editBarnStep2Fragment"
+            app:destination="@id/editBarnStep2Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/barnsFragment"
+        android:name="com.raantech.solalat.provider.ui.barn.fragments.BarnsFragment"
+        android:label="BarnsFragment"
+        tools:layout="@layout/fragment_barn">
+        <action
+            android:id="@+id/action_barnsFragment_to_editBarnStep1Fragment"
+            app:destination="@id/editBarnStep1Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/barnsFragment"/>
+        <action
+            android:id="@+id/action_barnsFragment_to_addBarnStep1Fragment"
+            app:destination="@id/addBarnStep1Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/barnsFragment"
+            app:popUpToInclusive="true"   />
+    </fragment>
+    <fragment
+        android:id="@+id/editBarnStep2Fragment"
+        android:name="com.raantech.solalat.provider.ui.barn.fragments.EditBarnStep2Fragment"
+        android:label="EditBarnStep2Fragment"
+        tools:layout="@layout/fragment_add_barn_step_2">
+        <action
+            android:id="@+id/action_editBarnStep2Fragment_to_barnsFragment"
+            app:destination="@id/barnsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/editBarnStep2Fragment"
+            app:popUpToInclusive="true"   />
+    </fragment>
 </navigation>

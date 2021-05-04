@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.raantech.solalat.provider.ui.medical.viewmodels.MedicalServicesViewModel" />
+            type="com.raantech.solalat.provider.ui.barn.viewmodels.BarnViewModel" />
     </data>
 
     <RelativeLayout
@@ -27,27 +27,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/linearActions"
-            android:layout_below="@id/layout_toolbar" />
+            android:layout_below="@id/layout_toolbar"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_above="@id/linearActions"
             android:layout_below="@id/layout_no_data"
-            android:layout_marginTop="@dimen/_15sdp"
             android:clipToPadding="false"
             android:nestedScrollingEnabled="false"
             android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/row_medical_service" />
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:itemCount="4"
+            tools:listitem="@layout/row_barn" />
 
         <LinearLayout
             android:id="@+id/linearActions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAddProduct"
@@ -57,7 +59,7 @@
                 android:layout_marginStart="@dimen/layouts_margin_start"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/layouts_margin_end"
-                android:text="@string/add_new_service" />
+                android:text="@string/add_barn" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnShareProduct"

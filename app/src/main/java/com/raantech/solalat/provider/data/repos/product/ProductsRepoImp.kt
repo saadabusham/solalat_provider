@@ -10,8 +10,8 @@ import com.raantech.solalat.provider.data.repos.base.BaseRepo
 import javax.inject.Inject
 
 class ProductsRepoImp @Inject constructor(
-    responseHandler: ResponseHandler,
-    private val productsRemoteDao: ProductsRemoteDao
+        responseHandler: ResponseHandler,
+        private val productsRemoteDao: ProductsRemoteDao
 ) : BaseRepo(responseHandler), ProductsRepo {
 
     override suspend fun getProducts(skip: Int): APIResource<ResponseWrapper<List<Product>>> {
@@ -25,6 +25,15 @@ class ProductsRepoImp @Inject constructor(
     override suspend fun addProduct(addProductRequest: AddProductRequest): APIResource<ResponseWrapper<Any>> {
         return try {
             responseHandle.handleSuccess(productsRemoteDao.addProduct(addProductRequest))
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun updateProduct(
+            id: Int, addProductRequest: AddProductRequest): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(productsRemoteDao.updateProduct(id, addProductRequest))
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }

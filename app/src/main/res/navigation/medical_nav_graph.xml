@@ -33,5 +33,17 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_medicalServicesFragment_to_editMedicalServiceFragment"
+            app:destination="@id/editMedicalServiceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
+    <fragment
+        android:id="@+id/editMedicalServiceFragment"
+        android:name="com.raantech.solalat.provider.ui.medical.fragments.EditMedicalServiceFragment"
+        android:label="EditMedicalServiceFragment"
+        tools:layout="@layout/fragment_add_medical_service"/>
 </navigation>

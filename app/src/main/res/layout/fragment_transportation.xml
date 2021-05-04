@@ -70,7 +70,7 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/layouts_margin_end"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:text="@string/share_products" />
+                android:text="@string/share_service" />
         </LinearLayout>
     </RelativeLayout>
 </layout>

@@ -34,7 +34,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
-class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationBinding>(),
+class EditTransportationFragment : BaseBindingFragment<FragmentAddTransportationBinding>(),
         BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: TransportationViewModel by activityViewModels()
@@ -53,11 +53,31 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
                 hasTitle = true,
                 title = R.string.solalat_services,
                 hasSubTitle = true,
-                subTitle = R.string.add_transportation_services
+                subTitle = R.string.edit_transportation_services
         )
         setUpBinding()
         setUpListeners()
         init()
+        setUpData()
+    }
+
+    private fun setUpData() {
+        viewModel.transpornToEdit?.let {
+            viewModel.productName.postValue(it.name)
+            viewModel.address.postValue(Address(it.latitude!!.toDouble(), it.longitude!!.toDouble()))
+            viewModel.addressString.postValue(it.address)
+            binding?.tvLocation?.text = it.address
+            viewModel.plateNumber.postValue(it.truckNumber)
+            it.additionalImages?.let { it1 -> smallMediaRecyclerAdapter.submitItems(it1) }
+            it.cities?.let { it1 ->
+                viewModel.cities.clear()
+                viewModel.cities.addAll(it1)
+            }
+            binding?.tvSelectCities?.text = viewModel.cities.map { it.name }.joinToString()
+            binding?.checkboxGlobalTransport?.isChecked = it.availableIt ?: false
+            viewModel.phoneNumber.postValue(it.contactNumber?.checkPhoneNumberFormat())
+            binding?.checkboxReceiveWhatsapp?.isChecked = it.receivedWhatsapp ?: false
+        }
     }
 
     private fun init() {
@@ -71,19 +91,24 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
     }
 
     private fun setUpListeners() {
+        binding?.btnAddTransport?.text = resources.getString(R.string.save_changes)
+        viewModel.selectedCountryCode.postValue(binding?.countryCodePicker?.defaultCountryCode)
+        binding?.countryCodePicker?.setOnCountryChangeListener {
+            viewModel.selectedCountryCode.postValue(it.phoneCode)
+        }
         binding?.imgUpload?.setOnClickListener {
             MediaActivity.start(requireActivity(), true, mediaResultLauncher)
         }
 
         binding?.btnAddTransport?.setOnClickListener {
             if (isDataValid()) {
-                viewModel.addTransportation(viewModel.getTransportationRequest(
+                viewModel.updateTransportation(viewModel.getTransportationRequest(
                         smallMediaRecyclerAdapter.items.map { it.id },
                         categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index].id,
                         yearsDropDownAdapter.spinnerItems[yearsDropDownAdapter.index].toInt(),
                         binding?.checkboxReceiveWhatsapp?.isChecked ?: false,
                         binding?.checkboxGlobalTransport?.isChecked ?: false)
-                ).observe(this, addTransportationResultObserver())
+                ).observe(this, updateTransportationResultObserver())
             }
         }
         binding?.tvSelectCities?.setOnClickListener {
@@ -223,7 +248,7 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
         binding?.spinnerYear?.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
             binding?.spinnerYear?.dismiss()
         }
-        binding?.spinnerYear?.selectItemByIndex(0)
+        yearsDropDownAdapter.spinnerItems.withIndex().singleOrNull { it.value == viewModel.transpornToEdit?.manufacturingYear }?.index?.let { binding?.spinnerYear?.selectItemByIndex(it) }
     }
 
 
@@ -238,13 +263,16 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
                     ) {
                         data?.categories?.let {
                             categoriesSpinnerAdapter.setItems(it)
-                            binding?.spinnerCategory?.selectItemByIndex(0)
+                            categoriesSpinnerAdapter.spinnerItems.withIndex().singleOrNull { it1 -> it1.value.id == viewModel.transpornToEdit?.category?.id }?.let {
+                                it.value.selected = true
+                                binding?.spinnerCategory?.selectItemByIndex(it.index)
+                            }
                         }
                     }
                 })
     }
 
-    private fun addTransportationResultObserver(): CustomObserverResponse<Any> {
+    private fun updateTransportationResultObserver(): CustomObserverResponse<Any> {
         return CustomObserverResponse(
                 requireActivity(),
                 object : CustomObserverResponse.APICallBack<Any> {
@@ -253,7 +281,7 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
                             subErrorCode: ResponseSubErrorsCodeEnum,
                             data: Any?
                     ) {
-                        navigationController.navigate(R.id.action_addTransportationFragment_to_transportationFragment)
+                        navigationController.navigateUp()
                     }
                 }, showError = true
         )

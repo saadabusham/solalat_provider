@@ -172,7 +172,8 @@ class MedicalServicesFragment : BaseBindingFragment<FragmentMedicalServicesBindi
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as Medical
-        requireContext().openDial(item.contactNumber)
+        viewModel.medicalToUpdate = item
+        navigationController.navigate(R.id.action_medicalServicesFragment_to_editMedicalServiceFragment)
     }
 
 

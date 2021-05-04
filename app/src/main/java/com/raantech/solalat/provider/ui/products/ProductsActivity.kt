@@ -38,14 +38,6 @@ class ProductsActivity : BaseBindingActivity<ActivityProductsBinding>() {
         viewModel.addNew = intent.getBooleanExtra(Constants.BundleData.ADD_NEW, false)
         setContentView(R.layout.activity_products, hasToolbar = false)
         setStartDestination()
-//        if (intent.getBooleanExtra(Constants.BundleData.ADD_NEW, false))
-//            try {
-//                val navigationController =
-//                    Navigation.findNavController(this, R.id.products_nav_host_fragment)
-//                navigationController.navigate(R.id.action_productsFragment_to_addProductsFragment)
-//            } catch (e: Exception) {
-//
-//            }
     }
 
     private fun setStartDestination() {
@@ -54,8 +46,7 @@ class ProductsActivity : BaseBindingActivity<ActivityProductsBinding>() {
         val graph = inflater.inflate(R.navigation.products_nav_graph)
 
         if (intent.getBooleanExtra(Constants.BundleData.ADD_NEW, false)) {
-            graph.startDestination = R.id.productsFragment
-//            graph.startDestination = R.id.addProductsFragment
+            graph.startDestination = R.id.addProductsFragment
         } else {
             graph.startDestination = R.id.productsFragment
         }

@@ -103,6 +103,7 @@ class ProductsFragment : BaseBindingFragment<FragmentProductsBinding>(),
 
         })
         binding?.recyclerView?.adapter = productsRecyclerAdapter
+        binding?.recyclerView?.setOnItemClickListener(this)
     }
 
     private fun hideShowNoData() {
@@ -165,7 +166,9 @@ class ProductsFragment : BaseBindingFragment<FragmentProductsBinding>(),
 
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
-
+        item as Product
+        viewModel.productToEdit = item
+        navigationController.navigate(R.id.action_productsFragment_to_editProductsFragment)
     }
 
 

@@ -82,7 +82,7 @@
                     android:layout_marginEnd="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_7sdp"
                     android:gravity="center"
-                    android:text="@string/call_now"
+                    android:text="@string/edit"
                     android:textColor="@color/button_color"
                     android:textSize="@dimen/_15ssp" />
             </com.google.android.material.card.MaterialCardView>

@@ -150,6 +150,7 @@
     <!--    Accessories   -->
     <string name="view_products">View products</string>
     <string name="add_product">Add Product</string>
+    <string name="edit_product">Edit product</string>
     <string name="share_products">Share Products</string>
     <string name="product_name">Product name</string>
     <string name="add_product_name">Add product name</string>
@@ -191,6 +192,7 @@
     <!--    Medical Service   -->
     <string name="view_medical_service">View medical service</string>
     <string name="add_medical_service">Add Medical Service</string>
+    <string name="edit_medical_service">Edit Medical Service</string>
     <string name="share_service">Share service</string>
     <string name="name">Name</string>
     <string name="add_name">Add name</string>
@@ -224,6 +226,7 @@
     <string name="the_areas_you_serve">The area you serve</string>
     <string name="add_truck">Add Truck</string>
     <string name="view_transport_service">View transport services</string>
+    <string name="edit_transportation_services">Edit transportation services</string>
 
     <!--    Barn    -->
     <string name="barn_name">Barn name</string>
@@ -238,5 +241,8 @@
     <string name="please_select_the_provided_cities">Please select the provided cities</string>
     <string name="please_select_the_provided_services">Please select the provided services</string>
     <string name="please_select_the_barn_logo">Please select the barn logo</string>
+    <string name="save_changes">Save changes</string>
+    <string name="edit_barn">Edit barn</string>
+    <string name="view_barns">View barns</string>
 
 </resources>

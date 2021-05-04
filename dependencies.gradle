@@ -141,9 +141,6 @@ dependencies {
 
     implementation "androidx.fragment:fragment-ktx:1.3.0-alpha08"
 
-    //screenshot
-    implementation 'com.github.Mika-89:Screenshot:master-SNAPSHOT'
-
     //For android permissions
     implementation "org.permissionsdispatcher:permissionsdispatcher:4.7.0"
     kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.7.0"

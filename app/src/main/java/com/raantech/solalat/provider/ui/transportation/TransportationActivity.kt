@@ -16,7 +16,9 @@ import com.raantech.solalat.provider.ui.products.viewmodels.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.android.synthetic.main.activity_auth.auth_nav_host_fragment
+import kotlinx.android.synthetic.main.activity_medical_services.*
 import kotlinx.android.synthetic.main.activity_products.*
+import kotlinx.android.synthetic.main.activity_transportation.*
 
 @AndroidEntryPoint
 class TransportationActivity : BaseBindingActivity<ActivityTransportationBinding>() {
@@ -38,5 +40,19 @@ class TransportationActivity : BaseBindingActivity<ActivityTransportationBinding
         super.onCreate(savedInstanceState)
         viewModel.addNew = intent.getBooleanExtra(Constants.BundleData.ADD_NEW, false)
         setContentView(R.layout.activity_transportation, hasToolbar = false)
+        setStartDestination()
+    }
+
+    private fun setStartDestination() {
+        val navHostFragment = transport_nav_host_fragment as NavHostFragment
+        val inflater = navHostFragment.navController.navInflater
+        val graph = inflater.inflate(R.navigation.transportation_nav_graph)
+
+        if (intent.getBooleanExtra(Constants.BundleData.ADD_NEW, false)) {
+            graph.startDestination = R.id.addTransportationFragment
+        } else {
+            graph.startDestination = R.id.transportationFragment
+        }
+        navHostFragment.navController.graph = graph
     }
 }

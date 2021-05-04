@@ -217,7 +217,7 @@
                     android:text="@string/receive_whatsapp"/>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnAddProduct"
+                    android:id="@+id/btnAddBarn"
                     style="@style/AppTheme.Button"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/button_height"

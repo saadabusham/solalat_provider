@@ -4,18 +4,22 @@ import com.raantech.solalat.provider.data.api.response.APIResource
 import com.raantech.solalat.provider.data.api.response.ResponseWrapper
 import com.raantech.solalat.provider.data.models.medical.request.AddMedicalRequest
 import com.raantech.solalat.provider.data.models.medical.response.Medical
-import com.raantech.solalat.provider.data.models.product.request.AddProductRequest
 
 interface MedicalRepo {
     suspend fun getMedicals(
-        skip: Int
+            skip: Int
     ): APIResource<ResponseWrapper<List<Medical>>>
 
     suspend fun addMedicalService(
-        addProductRequest: AddMedicalRequest
+            addProductRequest: AddMedicalRequest
+    ): APIResource<ResponseWrapper<Any>>
+
+    suspend fun updateMedicalService(
+            id: Int,
+            addProductRequest: AddMedicalRequest
     ): APIResource<ResponseWrapper<Any>>
 
     suspend fun deleteMedia(
-        mediaId: Int
+            mediaId: Int
     ): APIResource<ResponseWrapper<Any>>
 }

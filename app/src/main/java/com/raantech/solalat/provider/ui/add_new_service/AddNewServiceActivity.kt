@@ -107,8 +107,8 @@ class AddNewServiceActivity : BaseBindingActivity<ActivityAddNewServiceBinding>(
             when (position) {
                 ServiceTypesEnum.ACCESSORIES.ordinal -> ProductsActivity.start(this,true)
                 ServiceTypesEnum.MEDICAL.ordinal -> MedicalServicesActivity.start(this,true)
-                ServiceTypesEnum.BARN.ordinal -> BarnActivity.start(this)
-                ServiceTypesEnum.TRANSPORTATION.ordinal -> TransportationActivity.start(this)
+                ServiceTypesEnum.BARN.ordinal -> BarnActivity.start(this,true)
+                ServiceTypesEnum.TRANSPORTATION.ordinal -> TransportationActivity.start(this,true)
             }
         }
     }

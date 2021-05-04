@@ -76,7 +76,7 @@ class MainAccessoriesFragment : BaseBindingFragment<FragmentMainAccessoriesBindi
             AddNewServiceActivity.start(requireContext())
         }
         binding?.btnEditInfo?.setOnClickListener {
-
+            ProductsActivity.start(requireContext(),false)
         }
     }
 

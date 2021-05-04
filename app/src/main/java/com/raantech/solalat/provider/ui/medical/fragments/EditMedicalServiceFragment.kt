@@ -17,6 +17,7 @@ import com.raantech.solalat.provider.ui.base.fragment.BaseBindingFragment
 import com.raantech.solalat.provider.ui.map.MapActivity
 import com.raantech.solalat.provider.ui.medical.viewmodels.MedicalServicesViewModel
 import com.raantech.solalat.provider.ui.products.adapters.CategoriesSpinnerAdapter
+import com.raantech.solalat.provider.utils.extensions.checkPhoneNumberFormat
 import com.raantech.solalat.provider.utils.extensions.showErrorAlert
 import com.raantech.solalat.provider.utils.extensions.showValidationErrorAlert
 import com.raantech.solalat.provider.utils.extensions.validate
@@ -26,7 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
-class AddMedicalServiceFragment : BaseBindingFragment<FragmentAddMedicalServiceBinding>() {
+class EditMedicalServiceFragment : BaseBindingFragment<FragmentAddMedicalServiceBinding>() {
 
     private val viewModel: MedicalServicesViewModel by activityViewModels()
 
@@ -42,11 +43,24 @@ class AddMedicalServiceFragment : BaseBindingFragment<FragmentAddMedicalServiceB
                 hasTitle = true,
                 title = R.string.solalat_services,
                 hasSubTitle = true,
-                subTitle = R.string.add_medical_service
+                subTitle = R.string.edit_medical_service
         )
         setUpBinding()
         setUpListeners()
         init()
+        setUpData()
+    }
+
+    private fun setUpData() {
+        viewModel.medicalToUpdate?.let {
+            viewModel.productName.postValue(it.name)
+            viewModel.productDescription.postValue(it.description)
+            viewModel.address.postValue(Address(it.latitude!!.toDouble(), it.longitude!!.toDouble()))
+            viewModel.addressString.postValue(it.address)
+            binding?.tvLocation?.text = it.address
+            viewModel.phoneNumber.postValue(it.contactNumber?.checkPhoneNumberFormat())
+            binding?.checkboxReceiveWhatsapp?.isChecked = it.receivedWhatsapp ?: false
+        }
     }
 
     private fun init() {
@@ -62,12 +76,13 @@ class AddMedicalServiceFragment : BaseBindingFragment<FragmentAddMedicalServiceB
         binding?.countryCodePicker?.setOnCountryChangeListener {
             viewModel.selectedCountryCode.postValue(it.phoneCode)
         }
+        binding?.btnAddAds?.text = resources.getString(R.string.save_changes)
         binding?.btnAddAds?.setOnClickListener {
             if (isDataValid()) {
-                viewModel.addMedical(
+                viewModel.updateMedical(
                         categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index],
                         binding?.checkboxReceiveWhatsapp?.isChecked ?: false
-                ).observe(this, addMedicalResultObserver())
+                ).observe(this, updateMedicalResultObserver())
             }
         }
         binding?.tvLocation?.setOnClickListener {
@@ -171,13 +186,16 @@ class AddMedicalServiceFragment : BaseBindingFragment<FragmentAddMedicalServiceB
                     ) {
                         data?.categories?.let {
                             categoriesSpinnerAdapter.setItems(it)
-                            binding?.spinnerCategory?.selectItemByIndex(0)
+                            categoriesSpinnerAdapter.spinnerItems.withIndex().singleOrNull { it1 -> it1.value.id == viewModel.medicalToUpdate?.category?.id }?.let {
+                                it.value.selected = true
+                                binding?.spinnerCategory?.selectItemByIndex(it.index)
+                            }
                         }
                     }
                 })
     }
 
-    private fun addMedicalResultObserver(): CustomObserverResponse<Any> {
+    private fun updateMedicalResultObserver(): CustomObserverResponse<Any> {
         return CustomObserverResponse(
                 requireActivity(),
                 object : CustomObserverResponse.APICallBack<Any> {
@@ -186,7 +204,7 @@ class AddMedicalServiceFragment : BaseBindingFragment<FragmentAddMedicalServiceB
                             subErrorCode: ResponseSubErrorsCodeEnum,
                             data: Any?
                     ) {
-                        navigationController.navigate(R.id.action_addMedicalServiceFragment_to_medicalServicesFragment)
+                        navigationController.navigateUp()
                     }
                 }, showError = true
         )

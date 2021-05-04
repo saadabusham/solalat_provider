@@ -11,28 +11,26 @@ import com.raantech.solalat.provider.data.models.map.Address
 import com.raantech.solalat.provider.data.models.product.request.Files
 import com.raantech.solalat.provider.data.models.transportation.request.AddTransportationRequest
 import com.raantech.solalat.provider.data.models.transportation.response.City
+import com.raantech.solalat.provider.data.models.transportation.response.Transportation
 import com.raantech.solalat.provider.data.repos.configuration.ConfigurationRepo
 import com.raantech.solalat.provider.data.repos.transportation.TransportationRepo
 import com.raantech.solalat.provider.ui.base.viewmodel.BaseViewModel
 import com.raantech.solalat.provider.utils.extensions.checkPhoneNumberFormat
 import com.raantech.solalat.provider.utils.extensions.concatStrings
-import org.intellij.lang.annotations.Language
 
 class TransportationViewModel @ViewModelInject constructor(
         @Assisted private val savedStateHandle: SavedStateHandle,
         val transportationRepo: TransportationRepo,
         private val configurationRepo: ConfigurationRepo
 ) : BaseViewModel() {
-
+    var transpornToEdit: Transportation? = null
     var addNew: Boolean = false
     val productName: MutableLiveData<String> = MutableLiveData()
     val plateNumber: MutableLiveData<String> = MutableLiveData()
-    val productPrice: MutableLiveData<String> = MutableLiveData()
     val phoneNumber: MutableLiveData<String> = MutableLiveData()
     val selectedCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val address: MutableLiveData<Address> = MutableLiveData()
     val addressString: MutableLiveData<String> = MutableLiveData()
-    val categoryId: MutableLiveData<Int> = MutableLiveData()
     var cities: MutableList<City> = mutableListOf()
     fun getTransportation(skip: Int) = liveData {
         emit(APIResource.loading())
@@ -55,6 +53,12 @@ class TransportationViewModel @ViewModelInject constructor(
     fun addTransportation(addTransportationRequest: AddTransportationRequest) = liveData {
         emit(APIResource.loading())
         val response = transportationRepo.addTransportation(addTransportationRequest)
+        emit(response)
+    }
+
+    fun updateTransportation(addTransportationRequest: AddTransportationRequest) = liveData {
+        emit(APIResource.loading())
+        val response = transportationRepo.updateTransportation(transpornToEdit!!.id!!,addTransportationRequest)
         emit(response)
     }
 

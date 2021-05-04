@@ -7,14 +7,19 @@ import com.raantech.solalat.provider.data.models.product.response.product.Produc
 
 interface ProductsRepo {
     suspend fun getProducts(
-        skip: Int
+            skip: Int
     ): APIResource<ResponseWrapper<List<Product>>>
 
     suspend fun addProduct(
-        addProductRequest: AddProductRequest
+            addProductRequest: AddProductRequest
+    ): APIResource<ResponseWrapper<Any>>
+
+    suspend fun updateProduct(
+            id: Int,
+            addProductRequest: AddProductRequest
     ): APIResource<ResponseWrapper<Any>>
 
     suspend fun deleteMedia(
-        mediaId: Int
+            mediaId: Int
     ): APIResource<ResponseWrapper<Any>>
 }

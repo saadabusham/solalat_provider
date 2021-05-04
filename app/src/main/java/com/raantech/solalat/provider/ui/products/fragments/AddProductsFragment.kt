@@ -65,6 +65,10 @@ class AddProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
     }
 
     private fun setUpListeners() {
+        viewModel.selectedCountryCode.postValue(binding?.countryCodePicker?.defaultCountryCode)
+        binding?.countryCodePicker?.setOnCountryChangeListener {
+            viewModel.selectedCountryCode.postValue(it.phoneCode)
+        }
         binding?.imgUpload?.setOnClickListener {
             MediaActivity.start(requireActivity(), true, resultLauncher)
         }

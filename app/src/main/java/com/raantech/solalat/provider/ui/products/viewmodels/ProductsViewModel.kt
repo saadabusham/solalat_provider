@@ -11,6 +11,7 @@ import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.data.models.product.request.AddProductRequest
 import com.raantech.solalat.provider.data.models.product.request.Files
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategory
+import com.raantech.solalat.provider.data.models.product.response.product.Product
 import com.raantech.solalat.provider.data.repos.configuration.ConfigurationRepo
 import com.raantech.solalat.provider.data.repos.product.ProductsRepo
 import com.raantech.solalat.provider.ui.base.viewmodel.BaseViewModel
@@ -18,12 +19,12 @@ import com.raantech.solalat.provider.utils.extensions.checkPhoneNumberFormat
 import com.raantech.solalat.provider.utils.extensions.concatStrings
 
 class ProductsViewModel @ViewModelInject constructor(
-    @Assisted private val savedStateHandle: SavedStateHandle,
-    val productsRepo: ProductsRepo,
-    private val configurationRepo: ConfigurationRepo
+        @Assisted private val savedStateHandle: SavedStateHandle,
+        val productsRepo: ProductsRepo,
+        private val configurationRepo: ConfigurationRepo
 ) : BaseViewModel() {
-
-    var addNew:Boolean = false
+    var productToEdit: Product? = null
+    var addNew: Boolean = false
     val productName: MutableLiveData<String> = MutableLiveData()
     val productDescription: MutableLiveData<String> = MutableLiveData()
     val productPrice: MutableLiveData<String> = MutableLiveData()
@@ -43,23 +44,29 @@ class ProductsViewModel @ViewModelInject constructor(
         emit(response)
     }
 
-    fun addProduct(files: List<Media>, serviceCategory: ServiceCategory,receivedWhatsapp:Boolean) = liveData {
+    fun addProduct(files: List<Media>, serviceCategory: ServiceCategory, receivedWhatsapp: Boolean) = liveData {
         emit(APIResource.loading())
-        val response = productsRepo.addProduct(getAddProductRequest(files.map { it.id },serviceCategory.id,receivedWhatsapp))
+        val response = productsRepo.addProduct(getAddProductRequest(files.map { it.id }, serviceCategory.id, receivedWhatsapp))
+        emit(response)
+    }
+
+    fun updateProduct(files: List<Media>, serviceCategory: ServiceCategory, receivedWhatsapp: Boolean) = liveData {
+        emit(APIResource.loading())
+        val response = productsRepo.updateProduct(productToEdit!!.id!!,getAddProductRequest(files.map { it.id }, serviceCategory.id, receivedWhatsapp))
         emit(response)
     }
 
     private fun getAddProductRequest(files: List<Int>, categoryId: Int?, receivedWhatsapp: Boolean): AddProductRequest {
         return AddProductRequest(
-            isActive = true,
-            categoryId = categoryId,
-            price = productPrice.value.toString().toDouble(),
-            name = productName.value,
-            description = productDescription.value,
-            contactNumber = phoneNumber.value.toString().checkPhoneNumberFormat()
-                .concatStrings(selectedCountryCode.value.toString()),
-            files = Files(baseImage = files[0], additionalImages = files),
-            receivedWhatsapp = receivedWhatsapp
+                isActive = true,
+                categoryId = categoryId,
+                price = productPrice.value.toString().toDouble(),
+                name = productName.value,
+                description = productDescription.value,
+                contactNumber = phoneNumber.value.toString().checkPhoneNumberFormat()
+                        .concatStrings(selectedCountryCode.value.toString()),
+                files = Files(baseImage = files[0], additionalImages = files),
+                receivedWhatsapp = receivedWhatsapp
         )
     }
 }

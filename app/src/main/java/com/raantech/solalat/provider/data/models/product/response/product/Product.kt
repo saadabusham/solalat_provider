@@ -7,7 +7,7 @@ import com.raantech.solalat.provider.data.models.product.response.ServiceCategor
 data class Product(
 
     @field:SerializedName("additional_images")
-	val additionalImages: List<Any?>? = null,
+	val additionalImages: List<Media>? = null,
 
     @field:SerializedName("is_active")
 	val isActive: Boolean? = null,

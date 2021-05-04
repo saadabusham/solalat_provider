@@ -12,25 +12,32 @@ interface ProductsRemoteDao {
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @GET("provider/products/accessories")
     suspend fun getProducts(
-        @Query("skip") skip: Int
+            @Query("skip") skip: Int
     ): ResponseWrapper<List<Product>>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @GET("categories")
     suspend fun getServiceCategories(
-        @Query("type") type: String
+            @Query("type") type: String
     ): ResponseWrapper<ServiceCategoriesResponse>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @POST("provider/products/accessories/store")
     suspend fun addProduct(
-        @Body addProductRequest: AddProductRequest
+            @Body addProductRequest: AddProductRequest
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @PUT("provider/products/accessories/{id}/update")
+    suspend fun updateProduct(
+            @Path("id") id: Int,
+            @Body addProductRequest: AddProductRequest
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @DELETE("provider/media/{mediaId}/destroy")
     suspend fun deleteMedia(
-        @Path("mediaId") mediaId: Int
+            @Path("mediaId") mediaId: Int
     ): ResponseWrapper<Any>
 
 

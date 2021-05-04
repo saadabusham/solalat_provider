@@ -1,4 +1,4 @@
-package com.raantech.solalat.provider.ui.transportation.fragments
+package com.raantech.solalat.provider.ui.products.fragments
 
 import android.app.Activity
 import android.content.Intent
@@ -10,38 +10,34 @@ import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.solalat.provider.data.common.Constants
 import com.raantech.solalat.provider.data.common.CustomObserverResponse
-import com.raantech.solalat.provider.data.models.map.Address
 import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategoriesResponse
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategory
-import com.raantech.solalat.provider.data.models.transportation.response.City
-import com.raantech.solalat.provider.databinding.FragmentAddTransportationBinding
+import com.raantech.solalat.provider.databinding.FragmentAddProductBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.solalat.provider.ui.base.fragment.BaseBindingFragment
-import com.raantech.solalat.provider.ui.map.MapActivity
 import com.raantech.solalat.provider.ui.media.MediaActivity
 import com.raantech.solalat.provider.ui.products.adapters.CategoriesSpinnerAdapter
 import com.raantech.solalat.provider.ui.products.adapters.SmallMediaRecyclerAdapter
-import com.raantech.solalat.provider.ui.transportation.adapters.GeneralStringDropDownAdapter
-import com.raantech.solalat.provider.ui.transportation.dialogs.CitiesBottomSheet
-import com.raantech.solalat.provider.ui.transportation.viewmodels.TransportationViewModel
-import com.raantech.solalat.provider.utils.DateTimeUtil.YEAR_NUMBER_FORMATTING
-import com.raantech.solalat.provider.utils.extensions.*
-import com.raantech.solalat.provider.utils.getLocationName
+import com.raantech.solalat.provider.ui.products.viewmodels.ProductsViewModel
+import com.raantech.solalat.provider.utils.extensions.checkPhoneNumberFormat
+import com.raantech.solalat.provider.utils.extensions.showErrorAlert
+import com.raantech.solalat.provider.utils.extensions.showValidationErrorAlert
+import com.raantech.solalat.provider.utils.extensions.validate
 import com.raantech.solalat.provider.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
-class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationBinding>(),
+class EditProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
         BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
-    private val viewModel: TransportationViewModel by activityViewModels()
+    private val viewModel: ProductsViewModel by activityViewModels()
 
     lateinit var smallMediaRecyclerAdapter: SmallMediaRecyclerAdapter
-    lateinit var yearsDropDownAdapter: GeneralStringDropDownAdapter
-    override fun getLayoutId(): Int = R.layout.fragment_add_transportation
+
+    override fun getLayoutId(): Int = R.layout.fragment_add_product
     private lateinit var categoriesSpinnerAdapter: CategoriesSpinnerAdapter
     override fun onViewVisible() {
         super.onViewVisible()
@@ -53,17 +49,29 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
                 hasTitle = true,
                 title = R.string.solalat_services,
                 hasSubTitle = true,
-                subTitle = R.string.add_transportation_services
+                subTitle = R.string.edit_product
         )
+
         setUpBinding()
         setUpListeners()
         init()
+        setUpData()
+    }
+
+    private fun setUpData() {
+        viewModel.productToEdit?.let {
+            viewModel.productName.postValue(it.name)
+            viewModel.productDescription.postValue(it.description)
+            viewModel.productPrice.postValue(it.price?.amount)
+            viewModel.phoneNumber.postValue(it.contactNumber?.checkPhoneNumberFormat())
+            it.additionalImages?.let { it1 -> smallMediaRecyclerAdapter.submitItems(it1) }
+            binding?.checkboxReceiveWhatsapp?.isChecked = it.receivedWhatsapp ?: false
+        }
     }
 
     private fun init() {
         setUpRecyclerView()
         setUpCategories()
-        setUpYearsAdapter()
     }
 
     private fun setUpBinding() {
@@ -71,32 +79,23 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
     }
 
     private fun setUpListeners() {
+        binding?.btnAddProduct?.text = resources.getString(R.string.save_changes)
+        viewModel.selectedCountryCode.postValue(binding?.countryCodePicker?.defaultCountryCode)
+        binding?.countryCodePicker?.setOnCountryChangeListener {
+            viewModel.selectedCountryCode.postValue(it.phoneCode)
+        }
         binding?.imgUpload?.setOnClickListener {
-            MediaActivity.start(requireActivity(), true, mediaResultLauncher)
+            MediaActivity.start(requireActivity(), true, resultLauncher)
         }
 
-        binding?.btnAddTransport?.setOnClickListener {
+        binding?.btnAddProduct?.setOnClickListener {
             if (isDataValid()) {
-                viewModel.addTransportation(viewModel.getTransportationRequest(
-                        smallMediaRecyclerAdapter.items.map { it.id },
-                        categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index].id,
-                        yearsDropDownAdapter.spinnerItems[yearsDropDownAdapter.index].toInt(),
-                        binding?.checkboxReceiveWhatsapp?.isChecked ?: false,
-                        binding?.checkboxGlobalTransport?.isChecked ?: false)
-                ).observe(this, addTransportationResultObserver())
+                viewModel.updateProduct(
+                        smallMediaRecyclerAdapter.items,
+                        categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index],
+                        binding?.checkboxReceiveWhatsapp?.isChecked ?: false
+                ).observe(this, addProductResultObserver())
             }
-        }
-        binding?.tvSelectCities?.setOnClickListener {
-            CitiesBottomSheet(object : CitiesBottomSheet.CityPickerCallBack {
-                override fun callBack(selectedCities: List<City>) {
-                    viewModel.cities.clear()
-                    viewModel.cities.addAll(selectedCities)
-                    binding?.tvSelectCities?.text = selectedCities.map { it.name }.joinToString()
-                }
-            }, viewModel, viewModel.cities).show(childFragmentManager, "CitiesPicker")
-        }
-        binding?.tvLocation?.setOnClickListener {
-            MapActivity.start(requireActivity(), locationResultLauncher)
         }
     }
 
@@ -108,14 +107,7 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
             )
             return false
         }
-        if (yearsDropDownAdapter.index == -1) {
-            requireActivity().showErrorAlert(
-                    resources.getString(R.string.app_name),
-                    resources.getString(R.string.please_select_the_manufacturing_year)
-            )
-            return false
-        }
-        binding?.edName?.text.toString().validate(
+        binding?.edProductName?.text.toString().validate(
                 ValidatorInputTypesEnums.TEXT,
                 requireContext()
         )
@@ -128,38 +120,37 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
                         return false
                     }
                 }
-        if (viewModel.address.value?.lat == null) {
-            requireActivity().showErrorAlert(
-                    resources.getString(R.string.location),
-                    resources.getString(R.string.please_pick_location)
-            )
-            return false
-        }
-        binding?.edPlateNumber?.text.toString().validate(
+        binding?.edProductDescription?.text.toString().validate(
                 ValidatorInputTypesEnums.TEXT,
                 requireContext()
         )
                 .let {
                     if (!it.isValid) {
                         requireActivity().showValidationErrorAlert(
-                                title = resources.getString(R.string.plate_number),
+                                title = resources.getString(R.string.product_description),
                                 message = it.errorMessage
                         )
                         return false
                     }
                 }
+        binding?.edProductPrice?.text.toString().validate(
+                ValidatorInputTypesEnums.DOUBLE,
+                requireContext()
+        )
+                .let {
+                    if (!it.isValid) {
+                        requireActivity().showValidationErrorAlert(
+                                title = resources.getString(R.string.product_price),
+                                message = it.errorMessage
+                        )
+                        return false
+                    }
+                }
+
         if (smallMediaRecyclerAdapter.itemCount == 0) {
             requireActivity().showErrorAlert(
                     resources.getString(R.string.product_images),
                     resources.getString(R.string.please_select_the_product_images)
-            )
-            return false
-        }
-
-        if (viewModel.cities.size == 0) {
-            requireActivity().showErrorAlert(
-                    resources.getString(R.string.cities),
-                    resources.getString(R.string.please_select_the_provided_cities)
             )
             return false
         }
@@ -200,33 +191,6 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
                 .observe(this, categoriesResultObserver())
     }
 
-
-    private fun setUpYearsAdapter() {
-        yearsDropDownAdapter = GeneralStringDropDownAdapter(binding!!.spinnerYear, requireContext())
-        yearsDropDownAdapter.let { binding?.spinnerYear?.setSpinnerAdapter(it) }
-        binding?.spinnerYear?.getSpinnerRecyclerView()?.layoutManager =
-                LinearLayoutManager(activity)
-        val yearsList = mutableListOf<String>()
-        for (i in -1..30) {
-            if (i == -1) {
-                getCurrentDate().toDate()?.incrementDateByYear(1)?.time?.millisecondFormatting(
-                        YEAR_NUMBER_FORMATTING
-                )
-                        ?.let { yearsList.add(it) }
-            } else
-                getCurrentDate().toDate()?.decrementDateByYear(i)?.time?.millisecondFormatting(
-                        YEAR_NUMBER_FORMATTING
-                )
-                        ?.let { yearsList.add(it) }
-        }
-        yearsDropDownAdapter.setItems(yearsList)
-        binding?.spinnerYear?.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
-            binding?.spinnerYear?.dismiss()
-        }
-        binding?.spinnerYear?.selectItemByIndex(0)
-    }
-
-
     private fun categoriesResultObserver(): CustomObserverResponse<ServiceCategoriesResponse> {
         return CustomObserverResponse(
                 requireActivity(),
@@ -238,13 +202,16 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
                     ) {
                         data?.categories?.let {
                             categoriesSpinnerAdapter.setItems(it)
-                            binding?.spinnerCategory?.selectItemByIndex(0)
+                            categoriesSpinnerAdapter.spinnerItems.withIndex().singleOrNull { it1 -> it1.value.id == viewModel.productToEdit?.category?.id }?.let {
+                                it.value.selected = true
+                                binding?.spinnerCategory?.selectItemByIndex(it.index)
+                            }
                         }
                     }
                 })
     }
 
-    private fun addTransportationResultObserver(): CustomObserverResponse<Any> {
+    private fun addProductResultObserver(): CustomObserverResponse<Any> {
         return CustomObserverResponse(
                 requireActivity(),
                 object : CustomObserverResponse.APICallBack<Any> {
@@ -253,33 +220,19 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
                             subErrorCode: ResponseSubErrorsCodeEnum,
                             data: Any?
                     ) {
-                        navigationController.navigate(R.id.action_addTransportationFragment_to_transportationFragment)
+                        navigationController.navigateUp()
                     }
                 }, showError = true
         )
     }
 
-    var mediaResultLauncher =
+    var resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
                     // There are no request codes
                     val data: Intent? = result.data
                     smallMediaRecyclerAdapter.submitItem(data?.getSerializableExtra(Constants.BundleData.MEDIA) as Media)
                     binding?.imagesRecyclerView?.smoothScrollToPosition(smallMediaRecyclerAdapter.itemCount - 1)
-                }
-            }
-    var locationResultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    val data: Intent? = result.data
-                    viewModel.address.value = data?.getSerializableExtra(Constants.BundleData.ADDRESS) as Address
-                    binding?.tvLocation?.text =
-                            getLocationName(
-                                    viewModel.address.value?.lat,
-                                    viewModel.address.value?.lon
-                            ).also {
-                                viewModel.addressString.postValue(it)
-                            }
                 }
             }
 

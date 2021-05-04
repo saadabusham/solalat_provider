@@ -71,7 +71,7 @@ class AddBarnStep2Fragment : BaseBindingFragment<FragmentAddBarnStep2Binding>() 
             },viewModel,viewModel.services).show(childFragmentManager, "CitiesPicker")
         }
 
-        binding?.btnAddProduct?.setOnClickListener {
+        binding?.btnAddBarn?.setOnClickListener {
             if (isDataValid()) {
                 viewModel.addBarn(viewModel.getBarnRequest(
                     binding?.checkboxReceiveWhatsapp?.isChecked ?: false)

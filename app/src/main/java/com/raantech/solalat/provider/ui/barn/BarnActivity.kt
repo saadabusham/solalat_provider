@@ -17,7 +17,9 @@ import com.raantech.solalat.provider.ui.products.viewmodels.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_auth.*
 import kotlinx.android.synthetic.main.activity_auth.auth_nav_host_fragment
+import kotlinx.android.synthetic.main.activity_barn.*
 import kotlinx.android.synthetic.main.activity_products.*
+import kotlinx.android.synthetic.main.activity_transportation.*
 
 @AndroidEntryPoint
 class BarnActivity : BaseBindingActivity<ActivityBarnBinding>() {
@@ -39,5 +41,20 @@ class BarnActivity : BaseBindingActivity<ActivityBarnBinding>() {
         super.onCreate(savedInstanceState)
         viewModel.addNew = intent.getBooleanExtra(Constants.BundleData.ADD_NEW, false)
         setContentView(R.layout.activity_barn, hasToolbar = false)
+        setStartDestination()
+    }
+
+
+    private fun setStartDestination() {
+        val navHostFragment = barn_nav_host_fragment as NavHostFragment
+        val inflater = navHostFragment.navController.navInflater
+        val graph = inflater.inflate(R.navigation.barn_nav_graph)
+
+        if (intent.getBooleanExtra(Constants.BundleData.ADD_NEW, false)) {
+            graph.startDestination = R.id.addBarnStep1Fragment
+        } else {
+            graph.startDestination = R.id.barnsFragment
+        }
+        navHostFragment.navController.graph = graph
     }
 }

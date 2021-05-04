@@ -6,22 +6,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.liveData
 import com.raantech.solalat.provider.data.api.response.APIResource
-import com.raantech.solalat.provider.data.enums.ServiceTypesEnum
 import com.raantech.solalat.provider.data.models.barn.request.AddBarnRequest
+import com.raantech.solalat.provider.data.models.barn.respnose.Barn
 import com.raantech.solalat.provider.data.models.barn.respnose.ServicesItem
 import com.raantech.solalat.provider.data.models.map.Address
 import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.data.models.product.request.Files
-import com.raantech.solalat.provider.data.models.product.response.ServiceCategory
-import com.raantech.solalat.provider.data.models.transportation.request.AddTransportationRequest
-import com.raantech.solalat.provider.data.models.transportation.response.City
 import com.raantech.solalat.provider.data.repos.barn.BarnRepo
 import com.raantech.solalat.provider.data.repos.configuration.ConfigurationRepo
-import com.raantech.solalat.provider.data.repos.transportation.TransportationRepo
 import com.raantech.solalat.provider.ui.base.viewmodel.BaseViewModel
 import com.raantech.solalat.provider.utils.extensions.checkPhoneNumberFormat
 import com.raantech.solalat.provider.utils.extensions.concatStrings
-import org.intellij.lang.annotations.Language
 
 class BarnViewModel @ViewModelInject constructor(
         @Assisted private val savedStateHandle: SavedStateHandle,
@@ -29,6 +24,7 @@ class BarnViewModel @ViewModelInject constructor(
         private val configurationRepo: ConfigurationRepo
 ) : BaseViewModel() {
 
+    var barnToEdit: Barn? = null
     var addNew: Boolean = false
     val productName: MutableLiveData<String> = MutableLiveData()
     val description: MutableLiveData<String> = MutableLiveData()
@@ -38,8 +34,9 @@ class BarnViewModel @ViewModelInject constructor(
     val address: MutableLiveData<Address> = MutableLiveData()
     val addressString: MutableLiveData<String> = MutableLiveData()
     var services: MutableList<ServicesItem> = mutableListOf()
-    val files : MutableList<Media> = mutableListOf()
-    val logo : MutableList<Media> = mutableListOf()
+    val files: MutableList<Media> = mutableListOf()
+    val logo: MutableList<Media> = mutableListOf()
+
     fun getBarns(skip: Int) = liveData {
         emit(APIResource.loading())
         val response = barnRepo.getBarns(skip)
@@ -55,6 +52,11 @@ class BarnViewModel @ViewModelInject constructor(
     fun addBarn(addBarnRequest: AddBarnRequest) = liveData {
         emit(APIResource.loading())
         val response = barnRepo.addBarns(addBarnRequest)
+        emit(response)
+    }
+    fun updatedBarn(addBarnRequest: AddBarnRequest) = liveData {
+        emit(APIResource.loading())
+        val response = barnRepo.updateBarns(barnToEdit!!.id!!,addBarnRequest)
         emit(response)
     }
 

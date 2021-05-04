@@ -150,6 +150,7 @@
     <!--    Accessories   -->
     <string name="view_products">عرض المنتجات المضافة</string>
     <string name="add_product">اضافة منتج جديد</string>
+    <string name="edit_product">تعديل منتج</string>
     <string name="share_products">نشر المنتجات</string>
     <string name="product_name">اسم المنتج</string>
     <string name="add_product_name">ادخل اسم المنتج</string>
@@ -191,7 +192,8 @@
     <!--    Medical Service   -->
     <string name="view_medical_service">عرض الخدمة الصحية</string>
     <string name="add_medical_service">اضف خدمة صحية</string>
-    <string name="share_service">Share service</string>
+    <string name="edit_medical_service">تعديل خدمة صحية</string>
+    <string name="share_service">نشر الخدمات</string>
     <string name="name">الاسم</string>
     <string name="add_name">اضف الاسم</string>
     <string name="experiences">الخبرات</string>
@@ -224,6 +226,7 @@
     <string name="the_areas_you_serve">المناطق التي تخدمها</string>
     <string name="add_truck">اضف ناقلة</string>
     <string name="view_transport_service">عرض خدمات النقل</string>
+    <string name="edit_transportation_services">تعديل بيانات النقل</string>
 
     <!--    Barn    -->
     <string name="barn_name">اسم الاسطبل</string>
@@ -234,5 +237,12 @@
     <string name="monthly_rental_price">سعر الاجار الشهري</string>
     <string name="services_provided">الخدمات المقدمة</string>
     <string name="you_can_select_multiple_items">بإمكانك اختيار اكثر من خدمة</string>
+    <string name="services">الخدمات</string>
+    <string name="please_select_the_provided_cities">يرجى اختيار المناطق التي تخدمها</string>
+    <string name="please_select_the_provided_services">يرجى اختيار الخدمات التي تقدمها</string>
+    <string name="please_select_the_barn_logo">يرجى اختيار شعار الاسطبل</string>
+    <string name="save_changes">حفظ التعديلات</string>
+    <string name="edit_barn">تعديل السطبل</string>
+    <string name="view_barns">عرض الاسطبلات</string>
 
 </resources>
