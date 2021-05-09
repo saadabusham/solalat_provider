@@ -1,6 +1,7 @@
 package com.raantech.solalat.provider.ui.transportation.fragments
 
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -9,6 +10,7 @@ import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.GeneralError
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.solalat.provider.data.api.response.ResponseWrapper
+import com.raantech.solalat.provider.data.common.Constants
 import com.raantech.solalat.provider.data.common.CustomObserverResponse
 import com.raantech.solalat.provider.data.models.transportation.response.Transportation
 import com.raantech.solalat.provider.databinding.FragmentTransportationBinding
@@ -167,7 +169,7 @@ class TransportationFragment : BaseBindingFragment<FragmentTransportationBinding
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as Transportation
         viewModel.transpornToEdit = item
-        navigationController.navigate(R.id.action_transportationFragment_to_editTransportationFragment)
+        navigationController.navigate(R.id.action_transportationFragment_to_editTransportationFragment, bundleOf(Pair(Constants.BundleData.SERVICE,item)))
     }
 
 

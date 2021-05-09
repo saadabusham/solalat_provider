@@ -47,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
@@ -67,7 +68,7 @@
                 android:layout_marginStart="@dimen/layouts_margin_start"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/layouts_margin_end"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:visibility="gone"
                 android:text="@string/share_service" />
         </LinearLayout>
     </RelativeLayout>

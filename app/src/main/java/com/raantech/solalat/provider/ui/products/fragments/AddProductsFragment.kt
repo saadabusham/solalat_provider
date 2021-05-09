@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
@@ -32,7 +33,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 class AddProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
     BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
-    private val viewModel: ProductsViewModel by activityViewModels()
+    private val viewModel: ProductsViewModel by viewModels()
 
     lateinit var smallMediaRecyclerAdapter: SmallMediaRecyclerAdapter
 
@@ -78,7 +79,8 @@ class AddProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
                 viewModel.addProduct(
                     smallMediaRecyclerAdapter.items,
                     categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index],
-                    binding?.checkboxReceiveWhatsapp?.isChecked ?: false
+                    binding?.checkboxReceiveWhatsapp?.isChecked ?: false,
+                    binding?.checkboxIsActive?.isChecked ?: false
                 ).observe(this, addProductResultObserver())
             }
         }

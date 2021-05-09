@@ -204,7 +204,6 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
     override fun onItemClick(view: View?, position: Int, item: Any) {
         if (item is String) {
             binding?.drawerLayout?.closeDrawer(GravityCompat.START)
-            longToast(item)
             when (position) {
                 1 -> MediaActivity.start(this)
                 3 -> viewModel.saveLanguage().observe(this, Observer {

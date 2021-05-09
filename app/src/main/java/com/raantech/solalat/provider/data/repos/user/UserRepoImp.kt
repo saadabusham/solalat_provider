@@ -13,18 +13,27 @@ import com.raantech.solalat.provider.data.repos.base.BaseRepo
 import javax.inject.Inject
 
 class UserRepoImp @Inject constructor(
-    responseHandler: ResponseHandler,
-    private val userRemoteDao: UserRemoteDao,
-    private val userPref: UserPref
+        responseHandler: ResponseHandler,
+        private val userRemoteDao: UserRemoteDao,
+        private val userPref: UserPref
 ) : BaseRepo(responseHandler), UserRepo {
 
 
     override suspend fun login(
-        phoneNumber: String
+            phoneNumber: String
     ): APIResource<ResponseWrapper<TokenModel>> {
         return try {
             responseHandle.handleSuccess(userRemoteDao.login(
-                phoneNumber
+                    phoneNumber
+            ))
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun logout(): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(userRemoteDao.logout(
             ))
         } catch (e: Exception) {
             responseHandle.handleException(e)
@@ -43,7 +52,7 @@ class UserRepoImp @Inject constructor(
     override suspend fun resendCode(token: String): APIResource<ResponseWrapper<TokenModel>> {
         return try {
             responseHandle.handleSuccess(userRemoteDao.resendCode(
-                token
+                    token
             ))
         } catch (e: Exception) {
             responseHandle.handleException(e)
@@ -51,14 +60,14 @@ class UserRepoImp @Inject constructor(
     }
 
     override suspend fun verify(
-        token: String,
-        code: Int,
-        device_token: String,
-        platform: String
+            token: String,
+            code: Int,
+            device_token: String,
+            platform: String
     ): APIResource<ResponseWrapper<UserDetailsResponseModel>> {
         return try {
             responseHandle.handleSuccess(userRemoteDao.verify(
-                token, code, device_token, platform
+                    token, code, device_token, platform
             ))
         } catch (e: Exception) {
             responseHandle.handleException(e)

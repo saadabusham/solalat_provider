@@ -1,6 +1,7 @@
 package com.raantech.solalat.provider.ui.medical.fragments
 
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
@@ -10,6 +11,7 @@ import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.GeneralError
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.solalat.provider.data.api.response.ResponseWrapper
+import com.raantech.solalat.provider.data.common.Constants
 import com.raantech.solalat.provider.data.common.CustomObserverResponse
 import com.raantech.solalat.provider.data.models.medical.response.Medical
 import com.raantech.solalat.provider.databinding.FragmentMedicalServicesBinding
@@ -173,7 +175,7 @@ class MedicalServicesFragment : BaseBindingFragment<FragmentMedicalServicesBindi
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as Medical
         viewModel.medicalToUpdate = item
-        navigationController.navigate(R.id.action_medicalServicesFragment_to_editMedicalServiceFragment)
+        navigationController.navigate(R.id.action_medicalServicesFragment_to_editMedicalServiceFragment, bundleOf(Pair(Constants.BundleData.SERVICE,item)))
     }
 
 

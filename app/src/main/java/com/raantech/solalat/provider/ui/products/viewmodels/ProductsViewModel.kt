@@ -44,21 +44,28 @@ class ProductsViewModel @ViewModelInject constructor(
         emit(response)
     }
 
-    fun addProduct(files: List<Media>, serviceCategory: ServiceCategory, receivedWhatsapp: Boolean) = liveData {
+    fun addProduct(files: List<Media>, serviceCategory: ServiceCategory,
+                   receivedWhatsapp: Boolean,
+                   isActive: Boolean) = liveData {
         emit(APIResource.loading())
-        val response = productsRepo.addProduct(getAddProductRequest(files.map { it.id }, serviceCategory.id, receivedWhatsapp))
+        val response = productsRepo.addProduct(getAddProductRequest(files.map { it.id },
+                serviceCategory.id, receivedWhatsapp, isActive))
         emit(response)
     }
 
-    fun updateProduct(files: List<Media>, serviceCategory: ServiceCategory, receivedWhatsapp: Boolean) = liveData {
+    fun updateProduct(files: List<Media>, serviceCategory: ServiceCategory,
+                      receivedWhatsapp: Boolean,
+                      isActive: Boolean) = liveData {
         emit(APIResource.loading())
-        val response = productsRepo.updateProduct(productToEdit!!.id!!,getAddProductRequest(files.map { it.id }, serviceCategory.id, receivedWhatsapp))
+        val response = productsRepo.updateProduct(productToEdit!!.id!!,
+                getAddProductRequest(files.map { it.id },
+                        serviceCategory.id, receivedWhatsapp, isActive))
         emit(response)
     }
 
-    private fun getAddProductRequest(files: List<Int>, categoryId: Int?, receivedWhatsapp: Boolean): AddProductRequest {
+    private fun getAddProductRequest(files: List<Int>, categoryId: Int?, receivedWhatsapp: Boolean, isActive: Boolean): AddProductRequest {
         return AddProductRequest(
-                isActive = true,
+                isActive = isActive,
                 categoryId = categoryId,
                 price = productPrice.value.toString().toDouble(),
                 name = productName.value,

@@ -74,7 +74,8 @@ class AddBarnStep2Fragment : BaseBindingFragment<FragmentAddBarnStep2Binding>() 
         binding?.btnAddBarn?.setOnClickListener {
             if (isDataValid()) {
                 viewModel.addBarn(viewModel.getBarnRequest(
-                    binding?.checkboxReceiveWhatsapp?.isChecked ?: false)
+                    binding?.checkboxReceiveWhatsapp?.isChecked ?: false,
+                    binding?.checkboxIsActive?.isChecked ?: false)
                 ).observe(this, addProductResultObserver())
             }
         }

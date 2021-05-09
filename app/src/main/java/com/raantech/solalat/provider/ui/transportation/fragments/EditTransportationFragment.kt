@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
@@ -15,6 +16,7 @@ import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategoriesResponse
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategory
 import com.raantech.solalat.provider.data.models.transportation.response.City
+import com.raantech.solalat.provider.data.models.transportation.response.Transportation
 import com.raantech.solalat.provider.databinding.FragmentAddTransportationBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListener
@@ -37,7 +39,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 class EditTransportationFragment : BaseBindingFragment<FragmentAddTransportationBinding>(),
         BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
-    private val viewModel: TransportationViewModel by activityViewModels()
+    private val viewModel: TransportationViewModel by viewModels()
 
     lateinit var smallMediaRecyclerAdapter: SmallMediaRecyclerAdapter
     lateinit var yearsDropDownAdapter: GeneralStringDropDownAdapter
@@ -55,6 +57,7 @@ class EditTransportationFragment : BaseBindingFragment<FragmentAddTransportation
                 hasSubTitle = true,
                 subTitle = R.string.edit_transportation_services
         )
+        viewModel.transpornToEdit = arguments?.getSerializable(Constants.BundleData.SERVICE) as Transportation
         setUpBinding()
         setUpListeners()
         init()
@@ -77,6 +80,7 @@ class EditTransportationFragment : BaseBindingFragment<FragmentAddTransportation
             binding?.checkboxGlobalTransport?.isChecked = it.availableIt ?: false
             viewModel.phoneNumber.postValue(it.contactNumber?.checkPhoneNumberFormat())
             binding?.checkboxReceiveWhatsapp?.isChecked = it.receivedWhatsapp ?: false
+            binding?.checkboxIsActive?.isChecked = it.isActive ?: false
         }
     }
 
@@ -107,7 +111,8 @@ class EditTransportationFragment : BaseBindingFragment<FragmentAddTransportation
                         categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index].id,
                         yearsDropDownAdapter.spinnerItems[yearsDropDownAdapter.index].toInt(),
                         binding?.checkboxReceiveWhatsapp?.isChecked ?: false,
-                        binding?.checkboxGlobalTransport?.isChecked ?: false)
+                        binding?.checkboxGlobalTransport?.isChecked ?: false,
+                        binding?.checkboxIsActive?.isChecked ?: false)
                 ).observe(this, updateTransportationResultObserver())
             }
         }

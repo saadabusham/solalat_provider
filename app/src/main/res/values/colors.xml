@@ -98,9 +98,9 @@
     <color name="cardview_state_unfocused">#E6E6E6</color>
     <color name="cardveiw_state_error">#DC0C0C</color>
     <color name="cardveiw_state_valid">#60bf04</color>
-    <color name="cardview_orange">#F9C332</color>
-    <color name="cardview_stroke_gray">#D8D8D8</color>
-    <color name="cardview_fill_gray">#FBFBFC</color>
+    <color name="cardview_orange">#F9C332</color>#000000
+    <color name="cardview_stroke_gray">#80000000</color>
+    <color name="cardview_fill_gray">#D8D8D8</color>
     <color name="cardview_border_gray">#E8E8E8</color>
 
     <!--    Search -->

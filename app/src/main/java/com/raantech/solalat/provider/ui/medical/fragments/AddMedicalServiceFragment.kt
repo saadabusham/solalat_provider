@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
@@ -28,7 +29,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 @AndroidEntryPoint
 class AddMedicalServiceFragment : BaseBindingFragment<FragmentAddMedicalServiceBinding>() {
 
-    private val viewModel: MedicalServicesViewModel by activityViewModels()
+    private val viewModel: MedicalServicesViewModel by viewModels()
 
     override fun getLayoutId(): Int = R.layout.fragment_add_medical_service
     private lateinit var categoriesSpinnerAdapter: CategoriesSpinnerAdapter
@@ -66,7 +67,8 @@ class AddMedicalServiceFragment : BaseBindingFragment<FragmentAddMedicalServiceB
             if (isDataValid()) {
                 viewModel.addMedical(
                         categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index],
-                        binding?.checkboxReceiveWhatsapp?.isChecked ?: false
+                        binding?.checkboxReceiveWhatsapp?.isChecked ?: false,
+                        binding?.checkboxIsActive?.isChecked ?: false
                 ).observe(this, addMedicalResultObserver())
             }
         }

@@ -57,7 +57,7 @@ class CustomObserverResponse<T>(
                 if (showError)
                     handleRequestFailedMessages(
                             responseWrapperResponse.statusSubCode,
-                            responseWrapperResponse.errors?.toString()?:responseWrapperResponse.messages
+                            responseWrapperResponse.errors?.get(0)?.getErrorsString()?:responseWrapperResponse.messages
                     )
                 responseWrapperResponse.messages?.let {
                     responseWrapperResponse.statusSubCode?.let { it1 ->

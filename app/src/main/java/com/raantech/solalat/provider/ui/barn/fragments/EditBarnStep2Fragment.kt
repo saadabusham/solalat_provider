@@ -53,6 +53,7 @@ class EditBarnStep2Fragment : BaseBindingFragment<FragmentAddBarnStep2Binding>()
             viewModel.price.postValue(it.price?.amount)
             viewModel.phoneNumber.postValue(it.contactNumber?.checkPhoneNumberFormat())
             binding?.checkboxReceiveWhatsapp?.isChecked = it.receivedWhatsapp ?: false
+            binding?.checkboxIsActive?.isChecked = it.isActive ?: false
         }
     }
 
@@ -76,7 +77,8 @@ class EditBarnStep2Fragment : BaseBindingFragment<FragmentAddBarnStep2Binding>()
         binding?.btnAddBarn?.setOnClickListener {
             if (isDataValid()) {
                 viewModel.updatedBarn(viewModel.getBarnRequest(
-                        binding?.checkboxReceiveWhatsapp?.isChecked ?: false)
+                        binding?.checkboxReceiveWhatsapp?.isChecked ?: false,
+                        binding?.checkboxIsActive?.isChecked ?: false)
                 ).observe(this, updateResultObserver())
             }
         }

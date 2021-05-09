@@ -42,24 +42,26 @@ class MedicalServicesViewModel @ViewModelInject constructor(
         emit(response)
     }
 
-    fun addMedical(serviceCategory: ServiceCategory, receivedWhatsapp: Boolean) = liveData {
+    fun addMedical(serviceCategory: ServiceCategory, receivedWhatsapp: Boolean, isActive: Boolean) = liveData {
         emit(APIResource.loading())
         val response = medicalRepo.addMedicalService(
                 getAddProductRequest(
                         serviceCategory.id,
-                        receivedWhatsapp
+                        receivedWhatsapp,
+                        isActive
                 )
         )
         emit(response)
     }
 
-    fun updateMedical(serviceCategory: ServiceCategory, receivedWhatsapp: Boolean) = liveData {
+    fun updateMedical(serviceCategory: ServiceCategory, receivedWhatsapp: Boolean, isActive: Boolean) = liveData {
         emit(APIResource.loading())
         val response = medicalRepo.updateMedicalService(
                 medicalToUpdate!!.id!!,
                 getAddProductRequest(
                         serviceCategory.id,
-                        receivedWhatsapp
+                        receivedWhatsapp,
+                        isActive
                 )
         )
         emit(response)
@@ -67,10 +69,11 @@ class MedicalServicesViewModel @ViewModelInject constructor(
 
     private fun getAddProductRequest(
             categoryId: Int?,
-            receivedWhatsapp: Boolean
+            receivedWhatsapp: Boolean,
+            isActive: Boolean
     ): AddMedicalRequest {
         return AddMedicalRequest(
-                isActive = true,
+                isActive = isActive,
                 categoryId = categoryId,
                 address = addressString.value.toString(),
                 latitude = address.value?.lat,

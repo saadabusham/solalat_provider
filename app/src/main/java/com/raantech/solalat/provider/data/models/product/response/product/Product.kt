@@ -3,6 +3,7 @@ package com.raantech.solalat.provider.data.models.product.response.product
 import com.google.gson.annotations.SerializedName
 import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategory
+import java.io.Serializable
 
 data class Product(
 
@@ -47,4 +48,4 @@ data class Product(
 
     @field:SerializedName("received_whatsapp")
 	val receivedWhatsapp: Boolean? = null
-)
+):Serializable

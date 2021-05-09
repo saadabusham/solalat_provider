@@ -1,4 +1,4 @@
-package com.solalat.alalami.ui.base.adapters
+package com.raantech.solalat.provider.ui.base.adapters
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

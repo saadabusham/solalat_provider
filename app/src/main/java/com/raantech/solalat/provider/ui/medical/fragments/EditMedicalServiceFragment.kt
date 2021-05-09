@@ -4,12 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.solalat.provider.data.common.Constants
 import com.raantech.solalat.provider.data.common.CustomObserverResponse
 import com.raantech.solalat.provider.data.models.map.Address
+import com.raantech.solalat.provider.data.models.medical.response.Medical
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategoriesResponse
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategory
 import com.raantech.solalat.provider.databinding.FragmentAddMedicalServiceBinding
@@ -29,7 +31,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 @AndroidEntryPoint
 class EditMedicalServiceFragment : BaseBindingFragment<FragmentAddMedicalServiceBinding>() {
 
-    private val viewModel: MedicalServicesViewModel by activityViewModels()
+    private val viewModel: MedicalServicesViewModel by viewModels()
 
     override fun getLayoutId(): Int = R.layout.fragment_add_medical_service
     private lateinit var categoriesSpinnerAdapter: CategoriesSpinnerAdapter
@@ -45,6 +47,7 @@ class EditMedicalServiceFragment : BaseBindingFragment<FragmentAddMedicalService
                 hasSubTitle = true,
                 subTitle = R.string.edit_medical_service
         )
+        viewModel.medicalToUpdate = arguments?.getSerializable(Constants.BundleData.SERVICE) as Medical
         setUpBinding()
         setUpListeners()
         init()
@@ -60,6 +63,7 @@ class EditMedicalServiceFragment : BaseBindingFragment<FragmentAddMedicalService
             binding?.tvLocation?.text = it.address
             viewModel.phoneNumber.postValue(it.contactNumber?.checkPhoneNumberFormat())
             binding?.checkboxReceiveWhatsapp?.isChecked = it.receivedWhatsapp ?: false
+            binding?.checkboxIsActive?.isChecked = it.isActive ?: false
         }
     }
 
@@ -81,7 +85,8 @@ class EditMedicalServiceFragment : BaseBindingFragment<FragmentAddMedicalService
             if (isDataValid()) {
                 viewModel.updateMedical(
                         categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index],
-                        binding?.checkboxReceiveWhatsapp?.isChecked ?: false
+                        binding?.checkboxReceiveWhatsapp?.isChecked ?: false,
+                        binding?.checkboxIsActive?.isChecked ?: false
                 ).observe(this, updateMedicalResultObserver())
             }
         }

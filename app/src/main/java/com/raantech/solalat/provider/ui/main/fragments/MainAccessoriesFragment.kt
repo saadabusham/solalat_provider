@@ -1,17 +1,19 @@
 package com.raantech.solalat.provider.ui.main.fragments
 
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.paginate.Paginate
+import com.paginate.recycler.LoadingListItemCreator
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.GeneralError
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.solalat.provider.data.api.response.ResponseWrapper
 import com.raantech.solalat.provider.data.common.CustomObserverResponse
-import com.raantech.solalat.provider.data.enums.ServiceTypesEnum
-import com.raantech.solalat.provider.data.models.main.home.Service
 import com.raantech.solalat.provider.data.models.product.response.product.Product
 import com.raantech.solalat.provider.databinding.FragmentMainAccessoriesBinding
 import com.raantech.solalat.provider.ui.add_new_service.AddNewServiceActivity
@@ -20,7 +22,6 @@ import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListe
 import com.raantech.solalat.provider.ui.base.fragment.BaseBindingFragment
 import com.raantech.solalat.provider.ui.main.adapters.ProductsVerticalGridRecyclerAdapter
 import com.raantech.solalat.provider.ui.main.viewmodels.MainViewModel
-import com.raantech.solalat.provider.ui.medical.MedicalServicesActivity
 import com.raantech.solalat.provider.ui.products.ProductsActivity
 import com.raantech.solalat.provider.utils.extensions.gone
 import com.raantech.solalat.provider.utils.extensions.visible
@@ -28,7 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainAccessoriesFragment : BaseBindingFragment<FragmentMainAccessoriesBinding>(),
-    BaseBindingRecyclerViewAdapter.OnItemClickListener {
+        BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: MainViewModel by activityViewModels()
 
@@ -70,13 +71,13 @@ class MainAccessoriesFragment : BaseBindingFragment<FragmentMainAccessoriesBindi
 
     private fun setUpListeners() {
         binding?.btnAddProduct?.setOnClickListener {
-            ProductsActivity.start(requireContext(),true)
+            ProductsActivity.start(requireContext(), true)
         }
         binding?.btnAddService?.setOnClickListener {
             AddNewServiceActivity.start(requireContext())
         }
         binding?.btnEditInfo?.setOnClickListener {
-            ProductsActivity.start(requireContext(),false)
+            ProductsActivity.start(requireContext(), false)
         }
     }
 
@@ -104,9 +105,22 @@ class MainAccessoriesFragment : BaseBindingFragment<FragmentMainAccessoriesBindi
             }
 
         })
-            .setLoadingTriggerThreshold(1)
-            .addLoadingListItem(false)
-            .build()
+                .setLoadingTriggerThreshold(1)
+                .addLoadingListItem(true)
+                .setLoadingListItemCreator(object : LoadingListItemCreator {
+                    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+                        val view = LayoutInflater.from(parent!!.context)
+                                .inflate(R.layout.loading_row, parent, false)
+                        return object : RecyclerView.ViewHolder(view) {}
+                    }
+
+                    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+
+                    }
+
+                })
+                .build()
+
     }
 
     private fun hideShowNoData() {
@@ -135,35 +149,35 @@ class MainAccessoriesFragment : BaseBindingFragment<FragmentMainAccessoriesBindi
 
     private fun productsObserver(): CustomObserverResponse<List<Product>> {
         return CustomObserverResponse(
-            requireActivity(),
-            object : CustomObserverResponse.APICallBack<List<Product>> {
-                override fun onSuccess(
-                    statusCode: Int,
-                    subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: ResponseWrapper<List<Product>>?
-                ) {
-                    isFinished = data?.body?.isNullOrEmpty() == true
-                    data?.body?.let {
-                        productsRecyclerAdapter.addItems(it)
+                requireActivity(),
+                object : CustomObserverResponse.APICallBack<List<Product>> {
+                    override fun onSuccess(
+                            statusCode: Int,
+                            subErrorCode: ResponseSubErrorsCodeEnum,
+                            data: ResponseWrapper<List<Product>>?
+                    ) {
+                        isFinished = data?.body?.isNullOrEmpty() == true
+                        data?.body?.let {
+                            productsRecyclerAdapter.addItems(it)
+                        }
+                        loading.postValue(false)
+                        hideShowNoData()
                     }
-                    loading.postValue(false)
-                    hideShowNoData()
-                }
 
-                override fun onError(
-                    subErrorCode: ResponseSubErrorsCodeEnum,
-                    message: String,
-                    errors: List<GeneralError>?
-                ) {
-                    super.onError(subErrorCode, message, errors)
-                    loading.postValue(false)
-                    hideShowNoData()
-                }
+                    override fun onError(
+                            subErrorCode: ResponseSubErrorsCodeEnum,
+                            message: String,
+                            errors: List<GeneralError>?
+                    ) {
+                        super.onError(subErrorCode, message, errors)
+                        loading.postValue(false)
+                        hideShowNoData()
+                    }
 
-                override fun onLoading() {
-                    loading.postValue(true)
-                }
-            }, true, showError = false
+                    override fun onLoading() {
+                        loading.postValue(true)
+                    }
+                }, false, showError = false
         )
     }
 

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.common.Constants
 import com.raantech.solalat.provider.data.models.map.Address

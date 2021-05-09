@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.raantech.solalat.provider.data.models.barn.respnose.ServicesItem" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:orientation="horizontal"
+        android:gravity="center|start">
+
+        <ImageView
+            android:id="@+id/imgSelected"
+            android:layout_width="@dimen/_7sdp"
+            android:layout_height="@dimen/_7sdp"
+            android:src="@drawable/ic_square"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:gravity="center|start"
+            android:text="@{item.name}"
+            android:textAppearance="@style/textview_normal_regular"
+            android:textSize="@dimen/_14ssp"
+            tools:text="خدمات الحدادة"
+            android:textColor="@color/service_title_color"
+            android:includeFontPadding="false"/>
+
+    </LinearLayout>
+
+</layout>

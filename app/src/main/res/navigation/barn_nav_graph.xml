@@ -29,7 +29,7 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/editBarnStep1Fragment"
@@ -42,21 +42,13 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/barnsFragment"
         android:name="com.raantech.solalat.provider.ui.barn.fragments.BarnsFragment"
         android:label="BarnsFragment"
         tools:layout="@layout/fragment_barn">
-        <action
-            android:id="@+id/action_barnsFragment_to_editBarnStep1Fragment"
-            app:destination="@id/editBarnStep1Fragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/barnsFragment"/>
         <action
             android:id="@+id/action_barnsFragment_to_addBarnStep1Fragment"
             app:destination="@id/addBarnStep1Fragment"
@@ -65,7 +57,15 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/barnsFragment"
-            app:popUpToInclusive="true"   />
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_barnsFragment_to_barnDetailsFragment"
+            app:destination="@id/barnDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/barnsFragment"/>
     </fragment>
     <fragment
         android:id="@+id/editBarnStep2Fragment"
@@ -80,6 +80,20 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/editBarnStep2Fragment"
-            app:popUpToInclusive="true"   />
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/barnDetailsFragment"
+        android:name="com.raantech.solalat.provider.ui.barn.fragments.BarnDetailsFragment"
+        android:label="BarnDetailsFragment"
+        tools:layout="@layout/fragment_barn_details">
+        <action
+            android:id="@+id/action_barnDetailsFragment_to_editBarnStep1Fragment"
+            app:destination="@id/editBarnStep1Fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/barnDetailsFragment" />
     </fragment>
 </navigation>

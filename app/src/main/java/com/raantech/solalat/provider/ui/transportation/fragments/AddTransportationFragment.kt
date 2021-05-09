@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
@@ -37,7 +38,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationBinding>(),
         BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
-    private val viewModel: TransportationViewModel by activityViewModels()
+    private val viewModel: TransportationViewModel by viewModels()
 
     lateinit var smallMediaRecyclerAdapter: SmallMediaRecyclerAdapter
     lateinit var yearsDropDownAdapter: GeneralStringDropDownAdapter
@@ -82,7 +83,8 @@ class AddTransportationFragment : BaseBindingFragment<FragmentAddTransportationB
                         categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index].id,
                         yearsDropDownAdapter.spinnerItems[yearsDropDownAdapter.index].toInt(),
                         binding?.checkboxReceiveWhatsapp?.isChecked ?: false,
-                        binding?.checkboxGlobalTransport?.isChecked ?: false)
+                        binding?.checkboxGlobalTransport?.isChecked ?: false,
+                        binding?.checkboxIsActive?.isChecked ?: false)
                 ).observe(this, addTransportationResultObserver())
             }
         }

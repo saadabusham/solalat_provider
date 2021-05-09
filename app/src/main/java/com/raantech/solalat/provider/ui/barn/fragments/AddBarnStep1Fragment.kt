@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.common.Constants
 import com.raantech.solalat.provider.data.models.map.Address
@@ -29,7 +30,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 class AddBarnStep1Fragment : BaseBindingFragment<FragmentAddBarnStep1Binding>(),
         BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
-    private val viewModel: BarnViewModel by activityViewModels()
+    private val viewModel: BarnViewModel by viewModels()
 
     lateinit var imagesMediaRecyclerAdapter: SmallMediaRecyclerAdapter
     lateinit var logoMediaRecyclerAdapter: SmallMediaRecyclerAdapter

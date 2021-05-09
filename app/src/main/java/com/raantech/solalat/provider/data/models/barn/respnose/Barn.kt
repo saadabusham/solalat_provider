@@ -3,6 +3,7 @@ package com.raantech.solalat.provider.data.models.barn.respnose
 import com.google.gson.annotations.SerializedName
 import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.data.models.product.response.product.Price
+import java.io.Serializable
 
 data class Barn(
 		@field:SerializedName("additional_images")
@@ -49,4 +50,4 @@ data class Barn(
 
 		@field:SerializedName("longitude")
 		val longitude: String? = null
-)
+):Serializable

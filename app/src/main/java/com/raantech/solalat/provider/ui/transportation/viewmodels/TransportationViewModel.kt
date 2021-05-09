@@ -58,13 +58,18 @@ class TransportationViewModel @ViewModelInject constructor(
 
     fun updateTransportation(addTransportationRequest: AddTransportationRequest) = liveData {
         emit(APIResource.loading())
-        val response = transportationRepo.updateTransportation(transpornToEdit!!.id!!,addTransportationRequest)
+        val response = transportationRepo.updateTransportation(transpornToEdit!!.id!!, addTransportationRequest)
         emit(response)
     }
 
-    fun getTransportationRequest(files: List<Int>, categoryId: Int?, year: Int, receivedWhatsapp: Boolean, globalTransportation: Boolean): AddTransportationRequest {
+    fun getTransportationRequest(files: List<Int>,
+                                 categoryId: Int?,
+                                 year: Int,
+                                 receivedWhatsapp: Boolean,
+                                 globalTransportation: Boolean,
+                                 isActive: Boolean): AddTransportationRequest {
         return AddTransportationRequest(
-                isActive = true,
+                isActive = isActive,
                 address = addressString.value.toString(),
                 latitude = address.value?.lat,
                 longitude = address.value?.lon,

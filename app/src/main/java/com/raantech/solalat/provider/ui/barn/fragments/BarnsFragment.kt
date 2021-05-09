@@ -1,14 +1,20 @@
 package com.raantech.solalat.provider.ui.barn.fragments
 
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.paginate.Paginate
+import com.paginate.recycler.LoadingListItemCreator
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.GeneralError
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.solalat.provider.data.api.response.ResponseWrapper
+import com.raantech.solalat.provider.data.common.Constants
 import com.raantech.solalat.provider.data.common.CustomObserverResponse
 import com.raantech.solalat.provider.data.models.barn.respnose.Barn
 import com.raantech.solalat.provider.databinding.FragmentBarnBinding
@@ -85,7 +91,10 @@ class BarnsFragment : BaseBindingFragment<FragmentBarnBinding>(),
     }
 
     private fun setUpRecyclerView() {
-        barnsRecyclerAdapter = BarnsRecyclerAdapter(requireContext(), object : Paginate.Callbacks {
+        barnsRecyclerAdapter = BarnsRecyclerAdapter(requireContext())
+        binding?.recyclerView?.adapter = barnsRecyclerAdapter
+        binding?.recyclerView.setOnItemClickListener(this)
+        Paginate.with(binding?.recyclerView, object : Paginate.Callbacks {
             override fun onLoadMore() {
                 if (loading.value == false && barnsRecyclerAdapter.itemCount > 0 && !isFinished) {
                     loadProducts()
@@ -101,8 +110,21 @@ class BarnsFragment : BaseBindingFragment<FragmentBarnBinding>(),
             }
 
         })
-        binding?.recyclerView?.adapter = barnsRecyclerAdapter
-        binding?.recyclerView.setOnItemClickListener(this)
+                .setLoadingTriggerThreshold(1)
+                .addLoadingListItem(true)
+                .setLoadingListItemCreator(object : LoadingListItemCreator {
+                    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+                        val view = LayoutInflater.from(parent!!.context)
+                                .inflate(R.layout.loading_row, parent, false)
+                        return object : RecyclerView.ViewHolder(view) {}
+                    }
+
+                    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+
+                    }
+
+                })
+                .build()
     }
 
     private fun hideShowNoData() {
@@ -159,7 +181,7 @@ class BarnsFragment : BaseBindingFragment<FragmentBarnBinding>(),
                     override fun onLoading() {
                         loading.postValue(true)
                     }
-                }, true, showError = false
+                }, false, showError = false
         )
     }
 
@@ -167,7 +189,7 @@ class BarnsFragment : BaseBindingFragment<FragmentBarnBinding>(),
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as Barn
         viewModel.barnToEdit = item
-        navigationController.navigate(R.id.action_barnsFragment_to_editBarnStep1Fragment)
+        navigationController.navigate(R.id.action_barnsFragment_to_barnDetailsFragment, bundleOf(Pair(Constants.BundleData.SERVICE,item)))
     }
 
 

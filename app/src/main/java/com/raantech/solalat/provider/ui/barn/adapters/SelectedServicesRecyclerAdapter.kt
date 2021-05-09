@@ -4,21 +4,20 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.paginate.Paginate
-import com.raantech.solalat.provider.data.models.barn.respnose.Barn
-import com.raantech.solalat.provider.data.models.transportation.response.Transportation
-import com.raantech.solalat.provider.databinding.RowBarnBinding
-import com.raantech.solalat.provider.databinding.RowTransportationBinding
+import com.raantech.solalat.provider.data.models.barn.respnose.ServicesItem
+import com.raantech.solalat.provider.data.models.main.home.Service
+import com.raantech.solalat.provider.databinding.RowSelectedServiceBinding
+import com.raantech.solalat.provider.databinding.RowServiceBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder
 
-class BarnsRecyclerAdapter constructor(
-        context: Context, val paginateCallBack: Paginate.Callbacks? = null
-) : BaseBindingRecyclerViewAdapter<Barn>(context) {
+class SelectedServicesRecyclerAdapter(
+        context: Context
+) : BaseBindingRecyclerViewAdapter<ServicesItem>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
-                RowBarnBinding.inflate(
+                RowSelectedServiceBinding.inflate(
                         LayoutInflater.from(context), parent, false
                 )
         )
@@ -30,16 +29,13 @@ class BarnsRecyclerAdapter constructor(
         }
     }
 
-    inner class ViewHolder(private val binding: RowBarnBinding) :
-            BaseViewHolder<Barn>(binding.root) {
+    inner class ViewHolder(private val binding: RowSelectedServiceBinding) :
+            BaseViewHolder<ServicesItem>(binding.root) {
 
-        override fun bind(item: Barn) {
+        override fun bind(item: ServicesItem) {
             binding.item = item
-            if (adapterPosition == itemCount - 1) {
-                paginateCallBack?.onLoadMore()
-            }
             binding.root.setOnClickListener {
-                itemClickListener?.onItemClick(it,adapterPosition,item)
+                itemClickListener?.onItemClick(it, adapterPosition, item)
             }
         }
     }

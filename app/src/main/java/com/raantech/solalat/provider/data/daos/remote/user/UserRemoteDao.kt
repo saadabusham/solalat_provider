@@ -17,6 +17,12 @@ interface UserRemoteDao {
     ): ResponseWrapper<TokenModel>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @FormUrlEncoded
+    @POST("provider/auth/logout")
+    suspend fun logout(
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @GET("provider/appServices")
     suspend fun getMyServices(): ResponseWrapper<List<MyService>>
 

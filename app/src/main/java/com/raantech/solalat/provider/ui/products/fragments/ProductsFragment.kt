@@ -1,6 +1,7 @@
 package com.raantech.solalat.provider.ui.products.fragments
 
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
@@ -10,6 +11,7 @@ import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.GeneralError
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
 import com.raantech.solalat.provider.data.api.response.ResponseWrapper
+import com.raantech.solalat.provider.data.common.Constants
 import com.raantech.solalat.provider.data.common.CustomObserverResponse
 import com.raantech.solalat.provider.data.models.product.response.product.Product
 import com.raantech.solalat.provider.databinding.FragmentProductsBinding
@@ -168,7 +170,7 @@ class ProductsFragment : BaseBindingFragment<FragmentProductsBinding>(),
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as Product
         viewModel.productToEdit = item
-        navigationController.navigate(R.id.action_productsFragment_to_editProductsFragment)
+        navigationController.navigate(R.id.action_productsFragment_to_editProductsFragment, bundleOf(Pair(Constants.BundleData.PRODUCT,item)))
     }
 
 

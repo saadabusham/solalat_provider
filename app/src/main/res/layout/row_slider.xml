@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="data"
+            type="com.raantech.solalat.provider.data.models.media.Media" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgMedia"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_190sdp"
+            android:scaleType="centerCrop"
+            android:transitionName="image"
+            ivImageUrl="@{data.url}"
+            tools:src="@tools:sample/avatars" />
+    </LinearLayout>
+</layout>

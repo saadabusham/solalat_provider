@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raantech.solalat.provider.R
 import com.raantech.solalat.provider.data.api.response.ResponseSubErrorsCodeEnum
@@ -13,6 +14,7 @@ import com.raantech.solalat.provider.data.common.CustomObserverResponse
 import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategoriesResponse
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategory
+import com.raantech.solalat.provider.data.models.product.response.product.Product
 import com.raantech.solalat.provider.databinding.FragmentAddProductBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListener
@@ -33,7 +35,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 class EditProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
         BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
-    private val viewModel: ProductsViewModel by activityViewModels()
+    private val viewModel: ProductsViewModel by viewModels()
 
     lateinit var smallMediaRecyclerAdapter: SmallMediaRecyclerAdapter
 
@@ -51,7 +53,7 @@ class EditProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
                 hasSubTitle = true,
                 subTitle = R.string.edit_product
         )
-
+        viewModel.productToEdit = arguments?.getSerializable(Constants.BundleData.PRODUCT) as Product
         setUpBinding()
         setUpListeners()
         init()
@@ -66,6 +68,7 @@ class EditProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
             viewModel.phoneNumber.postValue(it.contactNumber?.checkPhoneNumberFormat())
             it.additionalImages?.let { it1 -> smallMediaRecyclerAdapter.submitItems(it1) }
             binding?.checkboxReceiveWhatsapp?.isChecked = it.receivedWhatsapp ?: false
+            binding?.checkboxIsActive?.isChecked = it.isActive ?: false
         }
     }
 
@@ -93,7 +96,8 @@ class EditProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
                 viewModel.updateProduct(
                         smallMediaRecyclerAdapter.items,
                         categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index],
-                        binding?.checkboxReceiveWhatsapp?.isChecked ?: false
+                        binding?.checkboxReceiveWhatsapp?.isChecked ?: false,
+                        binding?.checkboxIsActive?.isChecked ?: false
                 ).observe(this, addProductResultObserver())
             }
         }

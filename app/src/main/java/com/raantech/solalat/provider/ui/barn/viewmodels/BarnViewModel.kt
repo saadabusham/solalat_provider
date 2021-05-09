@@ -60,9 +60,9 @@ class BarnViewModel @ViewModelInject constructor(
         emit(response)
     }
 
-    fun getBarnRequest(receivedWhatsapp: Boolean): AddBarnRequest {
+    fun getBarnRequest(receivedWhatsapp: Boolean, isActive: Boolean): AddBarnRequest {
         return AddBarnRequest(
-                isActive = true,
+                isActive = isActive,
                 address = addressString.value.toString(),
                 latitude = address.value?.lat,
                 longitude = address.value?.lon,

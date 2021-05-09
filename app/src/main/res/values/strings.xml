@@ -165,6 +165,7 @@
     <string name="product_price">Product Price</string>
     <string name="product_images">Product Images</string>
     <string name="please_select_the_product_images">Please select the product images</string>
+    <string name="is_product_active">Is Product Active</string>
 
     <!--    Main Accessories    -->
     <string name="new_product">New Product</string>
@@ -202,6 +203,7 @@
     <string name="address">Address</string>
     <string name="service_type">Service type</string>
     <string name="add_ads">Add ads</string>
+    <string name="is_service_active">Is Service Active</string>
 
     <!--    Map    -->
     <string name="search_here">Search here</string>
@@ -244,5 +246,9 @@
     <string name="save_changes">Save changes</string>
     <string name="edit_barn">Edit barn</string>
     <string name="view_barns">View barns</string>
+
+    <!--    Barn Details-->
+    <string name="prices">Prices</string>
+    <string name="preview_data">Preview data</string>
 
 </resources>

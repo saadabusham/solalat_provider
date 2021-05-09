@@ -1,6 +1,7 @@
 package com.raantech.solalat.provider.data.models.product.response.product
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Price(
 
@@ -12,4 +13,4 @@ data class Price(
 
 	@field:SerializedName("currency")
 	val currency: String? = null
-)
+):Serializable

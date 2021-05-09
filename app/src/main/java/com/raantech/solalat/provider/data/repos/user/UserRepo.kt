@@ -15,6 +15,9 @@ interface UserRepo {
             phoneNumber: String
     ): APIResource<ResponseWrapper<TokenModel>>
 
+    suspend fun logout(
+    ): APIResource<ResponseWrapper<Any>>
+
     suspend fun getMyServices(
 
     ): APIResource<ResponseWrapper<List<MyService>>>

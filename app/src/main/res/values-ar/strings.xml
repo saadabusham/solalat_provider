@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">سلالات</string>
+    <string name="app_name">خدمات سلالات</string>
     <string name="app_license">حقوق الملكية محفوظة لشركة ران</string>
 
     <!-- SelectLanguageFragment-->
@@ -165,6 +165,7 @@
     <string name="product_price">سعر المنتج</string>
     <string name="product_images">صور المنتج</string>
     <string name="please_select_the_product_images">يرجى اختيار صور المنتج</string>
+    <string name="is_product_active">المنتج فعال</string>
 
     <!--    Main Accessories    -->
     <string name="new_product">منتج جديد</string>
@@ -202,6 +203,7 @@
     <string name="address">العنوان</string>
     <string name="service_type">نوع الخدمة</string>
     <string name="add_ads">اضافة الاعلان</string>
+    <string name="is_service_active">الخدمة فعالة</string>
 
     <!--    Map    -->
     <string name="search_here">ابحث هنا</string>
@@ -244,5 +246,9 @@
     <string name="save_changes">حفظ التعديلات</string>
     <string name="edit_barn">تعديل السطبل</string>
     <string name="view_barns">عرض الاسطبلات</string>
+
+    <!--    Barn Details-->
+    <string name="prices">الاسعار : </string>
+    <string name="preview_data">معاينة البيانات المدخلة</string>
 
 </resources>
