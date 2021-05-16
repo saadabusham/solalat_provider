@@ -167,6 +167,9 @@
     <string name="please_select_the_product_images">يرجى اختيار صور المنتج</string>
     <string name="is_product_active">المنتج فعال</string>
     <string name="is_available">متوفر حاليا</string>
+    <string name="the_product_will_be_available_on_a_date">سيتم توفر المنتج في تاريخ</string>
+    <string name="submit_date">اعتمد</string>
+    <string name="done">تم</string>
 
     <!--    Main Accessories    -->
     <string name="new_product">منتج جديد</string>
@@ -251,9 +254,16 @@
     <!--    Barn Details-->
     <string name="prices">الاسعار : </string>
     <string name="preview_data">معاينة البيانات المدخلة</string>
-    <string name="the_product_will_be_available_on_a_date">سيتم توفر المنتج في تاريخ</string>
-    <string name="submit_date">اعتمد</string>
-    <string name="done">تم</string>
+    <string name="in_order_to_be_able_to_receive_sales_amounts_please_fill_in_your_bank_account_information">حتى تتمكن من استقبال مبالغ المبيعات يرجى تعبئة معلومات حسابك البنكي</string>
+    <string name="complete">اتمام العملية</string>
+
+    <!--    Bank account information    -->
     <string name="products_posted_successfully">تمت عملية نشر المنتجات بنجاح،</string>
+    <string name="bank_account_information">معلومات الحساب البنكي</string>
+    <string name="bank_name">اسم البنك</string>
+    <string name="iban">رقم الايبان</string>
+    <string name="add_the_iban_to_your_bank_account">اضافة رقم الايبان الخاص بحسابك البنكي</string>
+    <string name="full_name">اسم الكامل</string>
+    <string name="add_the_full_name_as_registered_in_the_bank">اضافة الاسم الكامل كما هو مسجل في البنك</string>
 
 </resources>

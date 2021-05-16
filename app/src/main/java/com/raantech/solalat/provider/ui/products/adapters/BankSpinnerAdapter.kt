@@ -6,23 +6,24 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.raantech.solalat.provider.R
+import com.raantech.solalat.provider.data.models.product.response.Bank
 import com.raantech.solalat.provider.data.models.product.response.ServiceCategory
 import com.raantech.solalat.provider.databinding.RowSpinnerItemBinding
 import com.skydoves.powerspinner.OnSpinnerItemSelectedListener
 import com.skydoves.powerspinner.PowerSpinnerInterface
 import com.skydoves.powerspinner.PowerSpinnerView
-class CategoriesSpinnerAdapter(
+class BankSpinnerAdapter(
     private val powerSpinnerView: PowerSpinnerView,
     private val context: Context
-) : RecyclerView.Adapter<CategoriesSpinnerAdapter.ViewHolder>(),
-    PowerSpinnerInterface<ServiceCategory> {
+) : RecyclerView.Adapter<BankSpinnerAdapter.ViewHolder>(),
+    PowerSpinnerInterface<Bank> {
 
     override var index: Int = powerSpinnerView.selectedIndex
     override val spinnerView: PowerSpinnerView = powerSpinnerView
-    override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<ServiceCategory>? =
+    override var onSpinnerItemSelectedListener: OnSpinnerItemSelectedListener<Bank>? =
         null
     private val compoundPadding: Int = 12
-    val spinnerItems: MutableList<ServiceCategory> = arrayListOf()
+    val spinnerItems: MutableList<Bank> = arrayListOf()
     private val NO_SELECTED_INDEX = -1
 
     init {
@@ -67,7 +68,7 @@ class CategoriesSpinnerAdapter(
         )
     }
 
-    override fun setItems(itemList: List<ServiceCategory>) {
+    override fun setItems(itemList: List<Bank>) {
         this.spinnerItems.clear()
         this.spinnerItems.addAll(itemList)
         notifyDataSetChanged()

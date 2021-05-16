@@ -94,8 +94,9 @@ class AddProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
         if (viewModel.getUser()?.hasIban == true) {
             addProduct()
         } else {
-            viewModel.getUser()?.let { viewModel.storeUser(it) }
-            navigationController.navigate(R.id.action_addProductsFragment_to_ibanInfoFragment)
+//            viewModel.getUser()?.let { viewModel.storeUser(it) }
+//            navigationController.navigate(R.id.action_addProductsFragment_to_ibanInfoFragment)
+            addProduct()
         }
     }
 

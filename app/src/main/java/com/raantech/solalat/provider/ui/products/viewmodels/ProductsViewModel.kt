@@ -36,6 +36,10 @@ class ProductsViewModel @ViewModelInject constructor(
     val selectedCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val availableDate: MutableLiveData<String> = MutableLiveData()
 
+
+    val fullname: MutableLiveData<String> = MutableLiveData()
+    val iban: MutableLiveData<String> = MutableLiveData()
+
     fun getProducts(skip: Int) = liveData {
         emit(APIResource.loading())
         val response = productsRepo.getProducts(skip)

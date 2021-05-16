@@ -12,7 +12,7 @@ import com.skydoves.powerspinner.PowerSpinnerInterface
 import com.skydoves.powerspinner.PowerSpinnerView
 
 class GeneralStringDropDownAdapter(
-    powerSpinnerView: PowerSpinnerView,
+    private val powerSpinnerView: PowerSpinnerView,
     private val context: Context
 ) : RecyclerView.Adapter<GeneralStringDropDownAdapter.ViewHolder>(),
     PowerSpinnerInterface<String> {
@@ -37,6 +37,7 @@ class GeneralStringDropDownAdapter(
             inflater,
             R.layout.row_spinner_item, parent, false
         )
+        powerSpinnerView.setIsFocusable(true)
         return ViewHolder(view)
     }
 
