@@ -166,6 +166,7 @@
     <string name="product_images">صور المنتج</string>
     <string name="please_select_the_product_images">يرجى اختيار صور المنتج</string>
     <string name="is_product_active">المنتج فعال</string>
+    <string name="is_available">متوفر حاليا</string>
 
     <!--    Main Accessories    -->
     <string name="new_product">منتج جديد</string>
@@ -250,5 +251,9 @@
     <!--    Barn Details-->
     <string name="prices">الاسعار : </string>
     <string name="preview_data">معاينة البيانات المدخلة</string>
+    <string name="the_product_will_be_available_on_a_date">سيتم توفر المنتج في تاريخ</string>
+    <string name="submit_date">اعتمد</string>
+    <string name="done">تم</string>
+    <string name="products_posted_successfully">تمت عملية نشر المنتجات بنجاح،</string>
 
 </resources>

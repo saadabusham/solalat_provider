@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.raantech.solalat.provider.R
@@ -22,6 +21,7 @@ import com.raantech.solalat.provider.ui.base.fragment.BaseBindingFragment
 import com.raantech.solalat.provider.ui.media.MediaActivity
 import com.raantech.solalat.provider.ui.products.adapters.CategoriesSpinnerAdapter
 import com.raantech.solalat.provider.ui.products.adapters.SmallMediaRecyclerAdapter
+import com.raantech.solalat.provider.ui.products.dialogs.DateDialog
 import com.raantech.solalat.provider.ui.products.viewmodels.ProductsViewModel
 import com.raantech.solalat.provider.utils.extensions.checkPhoneNumberFormat
 import com.raantech.solalat.provider.utils.extensions.showErrorAlert
@@ -69,6 +69,7 @@ class EditProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
             it.additionalImages?.let { it1 -> smallMediaRecyclerAdapter.submitItems(it1) }
             binding?.checkboxReceiveWhatsapp?.isChecked = it.receivedWhatsapp ?: false
             binding?.checkboxIsActive?.isChecked = it.isActive ?: false
+            binding?.checkboxIsAvailable?.isChecked = it.isAvailable ?: false
         }
     }
 
@@ -93,14 +94,28 @@ class EditProductsFragment : BaseBindingFragment<FragmentAddProductBinding>(),
 
         binding?.btnAddProduct?.setOnClickListener {
             if (isDataValid()) {
-                viewModel.updateProduct(
-                        smallMediaRecyclerAdapter.items,
-                        categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index],
-                        binding?.checkboxReceiveWhatsapp?.isChecked ?: false,
-                        binding?.checkboxIsActive?.isChecked ?: false
-                ).observe(this, addProductResultObserver())
+                if (binding?.checkboxIsAvailable?.isChecked == false) {
+                    DateDialog(requireActivity(), this, object : DateDialog.CallBack {
+                        override fun callBack(date: String) {
+                            viewModel.availableDate.value = date
+                            updateProduct()
+                        }
+                    }).show()
+                } else {
+                    updateProduct()
+                }
             }
         }
+    }
+
+    private fun updateProduct() {
+        viewModel.updateProduct(
+                smallMediaRecyclerAdapter.items,
+                categoriesSpinnerAdapter.spinnerItems[categoriesSpinnerAdapter.index],
+                binding?.checkboxReceiveWhatsapp?.isChecked ?: false,
+                binding?.checkboxIsActive?.isChecked ?: false,
+                binding?.checkboxIsAvailable?.isChecked ?: false
+        ).observe(this, addProductResultObserver())
     }
 
     private fun isDataValid(): Boolean {

@@ -8,5 +8,8 @@ data class UserDetailsResponseModel(
 	val userInfo: UserInfo? = null,
 
 	@field:SerializedName("auth_token")
-	val authToken: String? = null
+	val authToken: String? = null,
+
+	@field:SerializedName("has_iban")
+	var hasIban: Boolean? = false
 )

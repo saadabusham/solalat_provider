@@ -23,25 +23,54 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/addProductsFragment"
         android:name="com.raantech.solalat.provider.ui.products.fragments.AddProductsFragment"
-        android:label="AddProductsFragment">
+        android:label="AddProductsFragment"
+        tools:layout="@layout/fragment_add_product">
         <action
-            android:id="@+id/action_addProductsFragment_to_productsFragment"
-            app:destination="@id/productsFragment"
+            android:id="@+id/action_addProductsFragment_to_ibanInfoFragment"
+            app:destination="@id/ibanInfoFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
-            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_addProductsFragment_to_accessoryAddedSuccessFragment"
+            app:destination="@id/accessoryAddedSuccessFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/addProductsFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/editProductsFragment"
         android:name="com.raantech.solalat.provider.ui.products.fragments.EditProductsFragment"
-        android:label="EditProductsFragment" />
+        android:label="EditProductsFragment"
+        tools:layout="@layout/fragment_add_product"/>
+    <fragment
+        android:id="@+id/ibanInfoFragment"
+        android:name="com.raantech.solalat.provider.ui.products.fragments.IbanInfoFragment"
+        android:label="IbanInfoFragment"
+        tools:layout="@layout/fragment_iban_info">
+    </fragment>
+    <fragment
+        android:id="@+id/accessoryAddedSuccessFragment"
+        android:name="com.raantech.solalat.provider.ui.products.fragments.AccessoryAddedSuccessFragment"
+        android:label="AccessoryAddedSuccessFragment"
+        tools:layout="@layout/fragment_accessory_added_success">
+        <action
+            android:id="@+id/action_accessoryAddedSuccessFragment_to_productsFragment"
+            app:destination="@id/productsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/accessoryAddedSuccessFragment"
+            app:popUpToInclusive="true"  />
+    </fragment>
 </navigation>

@@ -10,6 +10,7 @@ import com.raantech.solalat.provider.utils.DateTimeUtil.MESSAGE_DATE_FORMATE
 import com.raantech.solalat.provider.utils.DateTimeUtil.MONTH_NAME_DAY_YEAR_DATE_FORMATTING
 import com.raantech.solalat.provider.utils.DateTimeUtil.MONTH_NAME_DAY_YEAR_DATE_TIME_FORMATTING
 import com.raantech.solalat.provider.utils.DateTimeUtil.TIME_FORMATTING_HOUR_MIN_24
+import com.raantech.solalat.provider.utils.DateTimeUtil.YEAR_MONTH_DAY_DATE_TIME_FORMATTING
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -193,7 +194,7 @@ fun String?.getDateWithMonthName(): String {
         return ""
     return try {
         val dateFormat = SimpleDateFormat(MONTH_NAME_DAY_YEAR_DATE_FORMATTING)
-        dateFormat.format(this.toMillieSecconds())
+        dateFormat.format(this.toMillieSecconds(YEAR_MONTH_DAY_DATE_TIME_FORMATTING))
     } catch (e: IllegalArgumentException) {
         ""
     }

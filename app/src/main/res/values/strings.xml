@@ -166,6 +166,7 @@
     <string name="product_images">Product Images</string>
     <string name="please_select_the_product_images">Please select the product images</string>
     <string name="is_product_active">Is Product Active</string>
+    <string name="is_available">is_available</string>
 
     <!--    Main Accessories    -->
     <string name="new_product">New Product</string>
@@ -250,5 +251,9 @@
     <!--    Barn Details-->
     <string name="prices">Prices</string>
     <string name="preview_data">Preview data</string>
+    <string name="the_product_will_be_available_on_a_date">The product will be available on a date</string>
+    <string name="submit_date">submit</string>
+    <string name="done">Done</string>
+    <string name="products_posted_successfully">Products posted successfully.</string>
 
 </resources>

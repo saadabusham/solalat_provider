@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.raantech.solalat.provider.utils.extensions.DataTimeExtensionsKt"/>
+        <variable
+            name="isFavorite"
+            type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.raantech.solalat.provider.ui.products.dialogs.DateDialog" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:minWidth="@dimen/_250sdp"
+        app:cardCornerRadius="@dimen/_20sdp"
+        app:cardElevation="@dimen/_3sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:minWidth="@dimen/_250sdp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textview_normal_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:text="@string/the_product_will_be_available_on_a_date"
+                android:textColor="@color/edittext_color"
+                android:textSize="@dimen/_14ssp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:onClick="@{()->viewModel.onDateClicked()}"
+                    android:src="@drawable/ic_calender" />
+
+                <TextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/edittext_background"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_weight="1"
+                    android:gravity="center|start"
+                    android:text="@{DataTimeExtensionsKt.getDateWithMonthName(viewModel.date)}"
+                    android:textColor="@color/product_title_color"
+                    android:textSize="@dimen/_14ssp"
+                    tools:text="MM/DD/YYYY" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSubmit"
+                    style="@style/AppTheme.Outline_Button"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:onClick="@{()->viewModel.onSubmitClicked()}"
+                    android:text="@string/submit_date"
+                    app:cornerRadius="@dimen/_15sdp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancel"
+                    style="@style/AppTheme.Outline_Button"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:onClick="@{()->viewModel.onCancelClicked()}"
+                    android:text="@string/cancel"
+                    app:cornerRadius="@dimen/_15sdp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
