@@ -8,8 +8,10 @@ import com.raantech.solalat.provider.data.models.product.response.product.Produc
 import com.raantech.solalat.provider.databinding.RowProductVerticalBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder
+import com.raantech.solalat.provider.utils.extensions.setPopUpAnimation
+import com.raantech.solalat.provider.utils.extensions.setSlideAnimation
 
-class ProductsVerticalGridRecyclerAdapter(
+class ProductsVerticalRecyclerAdapter(
         context: Context
 ) : BaseBindingRecyclerViewAdapter<Product>(context) {
 
@@ -22,6 +24,7 @@ class ProductsVerticalGridRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.setSlideAnimation(position)
         if (holder is ViewHolder) {
             holder.bind(items[position])
         }

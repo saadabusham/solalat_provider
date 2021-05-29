@@ -25,7 +25,8 @@
             android:fillViewport="true"
             android:paddingStart="@dimen/_20sdp"
             android:paddingEnd="@dimen/_20sdp"
-            android:paddingBottom="@dimen/_20sdp">
+            android:paddingBottom="@dimen/_20sdp"
+            android:scrollIndicators="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,11 +35,11 @@
 
                 <ImageView
                     android:id="@+id/imgLogo"
-                    android:src="@drawable/ic_splash_logo"
-                    android:layout_width="@dimen/_140sdp"
-                    android:layout_height="@dimen/_120sdp"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_190sdp"
+                    android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_25sdp"
-                    android:layout_gravity="center"/>
+                    android:src="@drawable/ic_splash_logo" />
 
                 <TextView
                     style="@style/textview_normal_regular"
@@ -58,7 +59,7 @@ The policy covers all expenses for repatriation and medical treatment and emerge
 The cover may be extended those days that are strictly necessary up to a maximum of 15 days in case an unforeseen delay obliges the traveler to stay longer in the Schengen area. The delay must be due to unforeseen circumstances. Not caused intentionally by the insured. The insured shall be required to furnish the evidence, documents or certificates of the event justifying the extension.
 
 We refer to above mentioned subject and we are pleased to submit to you hereunder our Travel Insurance proposal:
-"/>
+" />
 
             </LinearLayout>
         </ScrollView>
@@ -69,7 +70,7 @@ We refer to above mentioned subject and we are pleased to submit to you hereunde
             android:orientation="vertical"
             android:paddingStart="@dimen/_20sdp"
             android:paddingEnd="@dimen/_20sdp"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
                 style="@style/textview_normal_bold"

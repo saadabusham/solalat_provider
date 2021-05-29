@@ -8,6 +8,8 @@ import com.raantech.solalat.provider.data.models.transportation.response.City
 import com.raantech.solalat.provider.databinding.RowCityBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder
+import com.raantech.solalat.provider.utils.extensions.setPopUpAnimation
+import com.raantech.solalat.provider.utils.extensions.setSlideAnimation
 
 class CityRecyclerAdapter constructor(
     context: Context
@@ -22,6 +24,7 @@ class CityRecyclerAdapter constructor(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.setSlideAnimation(position)
         if (holder is ViewHolder) {
             holder.bind(items[position])
         }

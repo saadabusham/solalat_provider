@@ -10,6 +10,7 @@ import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder
 import com.raantech.solalat.provider.data.models.auth.onboarding.OnBoardingItem
 import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.databinding.RowSliderBinding
+import com.raantech.solalat.provider.utils.extensions.setPopUpAnimation
 
 class SliderAdapter(
     context: Context
@@ -25,6 +26,7 @@ class SliderAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.setPopUpAnimation(position)
         if (holder is ViewHolder) {
             holder.bind(items[position])
         }

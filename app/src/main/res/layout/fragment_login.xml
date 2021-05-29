@@ -10,121 +10,127 @@
             type="com.raantech.solalat.provider.ui.auth.login.viewmodels.LoginViewModel" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vpOnBoarding"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_10sdp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewImagesDot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/_7sdp"
-            android:layout_marginEnd="@dimen/_7sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:itemCount="4"
-            tools:listitem="@layout/row_indecator" />
-
-        <TextView
-            style="@style/textview_normal_regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="@string/enter_your_mobile_number"
-            android:textSize="@dimen/_15ssp" />
+        android:fillViewport="true">
 
         <LinearLayout
-            android:id="@+id/linearMobile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:orientation="horizontal"
-            android:gravity="bottom">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vpOnBoarding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_10sdp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewImagesDot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/_16sdp"
-                android:orientation="vertical">
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="4"
+                tools:listitem="@layout/row_indecator" />
 
-                <com.rilixtech.widget.countrycodepicker.CountryCodePicker
-                    android:id="@+id/country_code_picker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/Edittext_height"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:gravity="center"
-                    android:layoutDirection="ltr"
-                    app:ccp_clickable="false"
-                    app:ccp_defaultNameCode="JO"
-                    app:ccp_dialogTextColor="@color/text_default_color"
-                    app:ccp_enablePhoneAutoFormatter="true"
-                    app:ccp_hideNameCode="true"
-                    app:ccp_hidePhoneCode="false"
-                    app:ccp_keyboardAutoPopOnSearch="false"
-                    app:ccp_selectionDialogShowSearch="true"
-                    app:ccp_setCountryByTimeZone="false"
-                    app:ccp_showFlag="false"
-                    app:ccp_showFullName="false"
-                    app:ccp_arrowSize="0dp"
-                    app:ccp_textColor="@color/text_default_color"
-                    app:ccp_textSize="@dimen/_17ssp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:background="@color/border_color"/>
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                style="@style/textview_normal_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_16sdp"
-                android:layout_weight="1">
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/enter_your_mobile_number"
+                android:textSize="@dimen/_15ssp" />
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_phone_number"
-                    style="@style/textview_normal_regular"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/Edittext_height"
-                    android:background="@android:color/transparent"
-                    android:hint="XXXXXXXXX"
-                    android:inputType="phone"
-                    android:includeFontPadding="false"
-                    android:text="@={viewModel.phoneNumberWithoutCountryCode}"
-                    android:textColorHint="@color/gray_btn_bg_color"
-                    android:textSize="@dimen/_16ssp" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:background="@color/border_color"/>
+            <LinearLayout
+                android:id="@+id/linearMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:orientation="horizontal"
+                android:gravity="bottom">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:orientation="vertical">
+
+                    <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                        android:id="@+id/country_code_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/Edittext_height"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:gravity="center"
+                        android:layoutDirection="ltr"
+                        app:ccp_clickable="false"
+                        app:ccp_defaultNameCode="JO"
+                        app:ccp_dialogTextColor="@color/text_default_color"
+                        app:ccp_enablePhoneAutoFormatter="true"
+                        app:ccp_hideNameCode="true"
+                        app:ccp_hidePhoneCode="false"
+                        app:ccp_keyboardAutoPopOnSearch="false"
+                        app:ccp_selectionDialogShowSearch="true"
+                        app:ccp_setCountryByTimeZone="false"
+                        app:ccp_showFlag="false"
+                        app:ccp_showFullName="false"
+                        app:ccp_arrowSize="0dp"
+                        app:ccp_textColor="@color/text_default_color"
+                        app:ccp_textSize="@dimen/_17ssp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/border_color"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:layout_weight="1">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/et_phone_number"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/Edittext_height"
+                        android:background="@android:color/transparent"
+                        android:hint="XXXXXXXXX"
+                        android:inputType="phone"
+                        android:includeFontPadding="false"
+                        android:text="@={viewModel.phoneNumberWithoutCountryCode}"
+                        android:textColorHint="@color/gray_btn_bg_color"
+                        android:textSize="@dimen/_16ssp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/border_color"/>
+                </LinearLayout>
             </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                style="@style/AppTheme.Button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:text="@string/login" />
+
         </LinearLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogin"
-            style="@style/AppTheme.Button"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height"
-            android:layout_marginStart="@dimen/layouts_margin_start"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/layouts_margin_end"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:text="@string/login" />
-
-    </LinearLayout>
+    </ScrollView>
 </layout>

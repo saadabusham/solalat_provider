@@ -9,6 +9,7 @@ import com.raantech.solalat.provider.data.models.product.response.product.Produc
 import com.raantech.solalat.provider.databinding.RowProductGridBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder
+import com.raantech.solalat.provider.utils.extensions.setPopUpAnimation
 
 class ProductsGridRecyclerAdapter(
         context: Context, val paginateCallBack: Paginate.Callbacks
@@ -23,6 +24,7 @@ class ProductsGridRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.setPopUpAnimation(position)
         if (holder is ViewHolder) {
             holder.bind(items[position])
         }

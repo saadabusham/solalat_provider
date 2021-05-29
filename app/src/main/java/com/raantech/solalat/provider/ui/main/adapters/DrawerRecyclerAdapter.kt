@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.raantech.solalat.provider.databinding.RowDrawerItemBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder
+import com.raantech.solalat.provider.utils.extensions.setPopUpAnimation
+import com.raantech.solalat.provider.utils.extensions.setSlideAnimation
 
 class DrawerRecyclerAdapter(
         context: Context
@@ -21,6 +23,7 @@ class DrawerRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+//        holder.setSlideAnimation(position)
         if (holder is ViewHolder) {
             holder.bind(items[position])
         }

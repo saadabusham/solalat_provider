@@ -28,9 +28,11 @@ import com.raantech.solalat.provider.ui.main.viewmodels.MainViewModel
 import com.raantech.solalat.provider.ui.media.MediaActivity
 import com.raantech.solalat.provider.ui.more.aboutus.AboutUsActivity
 import com.raantech.solalat.provider.ui.more.faqs.FaqsActivity
+import com.raantech.solalat.provider.ui.reportuser.ReportUserActivity
 import com.raantech.solalat.provider.ui.splash.SplashActivity
+import com.raantech.solalat.provider.ui.technicalsupport.TechnicalSupportActivity
+import com.raantech.solalat.provider.ui.updateprofile.UpdateProfileActivity
 import com.raantech.solalat.provider.utils.LocaleUtil
-import com.raantech.solalat.provider.utils.extensions.longToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main_content.*
 import kotlinx.android.synthetic.main.layout_home_toolbar.*
@@ -38,18 +40,18 @@ import kotlin.math.abs
 
 @AndroidEntryPoint
 class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
-    BaseBindingRecyclerViewAdapter.OnItemClickListener {
+        BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: MainViewModel by viewModels()
     lateinit var drawerRecyclerAdapter: DrawerRecyclerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(
-            layoutResID = R.layout.activity_main,
-            hasToolbar = true,
-            toolbarView = toolbar,
-            hasTitle = true,
-            title = R.string.solalat_services
+                layoutResID = R.layout.activity_main,
+                hasToolbar = true,
+                toolbarView = toolbar,
+                hasTitle = true,
+                title = R.string.solalat_services
         )
         setUpBinding()
         setUpDrawer()
@@ -76,8 +78,8 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
         binding?.drawerRecyclerView?.adapter = drawerRecyclerAdapter
         binding?.drawerRecyclerView?.setOnItemClickListener(this)
         val toggle = ActionBarDrawerToggle(
-            this, binding?.drawerLayout, binding?.appBarMain?.layoutToolbar?.toolbar,
-            R.string.navigation_drawer_open, R.string.navigation_drawer_close
+                this, binding?.drawerLayout, binding?.appBarMain?.layoutToolbar?.toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
         initDrawer(toggle)
     }
@@ -85,8 +87,8 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
 
     private fun initDrawer(toggle: ActionBarDrawerToggle) {
         val drawable = ResourcesCompat.getDrawable(
-            resources, R.drawable.ic_menu,
-            theme
+                resources, R.drawable.ic_menu,
+                theme
         )
         toggle.isDrawerIndicatorEnabled = false
         toggle.setHomeAsUpIndicator(drawable)
@@ -113,7 +115,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
                     binding?.appBarMain?.container?.pivotY = (1000).toFloat()
                 } else {
                     binding?.appBarMain?.container?.x =
-                        (binding?.navigationView?.width!! * (slideOffset))
+                            (binding?.navigationView?.width!! * (slideOffset))
                     binding?.appBarMain?.holder?.rotation = slideOffset * 10
                     binding?.appBarMain?.container?.scaleX = abs(slideOffset * 0.4f - 1)
                     binding?.appBarMain?.container?.scaleY = abs(slideOffset * 0.4f - 1)
@@ -129,41 +131,65 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
 
     private fun getDrawerList(): List<String> {
         return arrayListOf(
-            resources.getString(R.string.menu_my_account),
-            resources.getString(R.string.media),
-            resources.getString(R.string.menu_notifications),
-            resources.getString(R.string.menu_language),
-            resources.getString(R.string.menu_report_user),
-            resources.getString(R.string.menu_technical_support),
-            resources.getString(R.string.menu_about_us),
-            resources.getString(R.string.logout)
+                resources.getString(R.string.menu_my_account),
+                resources.getString(R.string.media),
+                resources.getString(R.string.menu_notifications),
+                resources.getString(R.string.menu_report_user),
+                resources.getString(R.string.menu_technical_support),
+                resources.getString(R.string.menu_about_us),
+                resources.getString(R.string.logout),
+                resources.getString(R.string.menu_language)
         )
     }
 
+    override fun onItemClick(view: View?, position: Int, item: Any) {
+        if (item is String) {
+            binding?.drawerLayout?.closeDrawer(GravityCompat.START)
+            when (position) {
+                0 -> UpdateProfileActivity.start(this)
+                1 -> MediaActivity.start(this)
+                3 -> ReportUserActivity.start(this)
+                4 -> TechnicalSupportActivity.start(this)
+                5 -> AboutUsActivity.start(this)
+                6 -> {
+                    viewModel.logout()
+                    SplashActivity.start(this)
+                }
+                7 -> viewModel.saveLanguage().observe(this, Observer {
+                    this.let {
+                        (it as BaseBindingActivity<*>).setLanguage(
+                                if (viewModel.getAppLanguage() == "ar")
+                                    CommonEnums.Languages.Arabic.value else CommonEnums.Languages.English.value
+                        )
+                    }
+                })
+            }
+        }
+    }
 
     private fun myServicesObserver(): CustomObserverResponse<List<MyService>> {
         return CustomObserverResponse(
-            this,
-            object : CustomObserverResponse.APICallBack<List<MyService>> {
-                override fun onSuccess(
-                    statusCode: Int,
-                    subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: List<MyService>?
-                ) {
-                    data?.let {
-                        setStartDestination(it)
-                    } ?: setStartDestination(arrayListOf())
-                }
+                this,
+                object : CustomObserverResponse.APICallBack<List<MyService>> {
+                    override fun onSuccess(
+                            statusCode: Int,
+                            subErrorCode: ResponseSubErrorsCodeEnum,
+                            data: List<MyService>?
+                    ) {
+                        data?.let {
+                            setStartDestination(it)
+                        } ?: setStartDestination(arrayListOf())
+                    }
 
-                override fun onError(
-                    subErrorCode: ResponseSubErrorsCodeEnum,
-                    message: String,
-                    errors: List<GeneralError>?
-                ) {
-                    super.onError(subErrorCode, message, errors)
-                    setStartDestination(arrayListOf())
+                    override fun onError(
+                            subErrorCode: ResponseSubErrorsCodeEnum,
+                            message: String,
+                            errors: List<GeneralError>?
+                    ) {
+                        super.onError(subErrorCode, message, errors)
+                        setStartDestination(arrayListOf())
+                    }
                 }
-            }
         )
     }
 
@@ -200,29 +226,5 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),
         }
 
     }
-
-    override fun onItemClick(view: View?, position: Int, item: Any) {
-        if (item is String) {
-            binding?.drawerLayout?.closeDrawer(GravityCompat.START)
-            when (position) {
-                1 -> MediaActivity.start(this)
-                3 -> viewModel.saveLanguage().observe(this, Observer {
-                    this.let {
-                        (it as BaseBindingActivity<*>).setLanguage(
-                            if (viewModel.getAppLanguage() == "ar")
-                                CommonEnums.Languages.Arabic.value else CommonEnums.Languages.English.value
-                        )
-                    }
-                })
-                5 -> FaqsActivity.start(this)
-                6 -> AboutUsActivity.start(this)
-                7 -> {
-                    viewModel.logout()
-                    SplashActivity.start(this)
-                }
-            }
-        }
-    }
-
 
 }

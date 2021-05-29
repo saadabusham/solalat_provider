@@ -20,7 +20,7 @@ import com.raantech.solalat.provider.ui.add_new_service.AddNewServiceActivity
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.bindingadapters.setOnItemClickListener
 import com.raantech.solalat.provider.ui.base.fragment.BaseBindingFragment
-import com.raantech.solalat.provider.ui.main.adapters.ProductsVerticalGridRecyclerAdapter
+import com.raantech.solalat.provider.ui.main.adapters.ProductsVerticalRecyclerAdapter
 import com.raantech.solalat.provider.ui.main.viewmodels.MainViewModel
 import com.raantech.solalat.provider.ui.products.ProductsActivity
 import com.raantech.solalat.provider.utils.extensions.gone
@@ -36,7 +36,7 @@ class MainAccessoriesFragment : BaseBindingFragment<FragmentMainAccessoriesBindi
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
     private var isFinished = false
 
-    lateinit var productsRecyclerAdapter: ProductsVerticalGridRecyclerAdapter
+    lateinit var productsRecyclerAdapter: ProductsVerticalRecyclerAdapter
 
     var refreshData: Boolean = false
 
@@ -86,7 +86,7 @@ class MainAccessoriesFragment : BaseBindingFragment<FragmentMainAccessoriesBindi
     }
 
     private fun setUpRecyclerView() {
-        productsRecyclerAdapter = ProductsVerticalGridRecyclerAdapter(requireContext())
+        productsRecyclerAdapter = ProductsVerticalRecyclerAdapter(requireContext())
         binding?.rvProducts?.adapter = productsRecyclerAdapter
         binding?.rvProducts?.setOnItemClickListener(this)
         Paginate.with(binding?.rvProducts, object : Paginate.Callbacks {

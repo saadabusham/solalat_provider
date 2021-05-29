@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:replace="allowBackup">
+        tools:replace="allowBackup"
+        android:hardwareAccelerated="true">
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -67,6 +68,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.barn.BarnActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.technicalsupport.TechnicalSupportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.reportuser.ReportUserActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.updateprofile.UpdateProfileActivity"
             android:screenOrientation="portrait" />
     </application>
 

@@ -11,6 +11,7 @@ import com.raantech.solalat.provider.databinding.RowBarnBinding
 import com.raantech.solalat.provider.databinding.RowTransportationBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder
+import com.raantech.solalat.provider.utils.extensions.setPopUpAnimation
 
 class BarnsRecyclerAdapter constructor(
         context: Context, val paginateCallBack: Paginate.Callbacks? = null
@@ -25,6 +26,7 @@ class BarnsRecyclerAdapter constructor(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.setPopUpAnimation(position)
         if (holder is ViewHolder) {
             holder.bind(items[position])
         }

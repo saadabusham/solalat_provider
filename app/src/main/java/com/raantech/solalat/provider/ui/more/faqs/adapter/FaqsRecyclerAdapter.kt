@@ -8,10 +8,7 @@ import com.raantech.solalat.provider.data.models.more.FaqsResponse
 import com.raantech.solalat.provider.databinding.RowFaqBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder
-import com.raantech.solalat.provider.utils.extensions.gone
-import com.raantech.solalat.provider.utils.extensions.halfRotate
-import com.raantech.solalat.provider.utils.extensions.rotate
-import com.raantech.solalat.provider.utils.extensions.visible
+import com.raantech.solalat.provider.utils.extensions.*
 
 class FaqsRecyclerAdapter constructor(
     context: Context
@@ -26,6 +23,7 @@ class FaqsRecyclerAdapter constructor(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.setSlideAnimation(position)
         if (holder is ViewHolder) {
             holder.bind(items[position])
         }

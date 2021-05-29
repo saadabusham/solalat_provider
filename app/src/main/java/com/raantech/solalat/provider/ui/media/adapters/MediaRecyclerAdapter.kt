@@ -8,6 +8,7 @@ import com.raantech.solalat.provider.data.models.media.Media
 import com.raantech.solalat.provider.databinding.RowImageViewBinding
 import com.raantech.solalat.provider.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.raantech.solalat.provider.ui.base.adapters.BaseViewHolder
+import com.raantech.solalat.provider.utils.extensions.setPopUpAnimation
 
 class MediaRecyclerAdapter(
         context: Context
@@ -22,6 +23,7 @@ class MediaRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.setPopUpAnimation(position)
         if (holder is ImageViewHolder) {
             holder.bind(items[position])
         }

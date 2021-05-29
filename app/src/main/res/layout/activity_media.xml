@@ -34,8 +34,8 @@
             android:nestedScrollingEnabled="false"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"
-            tools:itemCount="0"
+            app:spanCount="2"
+            tools:itemCount="7"
             tools:listitem="@layout/row_image_view" />
 
         <com.google.android.material.button.MaterialButton

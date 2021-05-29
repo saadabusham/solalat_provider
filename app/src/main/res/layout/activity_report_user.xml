@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.raantech.solalat.provider.ui.products.viewmodels.ProductsViewModel" />
+            type="com.raantech.solalat.provider.ui.reportuser.ReportUserViewModel" />
     </data>
 
     <LinearLayout
@@ -21,7 +21,11 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:paddingStart="@dimen/_12sdp"
+            android:paddingEnd="@dimen/_12sdp"
+            android:scrollIndicators="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,33 +36,17 @@
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_40sdp"
-                    android:layout_marginTop="@dimen/_30sdp"
-                    android:layout_marginEnd="@dimen/_40sdp"
-                    android:gravity="center"
-                    android:text="@string/in_order_to_be_able_to_receive_sales_amounts_please_fill_in_your_bank_account_information"
-                    android:textColor="@color/toolbar_title_color"
-                    android:textSize="@dimen/_13ssp" />
-
-                <TextView
-                    style="@style/textview_normal_regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:text="@string/bank_name"
+                    android:text="@string/report_type"
                     android:textColor="@color/edittext_color"
                     android:textSize="@dimen/_14ssp" />
 
                 <com.skydoves.powerspinner.PowerSpinnerView
-                    android:id="@+id/spinnerBanks"
+                    android:id="@+id/spinnerCategory"
                     style="@style/normalRegularFontStyle"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/edittext_background"
                     android:gravity="center|start"
                     android:hint="@string/select"
@@ -75,73 +63,63 @@
                     app:spinner_popup_background="@color/white"
                     app:spinner_popup_elevation="14dp" />
 
-                <TextView
-                    style="@style/textview_normal_regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:text="@string/iban"
-                    android:textColor="@color/edittext_color"
-                    android:textSize="@dimen/_14ssp" />
-
-                <EditText
-                    android:id="@+id/edIban"
-                    style="@style/textview_normal_regular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:background="@drawable/edittext_background"
-                    android:hint="@string/add_the_iban_to_your_bank_account"
-                    android:minHeight="@dimen/_35sdp"
-                    android:paddingStart="0dp"
-                    android:paddingEnd="0dp"
-                    android:text="@={viewModel.iban}"
-                    android:textColor="@color/edittext_color"
-                    android:textColorHint="@color/edittext_hint_color"
-                    android:textSize="@dimen/_15ssp" />
 
                 <TextView
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:text="@string/full_name"
+                    android:text="@string/title_of_the_complaint"
                     android:textColor="@color/edittext_color"
                     android:textSize="@dimen/_14ssp" />
 
                 <EditText
-                    android:id="@+id/edName"
+                    android:id="@+id/edTitle"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
                     android:background="@drawable/edittext_background"
-                    android:hint="@string/add_the_full_name_as_registered_in_the_bank"
+                    android:hint="@string/the_name_of_the_service_provider_name_of_the_service_you_intend_to_complain_about"
                     android:minHeight="@dimen/_35sdp"
                     android:paddingStart="0dp"
                     android:paddingEnd="0dp"
-                    android:text="@={viewModel.fullname}"
+                    android:text="@={viewModel.title}"
                     android:textColor="@color/edittext_color"
                     android:textColorHint="@color/edittext_hint_color"
-                    android:textSize="@dimen/_15ssp" />
+                    android:textSize="@dimen/_13ssp" />
+
+                <TextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/complaint_summary"
+                    android:textColor="@color/edittext_color"
+                    android:textSize="@dimen/_14ssp" />
+
+                <EditText
+                    android:id="@+id/edSummery"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_background"
+                    android:hint="@string/enter_what_is_the_content_of_the_complaint_submitted"
+                    android:minHeight="@dimen/_35sdp"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:text="@={viewModel.summery}"
+                    android:textColor="@color/edittext_color"
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textSize="@dimen/_13ssp" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnDone"
+                    android:id="@+id/btnSend"
                     style="@style/AppTheme.Button"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/button_height"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:text="@string/complete" />
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:text="@string/send" />
 
             </LinearLayout>
         </ScrollView>
