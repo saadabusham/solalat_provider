@@ -181,7 +181,9 @@ class Validator {
                     errorTitle = context.resources.getString(R.string.phone_number),
                     errorMessage = context.resources.getString(R.string.must_not_be_empty)
             )
-        } else if (textToValidate.startsWith("07") && (textToValidate.length < PHONE_MAX_LENGTH || textToValidate.length > PHONE_MAX_LENGTH)) {
+        }
+        /*
+        else if (textToValidate.startsWith("07") && (textToValidate.length < PHONE_MAX_LENGTH || textToValidate.length > PHONE_MAX_LENGTH)) {
             ValidatedData(
                     isValid = false,
                     errorTitle = context.resources.getString(R.string.phone_number),
@@ -202,7 +204,8 @@ class Validator {
                     errorTitle = context.resources.getString(R.string.phone_number),
                     errorMessage = context.resources.getString(R.string.phone_not_valid_err)
             )
-        } else ValidatedData(true, "", "")
+        } */
+        else ValidatedData(true, "", "")
     }
 
 //    private fun validatePhoneNumber(): ValidatedData {

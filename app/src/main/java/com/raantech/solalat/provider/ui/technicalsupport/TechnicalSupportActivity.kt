@@ -28,7 +28,8 @@ class TechnicalSupportActivity : BaseBindingActivity<ActivityTechnicalSupportBin
                 toolbarView = toolbar,
                 hasBackButton = true,
                 showBackArrow = true,
-                hasTitle = true
+                hasTitle = true,
+                title = R.string.menu_technical_support
         )
         binding?.viewModel = viewModel
         setOnClickListeners()

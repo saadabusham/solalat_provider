@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.raantech.solalat.provider.R" />
+
         <variable
             name="item"
             type="com.raantech.solalat.provider.data.models.product.response.product.Product" />
@@ -22,9 +24,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginStart="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_15sdp">
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/_65sdp"
@@ -35,10 +37,12 @@
 
                 <ImageView
                     android:id="@+id/imgMedia"
+                    ivImageErrorPlaceholder="@{R.drawable.ic_placeholder_accessories}"
+                    ivImagePlaceholder="@{R.drawable.ic_placeholder_accessories}"
                     ivImageUrl="@{item.baseImage.url}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:src="@drawable/ic_cat_medical" />
+                    tools:src="@drawable/ic_placeholder_accessories" />
 
             </com.google.android.material.card.MaterialCardView>
 

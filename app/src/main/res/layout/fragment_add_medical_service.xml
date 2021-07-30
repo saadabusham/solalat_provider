@@ -46,6 +46,8 @@
                     style="@style/normalRegularFontStyle"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
+                    app:arrow_gravity="@{true}"
+                    android:textAlignment="viewStart"
                     android:background="@drawable/edittext_background"
                     android:gravity="center|start"
                     android:hint="@string/select"

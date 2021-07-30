@@ -59,6 +59,8 @@
                     android:layout_height="@dimen/_45sdp"
                     android:layout_marginStart="@dimen/_12sdp"
                     android:layout_marginEnd="@dimen/_12sdp"
+                    app:arrow_gravity="@{true}"
+                    android:textAlignment="viewStart"
                     android:background="@drawable/edittext_background"
                     android:gravity="center|start"
                     android:hint="@string/select"
