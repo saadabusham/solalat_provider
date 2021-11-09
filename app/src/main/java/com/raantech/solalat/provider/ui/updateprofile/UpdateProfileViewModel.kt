@@ -22,9 +22,9 @@ class UpdateProfileViewModel @ViewModelInject constructor(
 
     val name: MutableLiveData<String> = MutableLiveData()
     val email: MutableLiveData<String> = MutableLiveData()
-    val addressString: MutableLiveData<String> = MutableLiveData()
     val phoneNumber: MutableLiveData<String> = MutableLiveData()
     val selectedCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val addressString: MutableLiveData<String> = MutableLiveData()
     val address: MutableLiveData<Address> = MutableLiveData()
 
     fun getConfigurationData() = liveData {
